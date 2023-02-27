@@ -2,55 +2,71 @@ import { AiFillAmazonCircle, AiOutlineDashboard, AiOutlineDollar } from 'react-i
 import { FaApplePay, FaBookReader, FaDraftingCompass, FaQuestionCircle } from 'react-icons/fa';
 import { CiViewList } from 'react-icons/ci';
 import { MdImportContacts, MdOutlineContactMail } from 'react-icons/md';
-import { AnnouncementIcons, CodingIcons, DesignIcons, LaptopIcons, PersonIcons, PrintIcons } from 'src/icons';
+import {
+	AnnouncementIcons,
+	CodingIcons,
+	DesignIcons,
+	EngIcons,
+	FinishRightIcon,
+	LaptopIcons,
+	OnlineCourseIcon,
+	OnlineLearningIcon,
+	OnlineStudentIcon,
+	PersonIcons,
+	PrintIcons,
+	RightLineIcon,
+	RusIcons,
+	TurkIcon,
+	UzbIcons,
+} from 'src/icons';
 import { SiAmd, SiCisco, SiLogitech, SiSpotify } from 'react-icons/si';
 
 export const navigation = [
 	{
-		title: 'General',
+		title: 'sidebar_title_1',
 		links: [
 			{
-				label: 'Explore',
+				label: 'sidebar_title_1_explore',
 				route: '/',
 				icon: AiOutlineDashboard,
 			},
 			{
-				label: 'Courses',
+				label: 'sidebar_title_1_courses',
 				route: '/courses',
 				icon: CiViewList,
 			},
 			{
-				label: 'Books',
+				label: 'sidebar_title_1_books',
 				route: '/books',
 				icon: FaBookReader,
 			},
 			{
-				label: 'Articles',
+				label: 'sidebar_title_1_articles',
 				route: '/articles',
 				icon: MdImportContacts,
 			},
 		],
 	},
 	{
-		title: 'Pages',
+		title: 'sidebar_title_2',
 		links: [
 			{
-				label: 'About',
+				label: 'sidebar_title_2_about',
 				route: '/about',
 				icon: FaDraftingCompass,
 			},
 			{
-				label: 'Contact',
+				label: 'sidebar_title_2_contact',
 				route: '/contact',
 				icon: MdOutlineContactMail,
 			},
 			{
-				label: 'Pricing',
+				label: 'sidebar_title_2_pricing',
 				route: '/pricing',
 				icon: AiOutlineDollar,
 			},
 			{
-				label: 'FAQ',
+				label: 'sidebar_title_2_faq',
 				route: '/faq',
 				icon: FaQuestionCircle,
 			},
@@ -60,35 +76,50 @@ export const navigation = [
 
 export const categories = [
 	{
-		name: 'Createive Design',
+		name: 'design_category',
 		id: 1,
 		icon: DesignIcons,
 	},
 	{
-		name: 'Sales Marketing',
+		name: 'sales_marketing_category',
 		id: 2,
 		icon: AnnouncementIcons,
 	},
 	{
-		name: 'Development IT',
+		name: 'development_it_category',
 		id: 3,
 		icon: CodingIcons,
 	},
 	{
-		name: 'Engineering Architecture',
+		name: 'engineering_architecture_category',
 		id: 4,
 		icon: PrintIcons,
 	},
 	{
-		name: 'Personl Development',
+		name: 'personl_development_category',
 		id: 5,
 		icon: PersonIcons,
 	},
 	{
-		name: 'Finance Accounting',
+		name: 'finance_accounting_category',
 		id: 6,
 		icon: LaptopIcons,
 	},
 ];
 
 export const trustedCompeny = [AiFillAmazonCircle, SiAmd, SiCisco, FaApplePay, SiLogitech, SiSpotify];
+
+export const language = [
+	{ nativeLng: 'English', lng: 'en', icon: EngIcons },
+	{ nativeLng: "O'zbek", lng: 'uz', icon: UzbIcons },
+	{ nativeLng: 'Türkçe', lng: 'tr', icon: TurkIcon },
+	{ nativeLng: 'Русский', lng: 'ru', icon: RusIcons },
+];
+
+export const howItWorks = [
+	{ title: 'how_it_works_first_step', icon: OnlineCourseIcon },
+	{ title: '', icon: RightLineIcon },
+	{ title: 'how_it_works_second_step', icon: OnlineLearningIcon },
+	{ title: '', icon: FinishRightIcon },
+	{ title: 'how_it_works_third_step', icon: OnlineStudentIcon },
+];
