@@ -53,13 +53,7 @@ const Header = ({ onToggle }: HeaderProps) => {
 				<HStack>
 					<IconButton aria-label='support' icon={<MdOutlineContactSupport />} colorScheme={'facebook'} variant={'ghost'} />
 					<Menu placement='bottom'>
-						<MenuButton
-							as={Button}
-							rightIcon={<TbWorld />}
-							textTransform={'capitalize'}
-							colorScheme={'facebook'}
-							variant={'solid'}
-						>
+						<MenuButton as={Button} rightIcon={<TbWorld />} textTransform={'capitalize'} colorScheme={'gray'} variant={'outline'}>
 							{i18n.resolvedLanguage}
 						</MenuButton>
 						<MenuList p={0}>

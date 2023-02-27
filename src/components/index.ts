@@ -6,3 +6,4 @@ export { default as Instructors } from './instructors/instructors';
 export { default as Testimonials } from './testimonials/testimonials';
 export { default as Newsletter } from './newsletter/newsletter';
 export { default as Sposorship } from './sposorship/sposorship';
+export { default as AllCoursesCard } from './all-courses-card/all-courses-card';
