@@ -259,3 +259,34 @@ export const courses: CourseType[] = [
 		},
 	},
 ];
+
+export const booksCategory = [
+	{
+		label: 'filter_all_category',
+		id: 'all-categories',
+	},
+	{
+		label: 'filter_programmin',
+		id: 'programming',
+	},
+	{
+		label: 'filter_design',
+		id: 'design',
+	},
+	{
+		label: 'filter_business',
+		id: 'business',
+	},
+	{
+		label: 'filter_history',
+		id: 'history',
+	},
+	{
+		label: 'filter_writing',
+		id: 'writing',
+	},
+	{
+		label: 'filter_lifestyle',
+		id: 'lifestyle',
+	},
+];
