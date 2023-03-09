@@ -21,12 +21,15 @@ import { HeaderProps } from './header.props';
 import { language } from 'src/config/constants';
 import { useTranslation } from 'react-i18next';
 import { TbWorld } from 'react-icons/tb';
+import { useRouter } from 'next/router';
 
 const Header = ({ onToggle }: HeaderProps) => {
 	const { toggleColorMode, colorMode } = useColorMode();
 	const { i18n, t } = useTranslation();
+	const router = useRouter();
 
 	const onLanguage = (lng: string) => {
+		router.replace(router.asPath);
 		i18n.changeLanguage(lng);
 	};
 
