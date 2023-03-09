@@ -4,5 +4,13 @@
 	"about_heading": "Welcome to Sammi your skills with best Online courses",
 	"about_text_1": "You can start and finish one of these popular courses in under a day – for free! Check out the list below.. Take the course for free",
 	"about_text_2": "We help organizations of all types and sizes prepare for the path ahead — wherever it leads. Our curated collection of business and technical courses help companies, governments, and nonprofits go further by placing learning at the center of their strategies.",
-	"about_btn": "Start Learning For Free"
+	"about_btn": "Start Learning For Free",
+	"contact_title": "Contact Us",
+	"contact_description": "We’re on a mission to deliver engaging, curated courses at a reasonable price.",
+	"contact_heading": "Send a message",
+	"contact_text": "You can ask every questions about our platform or for sponsor.",
+	"contact_name": "Name",
+	"contact_email": "Email address",
+	"contact_message": "Message",
+	"contact_btn": "Send Message"
 }
