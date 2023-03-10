@@ -16,5 +16,20 @@
 	"pricing_title": "okumanız için",
 	"pricing_title_green": "doğru planlar",
 	"pricing_description": "Verimlilik için yukarıdaki planlardan herhangi birini seçebilir ve becerilerinizi birkaç kez artırabilirsiniz. Planımızı satın alarak, planınıza bağlı olarak 7/24 destek alabilir ve bir mentor ile görüşebilirsiniz.",
-	"pricing_btn": "Başlangıç"
+	"pricing_btn": "Başlangıç",
+	"faq_title": "Sıkça sorulan soru",
+	"faq_question_1": "Sammi kursları neleri içerir?",
+	"faq_answer_1": "Her Sammi kursu eğitmen(ler) tarafından oluşturulur, sahiplenir ve yönetilir. Her Sammi kursunun temeli, videolar, slaytlar ve metinler içerebilen derslerdir. Ayrıca eğitmenler, öğrencilerin öğrenme deneyimini geliştirmenin bir yolu olarak kaynaklar ve çeşitli uygulama etkinlikleri ekleyebilir.",
+	"faq_question_2": "Sammi kursuna nasıl giderim?",
+	"faq_answer_2": "Sammi kursları tamamen isteğe bağlıdır ve masaüstü, dizüstü bilgisayar ve mobil uygulamamız dahil olmak üzere birçok farklı cihaz ve platformdan erişilebilir. Bir kursa kaydolduktan sonra, onay e-postanızda alacağınız kurs bağlantısına tıklayarak (Sammi hesabınıza giriş yapmış olmanız koşuluyla) kursa erişebilirsiniz. Ayrıca oturum açıp Öğrenim sayfanıza giderek kursa başlayabilirsiniz.",
+	"faq_question_3": "Sammi kursuma belirli bir zamanda başlamak zorunda mıyım? Ve ne kadar sürede tamamlamam gerekiyor?",
+	"faq_answer_3": "Bir kursa başlamak veya tamamlamak için son tarih yoktur. Ömür Boyu Erişim politikamız hakkında daha fazla bilgi edinin.",
+	"faq_question_4": "Sammi akredite bir kurum mu? Bir kursu tamamladıktan sonra herhangi bir şey alacak mıyım?",
+	"faq_answer_4": "Sammi akredite bir kurum olmasa da, kendi alanlarında gerçek dünya uzmanları tarafından verilen beceriye dayalı kurslar sunuyoruz. Onaylanan her ücretli kurs, başarınızı belgelemek için bir bitirme sertifikasına sahiptir.",
+	"faq_question_5": "Bir kursu önizlemenin herhangi bir yolu var mı?",
+	"faq_answer_5": "Evet! Bir kursu nasıl önizleyeceğinizi ve bununla ilgili temel bilgileri nasıl gözden geçireceğinizi öğrenin. Bu makale, Sammi'nin sürekli büyüyen kitaplığında nasıl arama yapabileceğinizi ve ilginizi çeken kursları nasıl bulabileceğinizi özetlemektedir.",
+	"faq_question_6": "Bir kurs için nasıl ödeme yapabilirim?",
+	"faq_answer_6": "Sammi, hesabınızın ülkesine ve konumuna bağlı olarak birkaç farklı ödeme yöntemini destekler.",
+	"faq_question_7": "Satın aldığım bir kursu beğenmezsem ne olur?",
+	"faq_answer_7": "Memnun kalmanızı istiyoruz, böylece Udemy'de satın alınan tüm uygun kurslar 30 gün içinde iade edilebilir. Bir kurstan memnun kalmazsanız, talebin geri ödeme politikamızdaki yönergelere uygun olması koşuluyla geri ödeme talebinde bulunabilirsiniz."
 }

@@ -16,5 +16,20 @@
 	"pricing_title": "Sizning o'qishingiz uchun",
 	"pricing_title_green": "Tog'ri planlar",
 	"pricing_description": "Siz mahsuldorlik uchun yuqoridagi har qanday rejani tanlashingiz va mahoratingizni bir necha bor oshirishingiz mumkin. Bizning rejamizni sotib olib, siz 24/7 kun davomida yordam olishingiz va rejangizga qarab mentor bilan qo'ng'iroq qilishingiz mumkin.",
-	"pricing_btn": "Boshlash"
+	"pricing_btn": "Boshlash",
+	"faq_title": "Tez-tez so'raladigan savol",
+	"faq_question_1": "Sammi kurslari nimani o'z ichiga oladi?",
+	"faq_answer_1": "Har bir Sammi kursi o'qituvchi(lar) tomonidan yaratiladi, egalik qiladi va boshqariladi. Har bir Sammi kursining asosi uning ma'ruzalari bo'lib, ular videolar, slaydlar va matnlarni o'z ichiga olishi mumkin. Bundan tashqari, o'qituvchilar talabalarning o'rganish tajribasini oshirish usuli sifatida resurslar va turli xil amaliy faoliyat turlarini qo'shishlari mumkin.",
+	"faq_question_2": "Sammi kursini qanday olishim mumkin?",
+	"faq_answer_2": "Sammi kurslari butunlay talabga javob beradi va ularga turli xil qurilmalar va platformalar, jumladan ish stoli, noutbuk va mobil ilovamiz orqali kirish mumkin. Kursga ro'yxatdan o'tganingizdan so'ng, siz tasdiqlovchi elektron pochtangizga keladigan kurs havolasini bosish orqali unga kirishingiz mumkin (agar siz Sammi hisobingizga kirgan bo'lsangiz). Shuningdek, siz tizimga kirib, “Mening oʻrganishim” sahifasiga oʻtish orqali kursni boshlashingiz mumkin.",
+	"faq_question_3": "Sammi kursimni ma'lum bir vaqtda boshlashim kerakmi? Va uni qancha vaqt bajarishim kerak?",
+	"faq_answer_3": "Kursni boshlash yoki tugatish uchun hech qanday muddat yo'q. Bizning umr bo'yi kirish siyosatimiz haqida ko'proq bilib oling.",
+	"faq_question_4": "Sammi akkreditatsiyadan o'tgan muassasami? Kursni tugatganimdan keyin biror narsa olamanmi?",
+	"faq_answer_4": "Sammi akkreditatsiyadan o'tgan muassasa bo'lmasa-da, biz o'z sohasidagi haqiqiy mutaxassislar tomonidan o'qitiladigan ko'nikmalarga asoslangan kurslarni taklif qilamiz. Har bir tasdiqlangan, pullik kurs sizning muvaffaqiyatingizni hujjatlashtirish uchun tamomlaganlik sertifikatiga ega.",
+	"faq_question_5": "Kursni oldindan ko'rishning biron bir usuli bormi?",
+	"faq_answer_5": "Ha! Kursni oldindan ko'rishni o'rganing va u haqidagi asosiy ma'lumotlarni ko'rib chiqing. Ushbu maqolada siz Sammining tobora o'sib borayotgan kutubxonasini qanday qidirishingiz va o'zingiz qiziqqan kurslarni topishingiz mumkinligi tasvirlangan.",
+	"faq_question_6": "Kurs uchun qanday to'lashim mumkin?",
+	"faq_answer_6": "Sammi hisobingiz mamlakati va joylashuvingizga qarab bir necha xil toʻlov usullarini qoʻllab-quvvatlaydi.",
+	"faq_question_7": "Agar sotib olgan kursim menga yoqmasa-chi?",
+	"faq_answer_7": "Biz sizni qoniqtirmoqchimiz, shuning uchun Udemy’da sotib olingan barcha munosib kurslar 30 kun ichida qaytarilishi mumkin. Agar kursdan norozi bo'lsangiz, to'lovni qaytarish siyosatimizdagi ko'rsatmalarga javob bersa, to'lovni qaytarishni so'rashingiz mumkin."
 }
