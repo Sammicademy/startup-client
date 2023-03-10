@@ -12,5 +12,9 @@
 	"contact_name": "Ism",
 	"contact_email": "Email manzilingiz",
 	"contact_message": "Xabar",
-	"contact_btn": "Xabar yuboring"
+	"contact_btn": "Xabar yuboring",
+	"pricing_title": "Sizning o'qishingiz uchun",
+	"pricing_title_green": "Tog'ri planlar",
+	"pricing_description": "Siz mahsuldorlik uchun yuqoridagi har qanday rejani tanlashingiz va mahoratingizni bir necha bor oshirishingiz mumkin. Bizning rejamizni sotib olib, siz 24/7 kun davomida yordam olishingiz va rejangizga qarab mentor bilan qo'ng'iroq qilishingiz mumkin.",
+	"pricing_btn": "Boshlash"
 }

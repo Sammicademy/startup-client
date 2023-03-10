@@ -12,5 +12,9 @@
 	"contact_name": "Name",
 	"contact_email": "Email address",
 	"contact_message": "Message",
-	"contact_btn": "Send Message"
+	"contact_btn": "Send Message",
+	"pricing_title": "The Right Plan for",
+	"pricing_title_green": "Your Study",
+	"pricing_description": "You can choose any plan above for productivity and increase your skills several times. Buying our plan you can get support 24/7 and call to with mentor depending on your plan.",
+	"pricing_btn": "Get Started"
 }

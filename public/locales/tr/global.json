@@ -12,5 +12,9 @@
 	"contact_name": "İsim",
 	"contact_email": "E-posta adresi",
 	"contact_message": "İleti",
-	"contact_btn": "Send Message"
+	"contact_btn": "Mesaj gönder",
+	"pricing_title": "okumanız için",
+	"pricing_title_green": "doğru planlar",
+	"pricing_description": "Verimlilik için yukarıdaki planlardan herhangi birini seçebilir ve becerilerinizi birkaç kez artırabilirsiniz. Planımızı satın alarak, planınıza bağlı olarak 7/24 destek alabilir ve bir mentor ile görüşebilirsiniz.",
+	"pricing_btn": "Başlangıç"
 }
