@@ -52,5 +52,15 @@
 	"register_btn": "Подтвердить Email",
 	"verification_title": "Проверка",
 	"verification_description": "Последний шаг, и это почти сделано, просто проверьте свою электронную почту, которую мы отправили на вашу электронную почту проверочный код otp с 6-значным номером.",
-	"verification_btn": "Зарегистрироваться"
+	"verification_btn": "Зарегистрироваться",
+	"or": "ИЛИ",
+	"account_recovery_title_form1": "Восстановление аккаунта",
+	"account_recovery_description_form1": "Вы забыли пароль от своего аккаунта. Не беспокойтесь об этом. Команда Sammi может помочь вам решить эту проблему. Просто следуйте инструкциям ниже.",
+	"account_recovery_btn_form1": "Отправить OTP",
+	"account_recovery_title_form2": "Подтвердить Email",
+	"account_recovery_description_form2": "Мы отправили на вашу электронную почту проверочный код otp с 6-значным номером.",
+	"account_recovery_btn_form2": "Проверять",
+	"account_recovery_title_form3": "Новый пароль",
+	"account_recovery_description_form3": "Последний шаг, чтобы вернуть аккаунт и пользоваться нашими курсами и услугами.",
+	"account_recovery_btn_form3": "Отправлять"
 }

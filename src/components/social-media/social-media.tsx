@@ -1,7 +1,10 @@
 import { Box, Button, Center, HStack, Text } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 
 const SocialMedia = () => {
+	const { t } = useTranslation();
+
 	return (
 		<>
 			<Box
@@ -9,7 +12,7 @@ const SocialMedia = () => {
 				_before={{
 					content: '""',
 					position: 'absolute',
-					width: '45%',
+					width: '40%',
 					left: 0,
 					top: '50%',
 					transform: 'translateY(-50%)',
@@ -19,7 +22,7 @@ const SocialMedia = () => {
 				_after={{
 					content: '""',
 					position: 'absolute',
-					width: '45%',
+					width: '40%',
 					right: 0,
 					top: '50%',
 					transform: 'translateY(-50%)',
@@ -28,18 +31,18 @@ const SocialMedia = () => {
 				}}
 				textAlign={'center'}
 			>
-				OR
+				{t('or', { ns: 'global' })}
 			</Box>
 			<HStack>
 				<Button w={'full'} colorScheme={'gray'} leftIcon={<FaGithub />}>
 					<Center>
-						<Text>Continue with Github</Text>
+						<Text>Github</Text>
 					</Center>
 				</Button>
 
 				<Button w={'full'} colorScheme={'red'} variant={'outline'} leftIcon={<FaGoogle />}>
 					<Center>
-						<Text>Sign in with Google</Text>
+						<Text>Google</Text>
 					</Center>
 				</Button>
 			</HStack>

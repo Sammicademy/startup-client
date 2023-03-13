@@ -52,5 +52,15 @@
 	"register_btn": "Verify email",
 	"verification_title": "Verification",
 	"verification_description": "The last step and it almost done, just check your email we sent to your email otp verification code with 6 digits number.",
-	"verification_btn": "Register"
+	"verification_btn": "Register",
+	"or": "OR",
+	"account_recovery_title_form1": "Account Recovery",
+	"account_recovery_description_form1": "You forgot password from your account. Don't worry about it. Sammi team can help you solve that problem. Just follow steps below.",
+	"account_recovery_btn_form1": "Send OTP",
+	"account_recovery_title_form2": "Verify email",
+	"account_recovery_description_form2": "We sent to your email otp verification code with 6 digits number.",
+	"account_recovery_btn_form2": "Verify",
+	"account_recovery_title_form3": "New password",
+	"account_recovery_description_form3": "Last step to return account and enjoy our courses and services.",
+	"account_recovery_btn_form3": "Submit"
 }

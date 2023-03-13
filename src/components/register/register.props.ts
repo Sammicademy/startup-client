@@ -1,3 +1,3 @@
 export interface RegisterProps {
-	onNavigateStateComponent: (component: 'login' | 'register' | 'verification') => void;
+	onNavigateStateComponent: (component: 'login' | 'register' | 'verification' | 'account-recovery') => void;
 }

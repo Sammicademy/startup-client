@@ -52,5 +52,15 @@
 	"register_btn": "Email tasdiqlash",
 	"verification_title": "Tasdiqlash",
 	"verification_description": "Oxirgi qadam va deyarli bajarildi, biz sizning elektron pochtangizga yuborgan elektron pochtangizni tekshiring va 6 ta raqamdan iborat tasdiqlash kodini tekshiring.",
-	"verification_btn": "Ro'yhatdan o'tish"
+	"verification_btn": "Ro'yhatdan o'tish",
+	"or": "YOKIDA",
+	"account_recovery_title_form1": "Profilni tiklash",
+	"account_recovery_description_form1": "Profilingizni parolni unutdingiz. Bu haqda tashvishlanmang. Sammi jamoasi bu muammoni hal qilishga yordam beradi. Quyidagi amallarni bajaring.",
+	"account_recovery_btn_form1": "OTP yuborish",
+	"account_recovery_title_form2": "Elektron pochtani tasdiqlang",
+	"account_recovery_description_form2": "Biz sizning elektron pochtangizga 6 xonali raqamdan iborat otp tasdiqlash kodini yubordik.",
+	"account_recovery_btn_form2": "Tasdiqlash",
+	"account_recovery_title_form3": "Yangi parol",
+	"account_recovery_description_form3": "Hisobni qaytarish va kurslarimiz va xizmatlarimizdan bahramand bo'lish uchun oxirgi qadam.",
+	"account_recovery_btn_form3": "Yuborish"
 }
