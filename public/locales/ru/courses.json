@@ -21,5 +21,22 @@
 	"filter_language_item_4": "Турецкий",
 	"filter_level_item_1": "Новичок",
 	"filter_level_item_2": "Середина",
-	"filter_level_item_3": "Профессиональный"
+	"filter_level_item_3": "Профессиональный",
+	"overview": "Обзор",
+	"curriculum": "План",
+	"review": "Комментарий",
+	"mentor": "Наставник",
+	"what_you_will_learn": "Чему вы научитесь",
+	"required": "Требования",
+	"modules": "Модули",
+	"lessons": "Уроки",
+	"enroll": "Зарегистрироваться",
+	"total_hour": "Всего час",
+	"level": "Уровень",
+	"language": "Язык",
+	"sertificate": "Сертификат",
+	"access": "Доступ",
+	"ago": "назад",
+	"more": "более",
+	"hour": "час"
 }

@@ -21,5 +21,22 @@
 	"filter_language_item_4": "Turkcha",
 	"filter_level_item_1": "Yangi boshlovchi",
 	"filter_level_item_2": "O'rta",
-	"filter_level_item_3": "Professional"
+	"filter_level_item_3": "Professional",
+	"overview": "Tavsif",
+	"curriculum": "Dastur",
+	"review": "Sharh",
+	"mentor": "Mentor",
+	"what_you_will_learn": "Nimani o'rganasiz",
+	"required": "Talablar",
+	"modules": "Bo'lim",
+	"lessons": "Darslik",
+	"enroll": "Kirish",
+	"total_hour": "Umumiy soat",
+	"level": "Darajasi",
+	"language": "Til",
+	"sertificate": "Sertifikat",
+	"access": "Dostup",
+	"ago": "oldin",
+	"more": "ko'proq",
+	"hour": "soat"
 }

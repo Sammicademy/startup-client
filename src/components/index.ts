@@ -13,3 +13,7 @@ export { default as Register } from './register/register';
 export { default as Verification } from './verification/verification';
 export { default as SocialMedia } from './social-media/social-media';
 export { default as AccountRecovery } from './account-recovery/account-recovery';
+export { default as Overview } from './overview/overview';
+export { default as Curriculum } from './curriculum/curriculum';
+export { default as Review } from './reivew/review';
+export { default as Mentor } from './mentor/mentor';

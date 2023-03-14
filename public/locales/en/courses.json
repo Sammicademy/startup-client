@@ -21,5 +21,22 @@
 	"filter_language_item_4": "Turkish",
 	"filter_level_item_1": "Beginner",
 	"filter_level_item_2": "Medium",
-	"filter_level_item_3": "Professional"
+	"filter_level_item_3": "Professional",
+	"overview": "Overview",
+	"curriculum": "Curriculum",
+	"review": "Review",
+	"mentor": "Mentor",
+	"what_you_will_learn": "What you will learn",
+	"required": "Required",
+	"modules": "Modules",
+	"lessons": "Lessons",
+	"enroll": "Enroll",
+	"total_hour": "Total hour",
+	"level": "Level",
+	"language": "Language",
+	"sertificate": "Certificate",
+	"access": "Access",
+	"ago": "ago",
+	"more": "more",
+	"hour": "hour"
 }

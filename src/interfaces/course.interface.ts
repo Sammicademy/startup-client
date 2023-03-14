@@ -1,4 +1,5 @@
 export interface CourseType {
+	slug: string;
 	image: string;
 	title: string;
 	lessonCount: number;

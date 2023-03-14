@@ -21,5 +21,22 @@
 	"filter_language_item_4": "Türkçe",
 	"filter_level_item_1": "çaylak",
 	"filter_level_item_2": "orta",
-	"filter_level_item_3": "Profesyonel"
+	"filter_level_item_3": "Profesyonel",
+	"overview": "Tanım",
+	"curriculum": "programı",
+	"review": "Yorum",
+	"mentor": "akıl hocası",
+	"what_you_will_learn": "Ne öğreneceksin?",
+	"required": "Gereksinimler",
+	"modules": "Modül",
+	"lessons": "ders kitabı",
+	"enroll": "Girmek",
+	"total_hour": "Genel saatler",
+	"level": "Derece",
+	"language": "Dil",
+	"sertificate": "sertifika",
+	"access": "arkadaş",
+	"ago": "önce",
+	"more": "Daha",
+	"hour": "saat"
 }
