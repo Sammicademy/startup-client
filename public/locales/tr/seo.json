@@ -1,0 +1,20 @@
+{
+	"main_page_title": "Programlama Kursları",
+	"main_page_description": "Ücretsiz programlama dersleri ve projeleri, algoritmaları güçlendirmek için alıştırmalar. Hazır şablonlar, kişisel profil portföyü ve özgeçmiş. JavaScript ile ilgili teknolojilerin öğrenilmesi. SAMMI",
+	"course_page_title": "Tüm kurslar",
+	"course_page_description": "Sammy platformundaki tüm kurslar, sadece öğrenin ve eğlenin",
+	"books_page_title": "Kitabın",
+	"books_page_description": "Sammi sizin için kitap önerebilir",
+	"article_page_title": "Nesne",
+	"article_page_description": "Faydalı makaleler",
+	"about_page_title": "Hakkımızda",
+	"about_page_description": "Sammi platformu hakkında temel bilgiler",
+	"contact_page_title": "bize Ulaşın",
+	"contact_page_description": "Sammi ile iletişime geçin ve herhangi bir soru sorabilirsiniz.",
+	"pricing_page_title": "bir dizi fiyat",
+	"pricing_page_description": "Sammi Academy'de kullanmak ve çalışmak için en iyi paket",
+	"faq_page_title": "FAQ",
+	"faq_page_description": "Sammi platformunda daha fazla kullanıcı tarafından sıkça sorulan sorular",
+	"auth_page_title": "Girmek",
+	"auth_page_description": "Sammi platformunu kullanmak için giriş yapın veya bir hesap oluşturun"
+}

@@ -1,0 +1,20 @@
+{
+	"main_page_title": "Dasturlash kurslari",
+	"main_page_description": "Bepul dasturlash darslari va loyihalari, algoritmlarni mustahkamlash uchun mashqlar. Tayyor shablonlar, shaxsiy profil portfeli va rezyume. JavaScript bilan bog'liq texnologiyalarni o'rganish. SAMMI",
+	"course_page_title": "Barcha kurslar",
+	"course_page_description": "Sammi platformasidagi barcha kurslar shunchaki o'rganing va dam oling",
+	"books_page_title": "Kitoblar",
+	"books_page_description": "Sammi sizga kitoblarni maslahat berishi mumkin",
+	"article_page_title": "Maqolalar",
+	"article_page_description": "Sammi foydali maqolalar",
+	"about_page_title": "Biz haqimizda",
+	"about_page_description": "Sammi platformasi haqida asosiy ma'lumotlar",
+	"contact_page_title": "Biz bilan bog'lanish",
+	"contact_page_description": "Sammi bilan bog'laning va siz har qanday savol berishingiz mumkin",
+	"pricing_page_title": "Narxlar to'plami",
+	"pricing_page_description": "Sammi akademiyasida darsdan foydalanish va o'qish uchun eng yaxshi paket",
+	"faq_page_title": "FAQ",
+	"faq_page_description": "Sammi platformasida ko'proq foydalanuvchilar tez-tez so'raladigan savollar",
+	"auth_page_title": "Kirish",
+	"auth_page_description": "Sammi platformasidan foydalanish uchun tizimga kiring yoki hisobingizni yarating"
+}

@@ -1,0 +1,20 @@
+{
+	"main_page_title": "Programming Courses",
+	"main_page_description": "Free programming lessons and projects, exercises to strengthen algorithms. Ready-made templates, personal profile portfolio and resume. Learning JavaScript related technologies. SAMMI",
+	"course_page_title": "All Courses",
+	"course_page_description": "All courses in sammi platform just learn and relax",
+	"books_page_title": "Books",
+	"books_page_description": "Sammi can advice books for you",
+	"article_page_title": "Articles",
+	"article_page_description": "Useful articles of sammi",
+	"about_page_title": "About us",
+	"about_page_description": "Main information about sammi platform",
+	"contact_page_title": "Contact us",
+	"contact_page_description": "Contact with Sammi and you can ask any questions",
+	"pricing_page_title": "Pricing Package",
+	"pricing_page_description": "The best package for using and doing lesson on sammi academy",
+	"faq_page_title": "FAQ",
+	"faq_page_description": "More users in sammi platform frequently asked question",
+	"auth_page_title": "Auth",
+	"auth_page_description": "Login or create your account for using sammi platform"
+}

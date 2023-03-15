@@ -1,0 +1,20 @@
+{
+	"main_page_title": "Курсы программирования",
+	"main_page_description": "Бесплатные уроки и проекты по программированию, упражнения для укрепления алгоритмов. Готовые шаблоны, личное портфолио и резюме. Изучение технологий, связанных с JavaScript. САММИ",
+	"course_page_title": "Все курсы",
+	"course_page_description": "Все курсы на платформе sammi просто учись и отдыхай",
+	"books_page_title": "Книги",
+	"books_page_description": "Сэмми может посоветовать вам книги",
+	"article_page_title": "Статьи",
+	"article_page_description": "Полезные статьи самми",
+	"about_page_title": "О нас",
+	"about_page_description": "Основная информация о платформе Sammi",
+	"contact_page_title": "Связаться с нами",
+	"contact_page_description": "Свяжитесь с Sammi, и вы можете задать любые вопросы",
+	"pricing_page_title": "Ценовой пакет",
+	"pricing_page_description": "Лучший пакет для использования и проведения уроков в Sammi Academy",
+	"faq_page_title": "Часто задаваемые вопросы",
+	"faq_page_description": "Больше пользователей на платформе sammi часто задаваемый вопрос",
+	"auth_page_title": "Aвторизация",
+	"auth_page_description": "Войдите или создайте учетную запись для использования платформы sammi"
+}
