@@ -62,5 +62,9 @@
 	"account_recovery_btn_form2": "Onayla",
 	"account_recovery_title_form3": "Yeni Şifre",
 	"account_recovery_description_form3": "Hesabı iade etmek ve kurslarımızdan ve hizmetlerimizden yararlanmak için son adım.",
-	"account_recovery_btn_form3": "gönderme"
+	"account_recovery_btn_form3": "gönderme",
+	"start_reading_article": "Yapay Zeka başlangıç okuması",
+	"article": "makale",
+	"play": "Oynamak",
+	"stop": "Durmak"
 }

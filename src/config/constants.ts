@@ -1,5 +1,14 @@
-import { AiFillAmazonCircle, AiOutlineDashboard, AiOutlineDollar } from 'react-icons/ai';
-import { FaApplePay, FaBookReader, FaDraftingCompass, FaQuestionCircle } from 'react-icons/fa';
+import {
+	AiFillAmazonCircle,
+	AiOutlineDashboard,
+	AiOutlineDollar,
+} from 'react-icons/ai';
+import {
+	FaApplePay,
+	FaBookReader,
+	FaDraftingCompass,
+	FaQuestionCircle,
+} from 'react-icons/fa';
 import { CiViewList } from 'react-icons/ci';
 import { MdImportContacts, MdOutlineContactMail } from 'react-icons/md';
 import {
@@ -108,7 +117,14 @@ export const categories = [
 	},
 ];
 
-export const trustedCompeny = [AiFillAmazonCircle, SiAmd, SiCisco, FaApplePay, SiLogitech, SiSpotify];
+export const trustedCompeny = [
+	AiFillAmazonCircle,
+	SiAmd,
+	SiCisco,
+	FaApplePay,
+	SiLogitech,
+	SiSpotify,
+];
 
 export const language = [
 	{ nativeLng: 'English', lng: 'en', icon: EngIcons },
@@ -348,5 +364,23 @@ export const avatars = [
 	{
 		name: 'Christian Nwamba',
 		url: 'https://bit.ly/code-beast',
+	},
+];
+
+export const voiceLanguages = [
+	{
+		language: 'en',
+		codes: 'en-US',
+		voiceUrl: 'Google US English',
+	},
+	{
+		language: 'tr',
+		codes: 'tr-TR',
+		voiceUrl: 'Yelda',
+	},
+	{
+		language: 'ru',
+		codes: 'ru-RU',
+		voiceUrl: 'Milena',
 	},
 ];

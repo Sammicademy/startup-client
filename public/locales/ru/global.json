@@ -62,5 +62,9 @@
 	"account_recovery_btn_form2": "Проверять",
 	"account_recovery_title_form3": "Новый пароль",
 	"account_recovery_description_form3": "Последний шаг, чтобы вернуть аккаунт и пользоваться нашими курсами и услугами.",
-	"account_recovery_btn_form3": "Отправлять"
+	"account_recovery_btn_form3": "Отправлять",
+	"start_reading_article": "Искусственный интеллект начинает читать",
+	"article": "статью",
+	"play": "Играть",
+	"stop": "Стоп"
 }

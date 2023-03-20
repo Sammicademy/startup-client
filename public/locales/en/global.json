@@ -62,5 +62,9 @@
 	"account_recovery_btn_form2": "Verify",
 	"account_recovery_title_form3": "New password",
 	"account_recovery_description_form3": "Last step to return account and enjoy our courses and services.",
-	"account_recovery_btn_form3": "Submit"
+	"account_recovery_btn_form3": "Submit",
+	"start_reading_article": "Artificial Intelligence starting read",
+	"article": "article",
+	"play": "Play",
+	"stop": "Stop"
 }
