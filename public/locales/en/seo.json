@@ -16,5 +16,6 @@
 	"faq_page_title": "FAQ",
 	"faq_page_description": "More users in sammi platform frequently asked question",
 	"auth_page_title": "Auth",
-	"auth_page_description": "Login or create your account for using sammi platform"
+	"auth_page_description": "Login or create your account for using sammi platform",
+	"edit": "edit"
 }
