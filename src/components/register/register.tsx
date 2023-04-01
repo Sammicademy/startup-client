@@ -3,26 +3,35 @@ import {
 	Button,
 	Checkbox,
 	Flex,
-	FormControl,
-	FormLabel,
 	Heading,
 	HStack,
 	Icon,
-	Input,
-	InputGroup,
 	InputRightElement,
 	Stack,
 	Text,
 	useColorModeValue,
 } from '@chakra-ui/react';
+import { Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { useActions } from 'src/hooks/useActions';
 import { useShowPassword } from 'src/hooks/useShowPassword';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
+import { InterfaceEmailAndPassword } from 'src/store/user/user.interface';
+import { AuthValidation } from 'src/validations/auth.validation';
+import ErrorAlert from '../error-alert/error-alert';
+import TextFiled from '../text-filed/text-filed';
 import { RegisterProps } from './register.props';
 
 const Register = ({ onNavigateStateComponent }: RegisterProps) => {
 	const { show, toggleShow, showConfirm, toggleShowConfirm } = useShowPassword();
 	const { t } = useTranslation();
+	const { pendingRegister } = useActions();
+	const { error, isLoading } = useTypedSelector(state => state.user);
+
+	const onSubmit = (formData: InterfaceEmailAndPassword) => {
+		pendingRegister({ email: formData.email, password: formData.password });
+	};
 
 	return (
 		<Stack spacing={4}>
@@ -39,51 +48,75 @@ const Register = ({ onNavigateStateComponent }: RegisterProps) => {
 			<Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
 				{t('register_description', { ns: 'global' })}
 			</Text>
-			<FormControl isRequired>
-				<FormLabel>{t('login_input_email_label', { ns: 'global' })}</FormLabel>
-				<Input focusBorderColor='facebook.500' type='text' placeholder={'info@sammi.ac'} h={14} />
-			</FormControl>
-			<Flex gap={4}>
-				<FormControl isRequired>
-					<FormLabel>{t('login_input_password_label', { ns: 'global' })}</FormLabel>
-					<InputGroup>
-						<Input focusBorderColor='facebook.500' type={!show ? 'password' : 'text'} placeholder={'****'} h={14} />
-						<InputRightElement pt={4}>
-							<Icon as={!show ? AiOutlineEye : AiOutlineEyeInvisible} cursor={'pointer'} onClick={toggleShow} />
-						</InputRightElement>
-					</InputGroup>
-				</FormControl>
-				<FormControl isRequired>
-					<FormLabel>{t('register_input_confirm_password_label', { ns: 'global' })}</FormLabel>
-					<InputGroup>
-						<Input focusBorderColor='facebook.500' type={!showConfirm ? 'password' : 'text'} placeholder={'****'} h={14} />
-						<InputRightElement pt={4}>
-							<Icon as={!showConfirm ? AiOutlineEye : AiOutlineEyeInvisible} cursor={'pointer'} onClick={toggleShowConfirm} />
-						</InputRightElement>
-					</InputGroup>
-				</FormControl>
-			</Flex>
-			<HStack justify={'space-between'}>
-				<Checkbox colorScheme={'facebook'}>{t('auth_remember_me', { ns: 'global' })}</Checkbox>
-				<Box
-					as={'a'}
-					onClick={() => onNavigateStateComponent('account-recovery')}
-					color={'teal.500'}
-					cursor={'pointer'}
-					_hover={{ textDecoration: 'underline' }}
-				>
-					{t('auth_forgot_password', { ns: 'global' })}
-				</Box>
-			</HStack>
-			<Button
-				w={'full'}
-				bgGradient='linear(to-r, facebook.400,gray.400)'
-				color={'white'}
-				_hover={{ bgGradient: 'linear(to-r, facebook.500,gray.500)', boxShadow: 'xl' }}
-				h={14}
+			<Formik
+				onSubmit={onSubmit}
+				initialValues={{ email: '', password: '', confirmPassword: '' }}
+				validationSchema={AuthValidation.register}
 			>
-				{t('register_btn', { ns: 'global' })}
-			</Button>
+				<Form>
+					<>{error && <ErrorAlert title={error as string} />}</>
+					<TextFiled
+						name='email'
+						type='text'
+						label={t('login_input_password_label', { ns: 'global' })}
+						placeholder={'info@sammi.ac'}
+					/>
+					<Flex gap={4}>
+						<TextFiled
+							name='password'
+							label={t('login_input_password_label', { ns: 'global' })}
+							type={!show ? 'password' : 'text'}
+							placeholder={'****'}
+						>
+							<InputRightElement pt={4}>
+								<Icon
+									as={!show ? AiOutlineEye : AiOutlineEyeInvisible}
+									cursor={'pointer'}
+									onClick={toggleShow}
+								/>
+							</InputRightElement>
+						</TextFiled>
+						<TextFiled
+							name='confirmPassword'
+							label={t('register_input_confirm_password_label', { ns: 'global' })}
+							type={!showConfirm ? 'password' : 'text'}
+							placeholder={'****'}
+						>
+							<InputRightElement pt={4}>
+								<Icon
+									as={!showConfirm ? AiOutlineEye : AiOutlineEyeInvisible}
+									cursor={'pointer'}
+									onClick={toggleShowConfirm}
+								/>
+							</InputRightElement>
+						</TextFiled>
+					</Flex>
+					<HStack my={4} justify={'space-between'}>
+						<Checkbox colorScheme={'facebook'}>{t('auth_remember_me', { ns: 'global' })}</Checkbox>
+						<Box
+							as={'a'}
+							onClick={() => onNavigateStateComponent('account-recovery')}
+							color={'teal.500'}
+							cursor={'pointer'}
+							_hover={{ textDecoration: 'underline' }}
+						>
+							{t('auth_forgot_password', { ns: 'global' })}
+						</Box>
+					</HStack>
+					<Button
+						w={'full'}
+						bgGradient='linear(to-r, facebook.400,gray.400)'
+						color={'white'}
+						_hover={{ bgGradient: 'linear(to-r, facebook.500,gray.500)', boxShadow: 'xl' }}
+						h={14}
+						type={'submit'}
+						isLoading={isLoading}
+						loadingText={'Loading...'}
+					>
+						{t('register_btn', { ns: 'global' })}
+					</Button>
+				</Form>
+			</Formik>
 			<Text>
 				{t('register_already_have_account', { ns: 'global' })}{' '}
 				<Box

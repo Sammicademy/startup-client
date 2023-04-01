@@ -4,3 +4,5 @@ export enum Language {
 	UZ = 'uz',
 	TR = 'tr',
 }
+
+export type RoleUser = 'ADMIN' | 'INSTRUCTOR' | 'USER';

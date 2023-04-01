@@ -20,12 +20,16 @@ import { avatars } from 'src/config/constants';
 import AuthNavbarComponent from './auth-navbar-component';
 
 const AuthPageComponent = () => {
-	const [state, setState] = useState<'login' | 'register' | 'verification' | 'account-recovery'>('login');
+	const [state, setState] = useState<'login' | 'register' | 'verification' | 'account-recovery'>(
+		'login'
+	);
 
 	const breakpointValue = useBreakpointValue({ base: 'md', md: 'lg' });
 	const { t } = useTranslation();
 
-	const onNavigateStateComponent = (component: 'login' | 'register' | 'verification' | 'account-recovery') => setState(component);
+	const onNavigateStateComponent = (
+		component: 'login' | 'register' | 'verification' | 'account-recovery'
+	) => setState(component);
 
 	const renderStateComponent = () => {
 		switch (state) {
