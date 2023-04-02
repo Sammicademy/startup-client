@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { API_URL, getAuthUrl } from 'src/config/api.config';
+import { API_URL, getAuthUrl, getMailUrl } from 'src/config/api.config';
 import { removeTokensCookie, saveStorage } from 'src/helpers/auth.helper';
 import { AuthUserResponse } from 'src/store/user/user.interface';
 
@@ -27,6 +27,21 @@ export const AuthService = {
 		if (response.data.accessToken) {
 			saveStorage(response.data);
 		}
+
+		return response;
+	},
+
+	async sendOtp(email: string) {
+		const response = await axios.post<'Success'>(`${API_URL}${getMailUrl('send-otp')}`, { email });
+
+		return response;
+	},
+
+	async verifyOtp(email: string, otpVerification: string) {
+		const response = await axios.post<'Success'>(`${API_URL}${getMailUrl('verify-otp')}`, {
+			email,
+			otpVerification,
+		});
 
 		return response;
 	},

@@ -26,11 +26,17 @@ import { RegisterProps } from './register.props';
 const Register = ({ onNavigateStateComponent }: RegisterProps) => {
 	const { show, toggleShow, showConfirm, toggleShowConfirm } = useShowPassword();
 	const { t } = useTranslation();
-	const { pendingRegister } = useActions();
+	const { pendingRegister, sendVerificationCode } = useActions();
 	const { error, isLoading } = useTypedSelector(state => state.user);
 
-	const onSubmit = (formData: InterfaceEmailAndPassword) => {
-		pendingRegister({ email: formData.email, password: formData.password });
+	const onSubmit = async (formData: InterfaceEmailAndPassword) => {
+		const { email, password } = formData;
+		const response = await sendVerificationCode({ email });
+		const result: any = response;
+		if (result.payload === 'Success') {
+			pendingRegister({ email, password });
+			!isLoading && onNavigateStateComponent('verification');
+		}
 	};
 
 	return (
@@ -58,7 +64,7 @@ const Register = ({ onNavigateStateComponent }: RegisterProps) => {
 					<TextFiled
 						name='email'
 						type='text'
-						label={t('login_input_password_label', { ns: 'global' })}
+						label={t('login_input_email_label', { ns: 'global' })}
 						placeholder={'info@sammi.ac'}
 					/>
 					<Flex gap={4}>

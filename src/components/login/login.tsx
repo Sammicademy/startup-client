@@ -71,7 +71,7 @@ const Login = ({ onNavigateStateComponent }: LoginProps) => {
 					<TextFiled
 						name='email'
 						type='text'
-						label={t('login_input_password_label', { ns: 'global' })}
+						label={t('login_input_email_label', { ns: 'global' })}
 						placeholder={'info@sammi.ac'}
 					/>
 					<TextFiled

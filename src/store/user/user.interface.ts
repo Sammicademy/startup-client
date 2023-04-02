@@ -19,3 +19,8 @@ export interface InterfaceEmailAndPassword {
 	password: string;
 	email: string;
 }
+
+export interface InterfaceEmailAndOtp {
+	email: string;
+	otpVerification: string;
+}
