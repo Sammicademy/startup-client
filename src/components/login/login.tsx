@@ -36,13 +36,18 @@ const Login = ({ onNavigateStateComponent }: LoginProps) => {
 	const toggleShow = () => setShow(prev => !prev);
 
 	const onSubmit = (formData: InterfaceEmailAndPassword) => {
-		login({ email: formData.email, password: formData.password });
-		router.push('/');
-		toast({
-			title: 'Successfully logged in',
-			status: 'info',
-			isClosable: true,
-			position: 'top-right',
+		login({
+			email: formData.email,
+			password: formData.password,
+			callback: () => {
+				router.push('/');
+				toast({
+					title: 'Successfully logged in',
+					status: 'info',
+					isClosable: true,
+					position: 'top-right',
+				});
+			},
 		});
 	};
 
