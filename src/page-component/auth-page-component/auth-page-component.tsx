@@ -17,6 +17,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AccountRecovery, Login, Register, SocialMedia, Verification } from 'src/components';
 import { avatars } from 'src/config/constants';
+import { useActions } from 'src/hooks/useActions';
 import AuthNavbarComponent from './auth-navbar-component';
 
 const AuthPageComponent = () => {
@@ -24,12 +25,17 @@ const AuthPageComponent = () => {
 		'login'
 	);
 
+	const { clearError } = useActions();
+
 	const breakpointValue = useBreakpointValue({ base: 'md', md: 'lg' });
 	const { t } = useTranslation();
 
 	const onNavigateStateComponent = (
 		component: 'login' | 'register' | 'verification' | 'account-recovery'
-	) => setState(component);
+	) => {
+		setState(component);
+		clearError();
+	};
 
 	const renderStateComponent = () => {
 		switch (state) {

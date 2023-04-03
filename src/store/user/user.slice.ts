@@ -26,6 +26,9 @@ export const userSlice = createSlice({
 				password: action.payload.password,
 			};
 		},
+		clearError: state => {
+			state.error = null;
+		},
 	},
 	extraReducers: builder => {
 		builder

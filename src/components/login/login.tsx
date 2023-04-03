@@ -28,7 +28,7 @@ const Login = ({ onNavigateStateComponent }: LoginProps) => {
 	const [show, setShow] = useState<boolean>(false);
 
 	const { t } = useTranslation();
-	const { login } = useActions();
+	const { login, clearError } = useActions();
 	const { error, isLoading } = useTypedSelector(state => state.user);
 	const router = useRouter();
 	const toast = useToast();
@@ -72,7 +72,7 @@ const Login = ({ onNavigateStateComponent }: LoginProps) => {
 				validationSchema={AuthValidation.login}
 			>
 				<Form>
-					<>{error && <ErrorAlert title={error as string} />}</>
+					<>{error && <ErrorAlert title={error as string} clearHandler={clearError} />}</>
 					<TextFiled
 						name='email'
 						type='text'
