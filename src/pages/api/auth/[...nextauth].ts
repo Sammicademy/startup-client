@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { serialize } from 'cookie';
 import { NextApiRequest, NextApiResponse } from 'next';
 import nextAuth from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
@@ -6,7 +7,6 @@ import GoogleProvider from 'next-auth/providers/google';
 import { API_URL, getAuthUrl } from 'src/config/api.config';
 import { AuthService } from 'src/services/auth.service';
 import { AuthUserResponse } from 'src/store/user/user.interface';
-import { setCookie } from 'src/utils/cookies-persistance';
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
 	return nextAuth(req, res, {
@@ -34,11 +34,10 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 								password: '',
 							}
 						);
-						setCookie(res, 'next-auth.access-token', response.data.accessToken, {
-							path: '/',
-							secure: true,
-							maxAge: 2592000,
-						});
+						res.setHeader('Set-Cookie', [
+							serialize('access', response.data.accessToken, { secure: true, path: '/' }),
+							serialize('refresh', response.data.refreshToken, { secure: true, path: '/' }),
+						]);
 
 						return true;
 					} else if (checkUser === 'no-user') {
@@ -49,11 +48,10 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 								password: '',
 							}
 						);
-						setCookie(res, 'next-auth.access-token', response.data.accessToken, {
-							path: '/',
-							secure: true,
-							maxAge: 2592000,
-						});
+						res.setHeader('Set-Cookie', [
+							serialize('access', response.data.accessToken, { secure: true, path: '/' }),
+							serialize('refresh', response.data.refreshToken, { secure: true, path: '/' }),
+						]);
 						return true;
 					}
 				}

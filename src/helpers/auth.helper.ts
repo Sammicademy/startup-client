@@ -1,14 +1,12 @@
 import Cookies from 'js-cookie';
-import { AuthTokens, AuthUserResponse } from 'src/store/user/user.interface';
+import { AuthTokens } from 'src/store/user/user.interface';
 
 export const saveTokensCookie = (data: AuthTokens) => {
-	Cookies.set('next-auth.access-token', data.accessToken);
-};
-
-export const saveStorage = (data: AuthUserResponse) => {
-	saveTokensCookie(data);
+	Cookies.set('access', data.accessToken);
+	Cookies.set('refresh', data.refreshToken);
 };
 
 export const removeTokensCookie = () => {
-	Cookies.remove('next-auth.access-token');
+	Cookies.remove('access');
+	Cookies.remove('refresh');
 };
