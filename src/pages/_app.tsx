@@ -4,6 +4,7 @@ import 'react-multi-carousel/lib/styles.css';
 import '../styles/globals.css';
 
 import { ChakraProvider } from '@chakra-ui/react';
+import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
 import Router from 'next/router';
 import NProgress from 'nprogress';
@@ -17,7 +18,7 @@ import { store } from 'src/store/store';
 
 NProgress.configure({ showSpinner: false });
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
 	useEffect(() => {
 		const handleRouteStart = () => NProgress.start();
 		const handleRouteDone = () => NProgress.done();
@@ -36,13 +37,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<HydrationProvider>
 			<Provider store={store}>
-				<I18nextProvider i18n={i18n}>
-					<ChakraProvider theme={theme}>
-						<Client>
-							<Component {...pageProps} />
-						</Client>
-					</ChakraProvider>
-				</I18nextProvider>
+				<SessionProvider session={session}>
+					<I18nextProvider i18n={i18n}>
+						<ChakraProvider theme={theme}>
+							<Client>
+								<Component {...pageProps} />
+							</Client>
+						</ChakraProvider>
+					</I18nextProvider>
+				</SessionProvider>
 			</Provider>
 		</HydrationProvider>
 	);
