@@ -80,6 +80,7 @@
 	"successfully_logged": "Muvaffaqiyatli tizimga kirildi",
 	"login_with_new_password": "Dasturga yangi parol bilan kirishingiz mumkin",
 	"successfully_edited": "Muvaffaqiyatli tahrirlandi",
-	"settings": "sozlamalar",
-	"logout": "chiqish"
+	"settings": "Sozlamalar",
+	"logout": "Chiqish",
+	"loading": "Kutib turing"
 }

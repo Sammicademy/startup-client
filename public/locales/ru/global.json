@@ -84,6 +84,7 @@
 	"successfully_logged": "Успешно вошли в систему",
 	"login_with_new_password": "Вы можете войти в аккаунт с новым паролем",
 	"successfully_edited": "Успешно изменено",
-	"settings": "настройки",
-	"logout": "выйти"
+	"settings": "Настройки",
+	"logout": "Выйти",
+	"loading": "загрузка"
 }

@@ -6,4 +6,5 @@ export interface UserType {
 	role?: RoleUser;
 	createdAt?: string;
 	password?: string;
+	avatar?: string;
 }

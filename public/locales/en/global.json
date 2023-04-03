@@ -84,6 +84,7 @@
 	"successfully_logged": "Successfully logged in",
 	"login_with_new_password": "You can login to account with new password",
 	"successfully_edited": "Successfully edited",
-	"settings": "settings",
-	"logout": "logout"
+	"settings": "Settings",
+	"logout": "Logout",
+	"loading": "loading"
 }

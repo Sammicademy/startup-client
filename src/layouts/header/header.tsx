@@ -73,6 +73,7 @@ const Header = ({ onToggle }: HeaderProps) => {
 							textTransform={'capitalize'}
 							colorScheme={'gray'}
 							variant={'outline'}
+							display={{ base: 'none', md: 'block' }}
 						>
 							{i18n.resolvedLanguage}
 						</MenuButton>
@@ -99,7 +100,7 @@ const Header = ({ onToggle }: HeaderProps) => {
 					{user ? (
 						<Menu>
 							<MenuButton as={Button} rounded={'full'} variant={'link'} cursor={'pointer'} minW={0}>
-								<Avatar backgroundColor={'facebook.500'} />
+								<Avatar backgroundColor={'facebook.500'} src={user.avatar} />
 							</MenuButton>
 							<MenuList p={0} m={0}>
 								<MenuItem

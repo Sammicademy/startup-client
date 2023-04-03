@@ -82,7 +82,7 @@ const AccountRecovery = ({ onNavigateStateComponent }: AccountRecoveryProps) => 
 						_hover={{ bgGradient: 'linear(to-r, facebook.500,gray.500)', boxShadow: 'xl' }}
 						h={14}
 						isLoading={isLoading}
-						loadingText={'Loading...'}
+						loadingText={`${t('loading', { ns: 'global' })}`}
 						type={'submit'}
 					>
 						{t('account_recovery_btn_form1', { ns: 'global' })}
@@ -157,7 +157,7 @@ const AccountRecovery = ({ onNavigateStateComponent }: AccountRecoveryProps) => 
 							mt={4}
 							type={'submit'}
 							isLoading={isLoading}
-							loadingText={'Loading...'}
+							loadingText={`${t('loading', { ns: 'global' })}`}
 						>
 							{t('account_recovery_btn_form2', { ns: 'global' })}
 						</Button>
@@ -240,7 +240,7 @@ const AccountRecovery = ({ onNavigateStateComponent }: AccountRecoveryProps) => 
 						mt={4}
 						type={'submit'}
 						isLoading={isLoading}
-						loadingText={'Loading...'}
+						loadingText={`${t('loading', { ns: 'global' })}`}
 					>
 						{t('account_recovery_btn_form3', { ns: 'global' })}
 					</Button>

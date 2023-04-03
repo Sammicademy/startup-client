@@ -119,7 +119,7 @@ const Register = ({ onNavigateStateComponent }: RegisterProps) => {
 						h={14}
 						type={'submit'}
 						isLoading={isLoading}
-						loadingText={'Loading...'}
+						loadingText={`${t('loading', { ns: 'global' })}`}
 					>
 						{t('register_btn', { ns: 'global' })}
 					</Button>

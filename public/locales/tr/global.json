@@ -84,6 +84,7 @@
 	"successfully_logged": "Başarıyla giriş yapıldı",
 	"login_with_new_password": "Programa yeni bir şifre ile girebilirsiniz",
 	"successfully_edited": "Başarıyla düzenlendi",
-	"settings": "ayarlar",
-	"logout": "çıkış Yap"
+	"settings": "Ayarlar",
+	"logout": "çıkış Yap",
+	"loading": "Yükleniyor"
 }
