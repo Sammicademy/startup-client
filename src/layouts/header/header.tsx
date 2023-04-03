@@ -40,6 +40,11 @@ const Header = ({ onToggle }: HeaderProps) => {
 		i18n.changeLanguage(lng);
 	};
 
+	const logoutHandler = () => {
+		logout();
+		router.push('/auth');
+	};
+
 	return (
 		<Box
 			zIndex={1001}
@@ -107,7 +112,7 @@ const Header = ({ onToggle }: HeaderProps) => {
 								</MenuItem>
 								<MenuItem
 									h={14}
-									onClick={logout}
+									onClick={logoutHandler}
 									fontWeight={'bold'}
 									icon={<IoIosLogOut fontSize={17} />}
 								>
