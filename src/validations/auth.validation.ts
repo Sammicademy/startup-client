@@ -3,43 +3,35 @@ import * as Yup from 'yup';
 export const AuthValidation = {
 	register() {
 		return Yup.object({
-			email: Yup.string().email('Email is invalid').required('Email is required'),
-			password: Yup.string()
-				.min(6, 'Password should be min 6 characters')
-				.required('Password is required'),
+			email: Yup.string().email('email_is_invalid').required('email_is_required'),
+			password: Yup.string().min(6, 'password_shouldbe_min_6').required('password_is_required'),
 			confirmPassword: Yup.string()
-				.oneOf([Yup.ref('password')], "Password doesn't same")
-				.required('Confirm password is required'),
+				.oneOf([Yup.ref('password')], "password_didn't_match")
+				.required('confirm_password_is_required'),
 		});
 	},
 	login() {
 		return Yup.object({
-			email: Yup.string().email('Email is invalid').required('Email is required'),
-			password: Yup.string()
-				.min(6, 'Password should be min 6 characters')
-				.required('Password is required'),
+			email: Yup.string().email('email_is_invalid').required('email_is_required'),
+			password: Yup.string().min(6, 'password_shouldbe_min_6').required('password_is_required'),
 		});
 	},
 	otp() {
 		return Yup.object({
-			otp: Yup.string()
-				.required('OTP verification code is required')
-				.min(6, 'Verification code should be 6 digits number'),
+			otp: Yup.string().required('otp_is_required').min(6, 'verification_code_shouldbe_6'),
 		});
 	},
 	onlyEmail() {
 		return Yup.object({
-			email: Yup.string().email('Email is invalid').required('Email is required'),
+			email: Yup.string().email('email_is_invalid').required('email_is_required'),
 		});
 	},
 	editPassword() {
 		return Yup.object({
-			password: Yup.string()
-				.min(6, 'Password should be min 6 characters')
-				.required('Password is required'),
+			password: Yup.string().min(6, 'password_shouldbe_min_6').required('password_is_required'),
 			confirmPassword: Yup.string()
-				.oneOf([Yup.ref('password')], "Password doesn't same")
-				.required('Confirm password is required'),
+				.oneOf([Yup.ref('password')], "password_didn't_match")
+				.required('confirm_password_is_required'),
 		});
 	},
 };

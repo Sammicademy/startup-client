@@ -1,5 +1,6 @@
 import { FormControl, FormErrorMessage, FormLabel, Input, InputGroup } from '@chakra-ui/react';
-import { ErrorMessage, FieldHookConfig, useField } from 'formik';
+import { FieldHookConfig, useField } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { TextFieldProps } from './text-filed.props';
 
 const TextFiled = ({
@@ -11,6 +12,7 @@ const TextFiled = ({
 	...props
 }: TextFieldProps & FieldHookConfig<string>) => {
 	const [field, meta] = useField(props);
+	const { t } = useTranslation();
 
 	return (
 		<FormControl mt={15} isRequired isInvalid={!!meta.touched && !!meta.error}>
@@ -26,9 +28,7 @@ const TextFiled = ({
 				/>
 				{children}
 			</InputGroup>
-			<FormErrorMessage>
-				<ErrorMessage name={field.name} />
-			</FormErrorMessage>
+			<FormErrorMessage>{t(`${meta.error}`, { ns: 'global' })}</FormErrorMessage>
 		</FormControl>
 	);
 };
