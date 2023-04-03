@@ -104,7 +104,7 @@ const Header = ({ onToggle }: HeaderProps) => {
 							<MenuList p={0} m={0}>
 								<MenuItem
 									h={14}
-									onClick={() => router.push('/setting')}
+									// onClick={() => router.push('/setting')}
 									fontWeight={'bold'}
 									icon={<FiSettings fontSize={17} />}
 								>
