@@ -86,5 +86,12 @@
 	"successfully_edited": "Successfully edited",
 	"settings": "Settings",
 	"logout": "Logout",
-	"loading": "loading"
+	"loading": "loading",
+	"first_name": "First Name",
+	"first_name_required": "First Name is required",
+	"last_name": "Last Name",
+	"last_name_required": "Last Name is required",
+	"social_media": "Social media",
+	"social_media_required": "Social media link is required",
+	"send_to_verify_btn": "Send to verify"
 }

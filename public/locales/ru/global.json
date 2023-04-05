@@ -86,5 +86,12 @@
 	"successfully_edited": "Успешно изменено",
 	"settings": "Настройки",
 	"logout": "Выйти",
-	"loading": "загрузка"
+	"loading": "загрузка",
+	"first_name": "Имя",
+	"first_name_required": "Требуется имя",
+	"last_name": "Фамилия",
+	"last_name_required": "Требуется фамилия",
+	"social_media": "Социальные медиа",
+	"social_media_required": "Ссылка на социальные сети обязательна",
+	"send_to_verify_btn": "Отправить для проверки"
 }

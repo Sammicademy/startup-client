@@ -82,5 +82,12 @@
 	"successfully_edited": "Muvaffaqiyatli tahrirlandi",
 	"settings": "Sozlamalar",
 	"logout": "Chiqish",
-	"loading": "Kutib turing"
+	"loading": "Kutib turing",
+	"first_name": "Ismingiz",
+	"first_name_required": "Ismingiz kiritng",
+	"last_name": "Sharfingiz",
+	"last_name_required": "Sharfingiz kiritng",
+	"social_media": "Ijtimoiy tarmoq",
+	"social_media_required": "Ijtimoiy tarmoqlarga havola kerak",
+	"send_to_verify_btn": "Tasdiqlash uchun yuboring"
 }

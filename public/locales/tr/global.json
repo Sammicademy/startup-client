@@ -86,5 +86,12 @@
 	"successfully_edited": "Başarıyla düzenlendi",
 	"settings": "Ayarlar",
 	"logout": "çıkış Yap",
-	"loading": "Yükleniyor"
+	"loading": "Yükleniyor",
+	"first_name": "İlk adı",
+	"first_name_required": "Ad gereklidir",
+	"last_name": "Soy isim",
+	"last_name_required": "Soyadı gereklidir",
+	"social_media": "Sosyal medya",
+	"social_media_required": "Sosyal medya bağlantısı gerekli",
+	"send_to_verify_btn": "Doğrulamak için gönder"
 }
