@@ -2,6 +2,7 @@ export { default as AccountRecovery } from './account-recovery/account-recovery'
 export { default as AllCoursesCard } from './all-courses-card/all-courses-card';
 export { default as Categories } from './categories/categories';
 export { default as Curriculum } from './curriculum/curriculum';
+export { default as DraftCourseCard } from './draft-course-card/draft-course-card';
 export { default as ErrorAlert } from './error-alert/error-alert';
 export { default as Hero } from './hero/hero';
 export { default as HowItWorks } from './how-it-works/how-it-works';
