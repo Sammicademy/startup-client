@@ -9,4 +9,5 @@ export { default as CoursesPageComponent } from './courses-page-component/course
 export { default as DetailedCourseComponent } from './courses-page-component/detailed-course-component';
 export { default as FaqPageComponent } from './faq-page-component/faq-page-component';
 export { default as HomePageComponent } from './home-page-component/home-page-component';
+export { default as StudentsPageComponent } from './instructor-page-component/students-page-component';
 export { default as PricingPageComponent } from './pricing-page-component/pricing-page-component';
