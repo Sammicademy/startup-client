@@ -19,5 +19,6 @@ export { default as Register } from './register/register';
 export { default as Review } from './reivew/review';
 export { default as SocialMedia } from './social-media/social-media';
 export { default as Sposorship } from './sposorship/sposorship';
+export { default as StatsCard } from './stats-card/stats-card';
 export { default as Testimonials } from './testimonials/testimonials';
 export { default as Verification } from './verification/verification';
