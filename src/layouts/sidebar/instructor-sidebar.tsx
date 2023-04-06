@@ -16,10 +16,10 @@ import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TbWorld } from 'react-icons/tb';
-import { language, navigation } from 'src/config/constants';
+import { instructorSidebar, language } from 'src/config/constants';
 import { SidebarProps } from './sidebar.props';
 
-const Sidebar: FC<SidebarProps> = ({ toggle }): JSX.Element => {
+const InstructorSidebar: FC<SidebarProps> = ({ toggle }): JSX.Element => {
 	const router = useRouter();
 	const { t, i18n } = useTranslation();
 
@@ -40,7 +40,6 @@ const Sidebar: FC<SidebarProps> = ({ toggle }): JSX.Element => {
 			pos={'fixed'}
 			left={{ base: toggle ? 0 : '-100%', lg: 0 }}
 			top={'10vh'}
-			overflowY={'scroll'}
 			css={{
 				'&::-webkit-scrollbar': { width: '1px' },
 				'&::-webkit-scrollbar-track': { width: '1px' },
@@ -75,7 +74,34 @@ const Sidebar: FC<SidebarProps> = ({ toggle }): JSX.Element => {
 						))}
 					</MenuList>
 				</Menu>
-				{navigation.map((item, idx) => (
+				<Text fontSize={'lg'} mt={10}>
+					Instructor admin
+				</Text>
+				{instructorSidebar.map((item, idx) => {
+					const active =
+						`/instructor/${router.pathname.split('/')[2]}` == `/instructor/${item.route}`;
+
+					console.log(active);
+
+					return (
+						<Link href={`/instructor/${item.route}`} key={idx}>
+							<Button
+								colorScheme={'facebook'}
+								variant={active ? 'solid' : 'ghost'}
+								w={'full'}
+								justifyContent={'flex-start'}
+								h={14}
+								mt={2}
+							>
+								<HStack gap={2}>
+									<Icon as={item.icon} />
+									<Text>{item.name}</Text>
+								</HStack>
+							</Button>
+						</Link>
+					);
+				})}
+				{/* {navigation.map((item, idx) => (
 					<Box key={idx} mt={10}>
 						<Text>{t(item.title, { ns: 'layout' })}</Text>
 						{item.links.map((nav, idx) => {
@@ -100,10 +126,10 @@ const Sidebar: FC<SidebarProps> = ({ toggle }): JSX.Element => {
 							);
 						})}
 					</Box>
-				))}
+				))} */}
 			</Container>
 		</Box>
 	);
 };
 
-export default Sidebar;
+export default InstructorSidebar;
