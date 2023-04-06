@@ -5,6 +5,7 @@ export { default as Curriculum } from './curriculum/curriculum';
 export { default as ErrorAlert } from './error-alert/error-alert';
 export { default as Hero } from './hero/hero';
 export { default as HowItWorks } from './how-it-works/how-it-works';
+export { default as InstructorCoursesCard } from './instructor-courses-card/instructor-courses-card';
 export { default as Instructors } from './instructors/instructors';
 export { default as Login } from './login/login';
 export { default as Mentor } from './mentor/mentor';

@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 import { withInstructorLayout } from 'src/layouts/instructor';
-import { StudentsPageComponent } from 'src/page-component';
+import { InstructorStudentsPageComponent } from 'src/page-component';
 
 const Students: NextPage = () => {
-	return <StudentsPageComponent />;
+	return <InstructorStudentsPageComponent />;
 };
 
 export default withInstructorLayout(Students);
