@@ -10,5 +10,6 @@ export { default as DetailedCourseComponent } from './courses-page-component/det
 export { default as FaqPageComponent } from './faq-page-component/faq-page-component';
 export { default as HomePageComponent } from './home-page-component/home-page-component';
 export { default as InstructorCoursesPageComponent } from './instructor-page-component/courses-page-component';
+export { default as InstructorCreateCourseComponent } from './instructor-page-component/create-course-component';
 export { default as InstructorStudentsPageComponent } from './instructor-page-component/students-page-component';
 export { default as PricingPageComponent } from './pricing-page-component/pricing-page-component';

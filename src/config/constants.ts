@@ -477,3 +477,16 @@ export const courseusers = [
 		userGain: 1500,
 	},
 ];
+
+export const courseLevel = ['Beginner', 'Intermediate', 'Expert'];
+
+export const courseCategory = [
+	'Front-End',
+	'Back-End',
+	'Full-Stack',
+	'Mobile Application',
+	'Web Design',
+	'Graphic Design',
+];
+
+export const coursePrice = [10, 20, 30, 40, 50];
