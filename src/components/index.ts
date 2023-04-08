@@ -8,6 +8,7 @@ export { default as Hero } from './hero/hero';
 export { default as HowItWorks } from './how-it-works/how-it-works';
 export { default as InstructorCoursesCard } from './instructor-courses-card/instructor-courses-card';
 export { default as InstructorEditCourseCard } from './instructor-courses-card/instructor-edit-course-card';
+export { default as InstructorManageCourse } from './instructor-manage-course/instructor-manage-course';
 export { default as Instructors } from './instructors/instructors';
 export { default as Login } from './login/login';
 export { default as Mentor } from './mentor/mentor';
