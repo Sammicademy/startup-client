@@ -1,11 +1,28 @@
-import { Divider } from '@chakra-ui/react';
+import { Divider, useToast } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { InstructorManageCourse } from 'src/components';
 import { SubmitValuesInterface } from 'src/components/instructor-manage-course/instructor-manage-course.props';
 import SectionTitle from 'src/components/section-title/section-title';
+import { useActions } from 'src/hooks/useActions';
 
 const CreateCourseComponent = () => {
+	const { createCourse } = useActions();
+	const toast = useToast();
+	const router = useRouter();
+
 	const onSubmit = (data: SubmitValuesInterface) => {
-		console.log(data);
+		createCourse({
+			...data,
+			callback: () => {
+				toast({
+					title: 'Successfully created',
+					description: 'You can customize your curriculum for your course',
+					position: 'top-right',
+					isClosable: true,
+				});
+				router.push('/instructor/courses');
+			},
+		});
 	};
 
 	return (

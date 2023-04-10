@@ -11,6 +11,9 @@ export const courseSlice = createSlice({
 	name: 'course',
 	initialState,
 	reducers: {
+		startLoading: state => {
+			state.isLoading = true;
+		},
 		clearCourseError: state => {
 			state.error = null;
 		},
@@ -32,5 +35,5 @@ export const courseSlice = createSlice({
 	},
 });
 
-export const instructorReducer = courseSlice.reducer;
+export const courseReducer = courseSlice.reducer;
 export const courseSliceAction = courseSlice.actions;
