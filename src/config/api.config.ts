@@ -4,3 +4,5 @@ export const getAuthUrl = (url: string) => `/auth/${url}`;
 export const getMailUrl = (url: string) => `/mail/${url}`;
 export const getUserUrl = (url: string) => `/user/${url}`;
 export const getInstructorurl = (url: string) => `/instructor/${url}`;
+export const getFileUrl = (url: string) => `/file/${url}`;
+export const getCourseUrl = (url: string) => `/course/${url}`;
