@@ -12,9 +12,11 @@ import {
 import Image from 'next/image';
 import { InstructorCoursesCard } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
-import { courses } from 'src/config/constants';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
 
 const CoursesPageComponent = () => {
+	const { courses } = useTypedSelector(state => state.instructor);
+
 	return (
 		<>
 			<Card>
