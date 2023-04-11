@@ -13,6 +13,7 @@ import { editorModules } from 'src/config/editor.config';
 import { loadImage } from 'src/helpers/image.helper';
 import { useActions } from 'src/hooks/useActions';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
+import { CourseType } from 'src/interfaces/course.interface';
 import { FileService } from 'src/services/file.service';
 import { CourseValidation, manageCourseValues } from 'src/validations/course.validation';
 import ErrorAlert from '../error-alert/error-alert';
@@ -20,10 +21,7 @@ import SelectField from '../select-field/select-field';
 import TagField from '../tag-field/tag-field';
 import TextAreaField from '../text-area-field/text-area-field';
 import TextFiled from '../text-filed/text-filed';
-import {
-	InstructorManageCourseProps,
-	SubmitValuesInterface,
-} from './instructor-manage-course.props';
+import { InstructorManageCourseProps } from './instructor-manage-course.props';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -49,11 +47,15 @@ const InstructorManageCourse = ({
 			setErrorFile('Preview image is required');
 			return;
 		}
-		const formData = new FormData();
-		formData.append('image', file as File);
-		startLoading();
-		const response = await FileService.fileUpload(formData, 'preview-image');
-		const data = { ...formValues, previewImage: response.url } as SubmitValuesInterface;
+		let imageUrl = file;
+		if (typeof file !== 'string') {
+			startLoading();
+			const formData = new FormData();
+			formData.append('image', file as File);
+			const response = await FileService.fileUpload(formData, 'preview-image');
+			imageUrl = response.url;
+		}
+		const data = { ...formValues, previewImage: imageUrl } as CourseType;
 		submitHandler(data);
 	};
 

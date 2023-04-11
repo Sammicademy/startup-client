@@ -1,13 +1,39 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { errorCatch } from 'src/helpers/api.helper';
 import { CourseService } from 'src/services/course.service';
-import { CourseCreateBodyInterface } from './course.interface';
+import { CourseCreateBodyInterface, DeleteBodyInterface } from './course.interface';
 
 export const createCourse = createAsyncThunk<'Success', CourseCreateBodyInterface>(
 	'course/create',
 	async (body, thunkApi) => {
 		try {
 			const response = await CourseService.createCourse(body);
+			body.callback();
+			return response;
+		} catch (error) {
+			return thunkApi.rejectWithValue(errorCatch(error));
+		}
+	}
+);
+
+export const editCourse = createAsyncThunk<'Success', CourseCreateBodyInterface>(
+	'course/edit',
+	async (body, thunkApi) => {
+		try {
+			const response = await CourseService.editCourse(body, body._id);
+			body.callback();
+			return response;
+		} catch (error) {
+			return thunkApi.rejectWithValue(errorCatch(error));
+		}
+	}
+);
+
+export const deleteCourse = createAsyncThunk<'Success', DeleteBodyInterface>(
+	'course/delete',
+	async (body, thunkApi) => {
+		try {
+			const response = await CourseService.deleteCourse(body.courseId);
 			body.callback();
 			return response;
 		} catch (error) {

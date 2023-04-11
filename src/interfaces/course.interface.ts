@@ -15,6 +15,7 @@ export interface CourseType {
 	exerpt: string;
 	description: string;
 	category: string;
+	_id: string;
 }
 export interface AuthorType {
 	firstName: string;

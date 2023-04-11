@@ -1,4 +1,15 @@
-import { Box, Button, Divider, Flex, Heading, HStack, Icon, Stack, Text } from '@chakra-ui/react';
+import {
+	Box,
+	Button,
+	Divider,
+	Flex,
+	Heading,
+	HStack,
+	Icon,
+	Stack,
+	Text,
+	useToast,
+} from '@chakra-ui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
@@ -10,10 +21,34 @@ import { HiOutlineStatusOnline } from 'react-icons/hi';
 import { SiGoogleanalytics } from 'react-icons/si';
 import { VscOpenPreview } from 'react-icons/vsc';
 import { loadImage } from 'src/helpers/image.helper';
+import { useActions } from 'src/hooks/useActions';
 import { InstructoCoursesCardProps } from './instructor-courses-card.props';
 
 const InstructorEditCourseCard: FC<InstructoCoursesCardProps> = ({ item }): JSX.Element => {
 	const router = useRouter();
+	const { deleteCourse } = useActions();
+	const toast = useToast();
+
+	const onDelete = () => {
+		const isAgree = confirm('Are you sure?');
+
+		if (isAgree) {
+			deleteCourse({
+				courseId: item._id,
+				callback: () => {
+					toast({
+						title: 'Successfully deleted',
+						description: item.title,
+						position: 'top-right',
+						isClosable: true,
+					});
+					setTimeout(() => {
+						router.reload();
+					}, 1500);
+				},
+			});
+		}
+	};
 
 	return (
 		<HStack key={item.title} p={5} boxShadow={'dark-lg'} mt={5} borderRadius={'lg'}>
@@ -53,7 +88,9 @@ const InstructorEditCourseCard: FC<InstructoCoursesCardProps> = ({ item }): JSX.
 					>
 						Edit
 					</Button>
-					<Button rightIcon={<BsTrash />}>Delete</Button>
+					<Button rightIcon={<BsTrash />} onClick={onDelete}>
+						Delete
+					</Button>
 					<Button rightIcon={<HiOutlineStatusOnline />}>Status</Button>
 				</HStack>
 			</Stack>
