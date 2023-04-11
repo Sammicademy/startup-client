@@ -8,6 +8,7 @@ import { FiEdit2 } from 'react-icons/fi';
 import { HiOutlineStatusOnline } from 'react-icons/hi';
 import { SiGoogleanalytics } from 'react-icons/si';
 import { VscOpenPreview } from 'react-icons/vsc';
+import { loadImage } from 'src/helpers/image.helper';
 import { InstructoCoursesCardProps } from './instructor-courses-card.props';
 
 const InstructorCoursesCard: FC<InstructoCoursesCardProps> = ({ item }): JSX.Element => {
@@ -42,7 +43,7 @@ const InstructorCoursesCard: FC<InstructoCoursesCardProps> = ({ item }): JSX.Ele
 			</Stack>
 			<Box w={'30%'} h={'300px'} position={'relative'}>
 				<Image
-					src={`${process.env.NEXT_PUBLIC_API_SERVICE}${item.previewImage}`}
+					src={loadImage(item.previewImage)}
 					alt={item.title}
 					style={{ objectFit: 'cover', borderRadius: '10px' }}
 					fill

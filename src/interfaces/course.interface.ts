@@ -1,6 +1,6 @@
 export interface CourseType {
 	slug: string;
-	image: string;
+	previewImage: string;
 	title: string;
 	lessonCount: number;
 	totalHour: number;
@@ -9,8 +9,13 @@ export interface CourseType {
 	reviewAvarage: number;
 	reviewCount: number;
 	author: AuthorType;
+	tags: string[];
+	requirements: string[];
+	learn: string[];
+	exerpt: string;
+	description: string;
+	category: string;
 }
-
 export interface AuthorType {
 	firstName: string;
 	lastName: string;
