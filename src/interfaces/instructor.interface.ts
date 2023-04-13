@@ -15,8 +15,8 @@ export interface LessonType {
 	name: string;
 	material: string;
 	embedVideo: string;
-	hour: string;
-	minute: string;
-	second: string;
+	hour: number;
+	minute: number;
+	second: number;
 	_id: string;
 }

@@ -24,6 +24,24 @@ export const manageCourseValues: Type = {
 	tags: [],
 };
 
+interface LessonTypeValues {
+	name: string;
+	embedVideo: string;
+	hour: number;
+	minute: number;
+	second: number;
+	material: string;
+}
+
+export const manageLessonValues: LessonTypeValues = {
+	name: '',
+	embedVideo: '',
+	hour: 0,
+	minute: 0,
+	second: 0,
+	material: '',
+};
+
 export const CourseValidation = {
 	create() {
 		return Yup.object({
@@ -47,6 +65,16 @@ export const CourseValidation = {
 	section() {
 		return Yup.object({
 			title: Yup.string().required('Title is required'),
+		});
+	},
+	lesson() {
+		return Yup.object({
+			name: Yup.string().required('Name is required'),
+			embedVideo: Yup.string().required('Embed Video is required'),
+			hour: Yup.number().required('Hour is required'),
+			minute: Yup.number().required('Minute is required'),
+			second: Yup.number().required('Second is required'),
+			material: Yup.string().required('Material is required'),
 		});
 	},
 };

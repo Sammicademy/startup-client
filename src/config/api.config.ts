@@ -7,3 +7,4 @@ export const getInstructorurl = (url: string) => `/instructor/${url}`;
 export const getFileUrl = (url: string) => `/file/${url}`;
 export const getCourseUrl = (url: string) => `/course/${url}`;
 export const getSectionUrl = (url: string) => `/section/${url}`;
+export const getLessonUrl = (url: string) => `/lesson/${url}`;

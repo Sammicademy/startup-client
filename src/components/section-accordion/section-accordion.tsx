@@ -69,7 +69,7 @@ const SectionAccordion = ({ section, setSectionTitle, onOpen }: SectionAccordion
 			</AccordionButton>
 			<AccordionPanel pb={4}>
 				{section.lessons.map(lesson => (
-					<LessonAccordionItem key={lesson.name} lesson={lesson} />
+					<LessonAccordionItem key={lesson._id} lesson={lesson} sectionId={section._id} />
 				))}
 				<Center>
 					<Button
@@ -82,7 +82,7 @@ const SectionAccordion = ({ section, setSectionTitle, onOpen }: SectionAccordion
 					</Button>
 				</Center>
 				<Collapse in={isOpen} animateOpacity>
-					<LessonForm />
+					<LessonForm sectionId={section._id} />
 				</Collapse>
 			</AccordionPanel>
 		</AccordionItem>
