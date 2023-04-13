@@ -18,6 +18,8 @@ export { default as PopularCourses } from './popular-courses/popular-courses';
 export { default as Pricing } from './pricing/pricing';
 export { default as Register } from './register/register';
 export { default as Review } from './reivew/review';
+export { default as SectionAccordion } from './section-accordion/section-accordion';
+export { default as SectionForm } from './section-form/section-form';
 export { default as SocialMedia } from './social-media/social-media';
 export { default as Sposorship } from './sposorship/sposorship';
 export { default as StatsCard } from './stats-card/stats-card';
