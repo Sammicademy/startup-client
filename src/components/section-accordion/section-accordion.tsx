@@ -20,7 +20,7 @@ import LessonAccordionItem from '../lesson-accordion-item/lesson-accordion-item'
 import LessonForm from '../lesson-form/lesson-form';
 import { SectionAccordionProps } from './section-accordion.props';
 
-const SectionAccordion = ({ section }: SectionAccordionProps) => {
+const SectionAccordion = ({ section, setSectionTitle, onOpen }: SectionAccordionProps) => {
 	const { isOpen, onToggle } = useDisclosure();
 	const { deleteSection, clearSectionError, getSection } = useActions();
 	const { error, isLoading } = useTypedSelector(state => state.section);
@@ -45,6 +45,11 @@ const SectionAccordion = ({ section }: SectionAccordionProps) => {
 		}
 	};
 
+	const onEditSection = () => {
+		onOpen();
+		setSectionTitle({ title: section.title, id: section._id });
+	};
+
 	return (
 		<AccordionItem>
 			<>{error && <ErrorAlert title={error as string} clearHandler={clearSectionError} />}</>
@@ -56,7 +61,7 @@ const SectionAccordion = ({ section }: SectionAccordionProps) => {
 						{section.title}
 					</Flex>
 					<Flex fontSize={'15px'} align={'center'} gap={3}>
-						<Icon as={MdEdit} w={5} h={5} />
+						<Icon as={MdEdit} w={5} h={5} onClick={onEditSection} />
 						<Icon as={MdDelete} w={5} h={5} onClick={onDelete} />
 						<AccordionIcon />
 					</Flex>
