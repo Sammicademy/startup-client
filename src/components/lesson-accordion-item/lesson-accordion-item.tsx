@@ -11,9 +11,8 @@ import { LessonAccordionItemProps } from './lesson-accordion-item.props';
 const LessonAccordionItem = ({ lesson, sectionId, lessonIdx }: LessonAccordionItemProps) => {
 	const { isOpen, onToggle } = useDisclosure();
 	const { deleteLesson, getSection, editSection } = useActions();
-	const { isLoading } = useTypedSelector(state => state.lesson);
 	const { course } = useTypedSelector(state => state.instructor);
-	const { sections } = useTypedSelector(state => state.section);
+	const { sections, isLoading } = useTypedSelector(state => state.section);
 
 	const onDeleteLesson = () => {
 		const isAgree = confirm('Are you sure?');
@@ -22,9 +21,7 @@ const LessonAccordionItem = ({ lesson, sectionId, lessonIdx }: LessonAccordionIt
 			deleteLesson({
 				lessonId: lesson._id,
 				sectionId: sectionId,
-				callback: () => {
-					getSection({ courseId: course?._id, callback: () => {} });
-				},
+				callback: () => {},
 			});
 		}
 	};
@@ -44,9 +41,7 @@ const LessonAccordionItem = ({ lesson, sectionId, lessonIdx }: LessonAccordionIt
 		editSection({
 			sectionId,
 			lessons: editedIdx,
-			callback: () => {
-				getSection({ courseId: course?._id, callback: () => {} });
-			},
+			callback: () => {},
 		});
 	};
 
@@ -72,7 +67,7 @@ const LessonAccordionItem = ({ lesson, sectionId, lessonIdx }: LessonAccordionIt
 				</Flex>
 			</Flex>
 			<Collapse in={isOpen} animateOpacity>
-				<LessonForm values={lesson} />
+				<LessonForm values={lesson} onToggle={onToggle} />
 			</Collapse>
 		</>
 	);

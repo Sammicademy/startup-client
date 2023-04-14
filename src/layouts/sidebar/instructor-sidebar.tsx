@@ -81,8 +81,6 @@ const InstructorSidebar: FC<SidebarProps> = ({ toggle }): JSX.Element => {
 					const active =
 						`/instructor/${router.pathname.split('/')[2]}` == `/instructor/${item.route}`;
 
-					console.log(active);
-
 					return (
 						<Link href={`/instructor/${item.route}`} key={idx}>
 							<Button

@@ -1,9 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { errorCatch } from 'src/helpers/api.helper';
+import { LessonType, SectionType } from 'src/interfaces/instructor.interface';
 import { LessonService } from 'src/services/lesson.service';
 import { LessonBodyType } from './lesson.interface';
 
-export const createLesson = createAsyncThunk<'Success', LessonBodyType>(
+export const createLesson = createAsyncThunk<SectionType, LessonBodyType>(
 	'lesson/create',
 	async (body, thunkApi) => {
 		try {
@@ -16,7 +17,7 @@ export const createLesson = createAsyncThunk<'Success', LessonBodyType>(
 	}
 );
 
-export const deleteLesson = createAsyncThunk<'Success', LessonBodyType>(
+export const deleteLesson = createAsyncThunk<SectionType, LessonBodyType>(
 	'lesson/delete',
 	async (body, thunkApi) => {
 		try {
@@ -29,7 +30,7 @@ export const deleteLesson = createAsyncThunk<'Success', LessonBodyType>(
 	}
 );
 
-export const editLesson = createAsyncThunk<'Success', LessonBodyType>(
+export const editLesson = createAsyncThunk<LessonType, LessonBodyType>(
 	'lesson/edit',
 	async (body, thunkApi) => {
 		try {

@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createLesson, deleteLesson, editLesson } from './lesson.action';
 import { LessonInitialStateType } from './lesson.interface';
 
 const initialState: LessonInitialStateType = {
@@ -16,43 +15,7 @@ export const lessonSlice = createSlice({
 		},
 	},
 	extraReducers: builder => {
-		builder
-			.addCase(createLesson.pending, state => {
-				state.isLoading = true;
-				state.error = null;
-			})
-			.addCase(createLesson.fulfilled, state => {
-				state.isLoading = false;
-				state.error = null;
-			})
-			.addCase(createLesson.rejected, (state, { payload }) => {
-				state.isLoading = false;
-				state.error = payload;
-			})
-			.addCase(deleteLesson.pending, state => {
-				state.isLoading = true;
-				state.error = null;
-			})
-			.addCase(deleteLesson.fulfilled, state => {
-				state.isLoading = false;
-				state.error = null;
-			})
-			.addCase(deleteLesson.rejected, (state, { payload }) => {
-				state.isLoading = false;
-				state.error = payload;
-			})
-			.addCase(editLesson.pending, state => {
-				state.isLoading = true;
-				state.error = null;
-			})
-			.addCase(editLesson.fulfilled, state => {
-				state.isLoading = false;
-				state.error = null;
-			})
-			.addCase(editLesson.rejected, (state, { payload }) => {
-				state.isLoading = false;
-				state.error = payload;
-			});
+		builder;
 	},
 });
 

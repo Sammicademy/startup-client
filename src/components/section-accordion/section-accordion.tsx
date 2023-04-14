@@ -29,7 +29,7 @@ const SectionAccordion = ({
 	onOpen,
 }: SectionAccordionProps) => {
 	const { isOpen, onToggle } = useDisclosure();
-	const { deleteSection, clearSectionError, getSection, dragSection } = useActions();
+	const { deleteSection, clearSectionError, dragSection } = useActions();
 	const { error, isLoading, sections } = useTypedSelector(state => state.section);
 	const { course } = useTypedSelector(state => state.instructor);
 	const toast = useToast();
@@ -43,10 +43,6 @@ const SectionAccordion = ({
 				courseId: course?._id,
 				callback: () => {
 					toast({ title: 'Successfully deleted section', position: 'top-right', isClosable: true });
-					getSection({
-						courseId: course?._id,
-						callback: () => {},
-					});
 				},
 			});
 		}
@@ -71,12 +67,7 @@ const SectionAccordion = ({
 		dragSection({
 			sections: editedIdx,
 			courseId: course?._id,
-			callback: () => {
-				getSection({
-					courseId: course?._id,
-					callback: () => {},
-				});
-			},
+			callback: () => {},
 		});
 	};
 
@@ -127,7 +118,7 @@ const SectionAccordion = ({
 					</Button>
 				</Center>
 				<Collapse in={isOpen} animateOpacity>
-					<LessonForm sectionId={section._id} />
+					<LessonForm sectionId={section._id} onToggle={onToggle} />
 				</Collapse>
 			</AccordionPanel>
 		</AccordionItem>
