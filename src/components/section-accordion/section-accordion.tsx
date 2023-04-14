@@ -8,9 +8,11 @@ import {
 	Collapse,
 	Flex,
 	Icon,
+	List,
 	useDisclosure,
 	useToast,
 } from '@chakra-ui/react';
+import { DragEvent } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import { useActions } from 'src/hooks/useActions';
@@ -20,10 +22,15 @@ import LessonAccordionItem from '../lesson-accordion-item/lesson-accordion-item'
 import LessonForm from '../lesson-form/lesson-form';
 import { SectionAccordionProps } from './section-accordion.props';
 
-const SectionAccordion = ({ section, setSectionTitle, onOpen }: SectionAccordionProps) => {
+const SectionAccordion = ({
+	section,
+	setSectionTitle,
+	sectionIdx,
+	onOpen,
+}: SectionAccordionProps) => {
 	const { isOpen, onToggle } = useDisclosure();
-	const { deleteSection, clearSectionError, getSection } = useActions();
-	const { error, isLoading } = useTypedSelector(state => state.section);
+	const { deleteSection, clearSectionError, getSection, dragSection } = useActions();
+	const { error, isLoading, sections } = useTypedSelector(state => state.section);
 	const { course } = useTypedSelector(state => state.instructor);
 	const toast = useToast();
 
@@ -50,11 +57,42 @@ const SectionAccordion = ({ section, setSectionTitle, onOpen }: SectionAccordion
 		setSectionTitle({ title: section.title, id: section._id });
 	};
 
+	const onDragStartSection = (e: DragEvent<HTMLButtonElement>) => {
+		e.dataTransfer.setData('sectionIdx', String(sectionIdx));
+	};
+
+	const onDropSection = (e: DragEvent<HTMLButtonElement>) => {
+		const movingSectionIndex = Number(e.dataTransfer.getData('sectionIdx'));
+		const allSections = [...sections];
+		const movingItem = allSections[movingSectionIndex];
+		allSections.splice(movingSectionIndex, 1);
+		allSections.splice(sectionIdx, 0, movingItem);
+		const editedIdx = allSections.map(c => c._id);
+		dragSection({
+			sections: editedIdx,
+			courseId: course?._id,
+			callback: () => {
+				getSection({
+					courseId: course?._id,
+					callback: () => {},
+				});
+			},
+		});
+	};
+
 	return (
 		<AccordionItem>
 			<>{error && <ErrorAlert title={error as string} clearHandler={clearSectionError} />}</>
 
-			<AccordionButton h={14} p={2} fontWeight={'bold'} cursor={isLoading ? 'progress' : 'pointer'}>
+			<AccordionButton
+				h={14}
+				p={2}
+				fontWeight={'bold'}
+				cursor={isLoading ? 'progress' : 'pointer'}
+				draggable
+				onDragStart={onDragStartSection}
+				onDrop={onDropSection}
+			>
 				<Flex w={'100%'} align={'center'} justify={'space-between'}>
 					<Flex align={'center'} gap={2}>
 						<Icon as={AiOutlineMenu} w={5} h={5} />
@@ -68,9 +106,16 @@ const SectionAccordion = ({ section, setSectionTitle, onOpen }: SectionAccordion
 				</Flex>
 			</AccordionButton>
 			<AccordionPanel pb={4}>
-				{section.lessons.map(lesson => (
-					<LessonAccordionItem key={lesson._id} lesson={lesson} sectionId={section._id} />
-				))}
+				<List onDragOver={e => e.preventDefault()}>
+					{section.lessons.map((lesson, idx) => (
+						<LessonAccordionItem
+							key={lesson._id}
+							lessonIdx={idx}
+							lesson={lesson}
+							sectionId={section._id}
+						/>
+					))}
+				</List>
 				<Center>
 					<Button
 						variant={'unstyled'}
