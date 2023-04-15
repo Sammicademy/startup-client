@@ -89,5 +89,22 @@
 	"last_name_required": "Sharfingiz kiritng",
 	"social_media": "Ijtimoiy tarmoq",
 	"social_media_required": "Ijtimoiy tarmoqlarga havola kerak",
-	"send_to_verify_btn": "Tasdiqlash uchun yuboring"
+	"send_to_verify_btn": "Tasdiqlash uchun yuboring",
+	"title_is_required": "Sarlavha kerak",
+	"title_min_char": "Sarlavha kamida 8 belgidan iborat bo'lishi kerak",
+	"exerpt_is_required": "Qisqa ma'lumot kerak",
+	"exerpt_min_char": "Qisqa ma'lumot kamida 15 belgidan bo'lish kerak",
+	"level_is_required": "Daraja talab qilinadi",
+	"category_is_required": "Turkum talab qilinadi",
+	"price_is_required": "Narx talab qilinadi",
+	"course_tags_is_required": "Kurs teglari talab qilinadi",
+	"requirements_is_required": "Talablar talab qilinadi",
+	"learn_is_required": "O'rganish talab qilinadi",
+	"description_is_required": "Tavsif talab qilinadi",
+	"description_min_char": "Tavsif kamida 100 belgidan iborat bo'lishi kerak",
+	"name_is_required": "Ism talab qilinadi",
+	"embed_video_is_required": "Videoni joylashtirish talab qilinadi",
+	"hour_is_required": "Soat talab qilinadi",
+	"minute_is_required": "Daqiqa talab qilinadi",
+	"second_is_required": "soniyalar talab qilinadi"
 }

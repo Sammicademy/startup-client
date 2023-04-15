@@ -79,27 +79,26 @@ const InstructorManageCourse = ({
 						<Flex mt={12} gap={4}>
 							<Box w={'70%'}>
 								<Stack spacing={5}>
-									<TextFiled name='title' label='Title' placeholder='JavaScript from 0 to hero' />
+									<TextFiled name='title' label={t('title', { ns: 'instructor' })} />
 									<TextAreaField
 										name='exerpt'
-										placeholder='Full course about JavaScript'
 										height={'150px'}
-										label={'Exerpt'}
+										label={t('excerpt', { ns: 'instructor' }) || 'Exerpt'}
 									/>
 									<Flex gap={4}>
 										<TagField
-											label='What will students learn in your course?'
+											label={t('what_students_will_learn', { ns: 'instructor' })}
 											name='learn'
 											values={formik.values.learn}
-											placeholder='Full project...'
+											placeholder=''
 											formik={formik}
 											errorMessage={formik.touched.learn ? (formik.errors.learn as string) : ''}
 										/>
 										<TagField
-											label='Requirements'
+											label={t('requirements', { ns: 'instructor' })}
 											name='requirements'
 											values={formik.values.requirements}
-											placeholder='Basic JavaScript...'
+											placeholder=''
 											formik={formik}
 											errorMessage={
 												formik.touched.requirements ? (formik.errors.requirements as string) : ''
@@ -108,7 +107,7 @@ const InstructorManageCourse = ({
 									</Flex>
 									<Box>
 										<FormLabel mb={3}>
-											Description{' '}
+											{t('description', { ns: 'instructor' })}{' '}
 											<Box as={'span'} color={'red.300'}>
 												*
 											</Box>
@@ -146,24 +145,24 @@ const InstructorManageCourse = ({
 								<Stack spacing={5}>
 									<SelectField
 										name='level'
-										label='Level'
+										label={t('level', { ns: 'instructor' })}
 										placeholder='-'
 										arrOptions={courseLevel}
 									/>
 									<SelectField
 										name='category'
-										label='Category'
+										label={t('category', { ns: 'instructor' })}
 										placeholder='-'
 										arrOptions={courseCategory}
 									/>
 									<SelectField
 										name='price'
-										label='Price'
+										label={t('price', { ns: 'instructor' })}
 										placeholder='-'
 										arrOptions={coursePrice}
 									/>
 									<TagField
-										label='Course tags'
+										label={t('course_tags', { ns: 'instructor' })}
 										name='tags'
 										values={formik.values.tags}
 										placeholder='JavaScript...'
@@ -171,7 +170,7 @@ const InstructorManageCourse = ({
 										errorMessage={formik.touched.tags ? (formik.errors.tags as string) : ''}
 									/>
 									<FormLabel>
-										Course preview image{' '}
+										{t('course_preview_image', { ns: 'instructor' })}{' '}
 										<Box as={'span'} color={'red.300'}>
 											*
 										</Box>

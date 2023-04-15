@@ -75,7 +75,7 @@ const InstructorSidebar: FC<SidebarProps> = ({ toggle }): JSX.Element => {
 					</MenuList>
 				</Menu>
 				<Text fontSize={'lg'} mt={10}>
-					Instructor admin
+					{t('instructor_admin', { ns: 'instructor' })}
 				</Text>
 				{instructorSidebar.map((item, idx) => {
 					const active =
@@ -93,7 +93,7 @@ const InstructorSidebar: FC<SidebarProps> = ({ toggle }): JSX.Element => {
 							>
 								<HStack gap={2}>
 									<Icon as={item.icon} />
-									<Text>{item.name}</Text>
+									<Text>{t(item.name, { ns: 'instructor' })}</Text>
 								</HStack>
 							</Button>
 						</Link>

@@ -93,5 +93,22 @@
 	"last_name_required": "Soyadı gereklidir",
 	"social_media": "Sosyal medya",
 	"social_media_required": "Sosyal medya bağlantısı gerekli",
-	"send_to_verify_btn": "Doğrulamak için gönder"
+	"send_to_verify_btn": "Doğrulamak için gönder",
+	"title_is_required": "Başlık gerekli",
+	"title_min_char": "Başlık minimum 8 karakter olmalıdır",
+	"exerpt_is_required": "alıntı gerekli",
+	"exerpt_min_char": "Alıntı en az 15 karakter olmalıdır",
+	"level_is_required": "Seviye gerekli",
+	"category_is_required": "Kategori gerekli",
+	"price_is_required": "Fiyat gerekli",
+	"course_tags_is_required": "Kurs etiketleri gerekli",
+	"requirements_is_required": "Gereksinimler gereklidir",
+	"learn_is_required": "Öğrenmek gerekli",
+	"description_is_required": "Açıklama gerekli",
+	"description_min_char": "Açıklama en az 100 karakter olmalıdır",
+	"name_is_required": "İsim gerekli",
+	"embed_video_is_required": "Göm Video gereklidir",
+	"hour_is_required": "saat gerekli",
+	"minute_is_required": "Dakika gerekli",
+	"second_is_required": "saniye gerekli"
 }

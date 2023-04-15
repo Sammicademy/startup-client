@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Stack, Text, useColorModeValue, useToast } from '@chakra-ui/react';
+import { Box, Button, Flex, Stack, useColorModeValue, useToast } from '@chakra-ui/react';
 import { Form, Formik, FormikValues } from 'formik';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
@@ -31,7 +31,7 @@ const LessonForm = ({ sectionId, values, onToggle }: LessonFormProps) => {
 				...data,
 				callback: () => {
 					toast({
-						title: 'Successfully edited lesson',
+						title: t('successfully_edited', { ns: 'instructor' }),
 						position: 'top-right',
 						isClosable: true,
 					});
@@ -45,7 +45,7 @@ const LessonForm = ({ sectionId, values, onToggle }: LessonFormProps) => {
 				sectionId,
 				callback: () => {
 					toast({
-						title: 'Successfully created new lesson',
+						title: t('successfully_created_course', { ns: 'instructor' }),
 						position: 'top-right',
 						isClosable: true,
 					});
@@ -80,12 +80,15 @@ const LessonForm = ({ sectionId, values, onToggle }: LessonFormProps) => {
 					<Form>
 						<Stack spacing={5}>
 							<>{error && <ErrorAlert title={error as string} clearHandler={clearlessonError} />}</>
-							<TextFiled name='name' label='Name' />
-							<TextAreaField name='embedVideo' label='Embed video' />
+							<TextFiled name='name' label={t('name', { ns: 'instructor' })} />
+							<TextAreaField
+								name='embedVideo'
+								label={t('embed_video', { ns: 'instructor' }) || 'Embed video'}
+							/>
 							<Flex gap={3}>
-								<TextFiled name='hour' label='Hour' type='number' />
-								<TextFiled name='minute' label='Minute' type='number' />
-								<TextFiled name='second' label='Second' type='number' />
+								<TextFiled name='hour' label={t('hour', { ns: 'instructor' })} type='number' />
+								<TextFiled name='minute' label={t('minute', { ns: 'instructor' })} type='number' />
+								<TextFiled name='second' label={t('second', { ns: 'instructor' })} type='number' />
 							</Flex>
 							<Box>
 								<ReactQuill
@@ -93,11 +96,6 @@ const LessonForm = ({ sectionId, values, onToggle }: LessonFormProps) => {
 									onChange={data => formik.setFieldValue('material', data)}
 									value={formik.values?.material}
 								/>
-								{formik.errors.material && formik.touched.material && (
-									<Text mt={2} fontSize='14px' color='red.500'>
-										{formik.errors.material as string}
-									</Text>
-								)}
 							</Box>
 							<Button
 								h={14}
@@ -108,7 +106,7 @@ const LessonForm = ({ sectionId, values, onToggle }: LessonFormProps) => {
 								isLoading={isLoading}
 								loadingText={`${t('loading', { ns: 'global' })}`}
 							>
-								Submit
+								{t('search_input_btn', { ns: 'courses' })}
 							</Button>
 						</Stack>
 					</Form>

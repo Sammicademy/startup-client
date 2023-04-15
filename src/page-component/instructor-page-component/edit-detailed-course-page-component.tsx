@@ -1,5 +1,6 @@
 import { Divider, useToast } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 import { InstructorManageCourse } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
 import { useActions } from 'src/hooks/useActions';
@@ -11,13 +12,14 @@ const EditDetailedCoursePageComponent = () => {
 	const router = useRouter();
 	const { editCourse } = useActions();
 	const toast = useToast();
+	const { t } = useTranslation();
 
 	const onSubmit = (data: CourseType) => {
 		editCourse({
 			...data,
 			callback: () => {
 				toast({
-					title: 'Successfully edited',
+					title: t('successfully_edited', { ns: 'instructor' }),
 					position: 'top-right',
 					isClosable: true,
 				});
@@ -28,11 +30,14 @@ const EditDetailedCoursePageComponent = () => {
 
 	return (
 		<>
-			<SectionTitle title={`Edit course ${router.query.slug}`} subtitle={''} />
+			<SectionTitle
+				title={`${t('edit_course_title', { ns: 'instructor' })} ${router.query.slug}`}
+				subtitle={''}
+			/>
 			<Divider mt={5} />
 
 			<InstructorManageCourse
-				titleBtn='Edit course'
+				titleBtn={t('edit_course_title', { ns: 'instructor' })}
 				submitHandler={onSubmit}
 				courseValues={course}
 			/>

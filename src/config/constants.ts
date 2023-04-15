@@ -409,32 +409,32 @@ export const teachValues = [
 
 export const instructorSidebar = [
 	{
-		name: 'Students',
+		name: 'sidebar_students',
 		icon: FaUserGraduate,
 		route: 'students',
 	},
 	{
-		name: 'Courses',
+		name: 'sidebar_courses',
 		icon: FaListAlt,
 		route: 'courses',
 	},
 	{
-		name: 'Create course',
+		name: 'sidebar_create_course',
 		icon: MdOutlineCreateNewFolder,
 		route: 'create-course',
 	},
 	{
-		name: 'Edit courses',
+		name: 'sidebar_edit_courses',
 		icon: FiEdit,
 		route: 'edit-courses',
 	},
 	{
-		name: 'Draft courses',
+		name: 'sidebar_draft_courses',
 		icon: FaFirstdraft,
 		route: 'draft-courses',
 	},
 	{
-		name: 'Revenue',
+		name: 'sidebar_revenue',
 		icon: RiMoneyDollarBoxLine,
 		route: 'revenue',
 	},

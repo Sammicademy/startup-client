@@ -16,10 +16,10 @@ import {
 	Stack,
 	Text,
 	useDisclosure,
-	useToast,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 import { SectionAccordion, SectionForm } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
@@ -36,14 +36,12 @@ const CurriculumPageComponent = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { getSection } = useActions();
 	const { pendingSection, sections } = useTypedSelector(state => state.section);
-	const toast = useToast();
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		getSection({
 			courseId: course?._id,
-			callback: () => {
-				toast({ title: 'Successfully get sections', position: 'top-right', isClosable: true });
-			},
+			callback: () => {},
 		});
 	}, [course]);
 
@@ -61,7 +59,7 @@ const CurriculumPageComponent = () => {
 						<Stack>
 							<SectionTitle
 								title={course?.title as string}
-								subtitle={`Manage curriculum for your  course`}
+								subtitle={t('curriculum_description')}
 							/>
 						</Stack>
 					</HStack>
@@ -71,7 +69,7 @@ const CurriculumPageComponent = () => {
 			<Card mt={10}>
 				<CardBody>
 					<Flex mb={5} justify={'space-between'} align={'center'}>
-						<Text fontSize={'2xl'}>Create section</Text>
+						<Text fontSize={'2xl'}>{t('create_section', { ns: 'instructor' })}</Text>
 						<Icon
 							as={BsFillPlusCircleFill}
 							w={6}
@@ -105,7 +103,7 @@ const CurriculumPageComponent = () => {
 			<Modal isOpen={isOpen} onClose={onClose} isCentered>
 				<ModalOverlay />
 				<ModalContent>
-					<ModalHeader>Create section</ModalHeader>
+					<ModalHeader>{t('create_section', { ns: 'instructor' })}</ModalHeader>
 					<ModalCloseButton />
 					<Divider />
 					<ModalBody pb={5}>

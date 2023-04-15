@@ -13,6 +13,7 @@ import {
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { BsTrash } from 'react-icons/bs';
 import { CiViewList } from 'react-icons/ci';
@@ -28,6 +29,7 @@ const InstructorEditCourseCard: FC<InstructoCoursesCardProps> = ({ item }): JSX.
 	const router = useRouter();
 	const { deleteCourse } = useActions();
 	const toast = useToast();
+	const { t } = useTranslation();
 
 	const onDelete = () => {
 		const isAgree = confirm('Are you sure?');
@@ -37,7 +39,7 @@ const InstructorEditCourseCard: FC<InstructoCoursesCardProps> = ({ item }): JSX.
 				courseId: item._id,
 				callback: () => {
 					toast({
-						title: 'Successfully deleted',
+						title: t('successfully_deleted', { ns: 'instructor' }),
 						description: item.title,
 						position: 'top-right',
 						isClosable: true,
@@ -51,7 +53,7 @@ const InstructorEditCourseCard: FC<InstructoCoursesCardProps> = ({ item }): JSX.
 	return (
 		<HStack key={item.title} p={5} boxShadow={'dark-lg'} mt={5} borderRadius={'lg'}>
 			<Stack spacing={5}>
-				<Box pos={'relative'} w={'full'} h={'300px'}>
+				<Box pos={'relative'} w={'100%'} h={'300px'}>
 					<Image
 						fill
 						src={loadImage(item.previewImage)}
@@ -66,11 +68,15 @@ const InstructorEditCourseCard: FC<InstructoCoursesCardProps> = ({ item }): JSX.
 				<HStack>
 					<Flex align={'center'} gap={1}>
 						<Icon as={CiViewList} />
-						<Text>{item.lessonCount} lesson</Text>
+						<Text>
+							{item.lessonCount} {t('lessons', { ns: 'courses' })}
+						</Text>
 					</Flex>
 					<Flex align={'center'} gap={1}>
 						<Icon as={AiOutlineClockCircle} />
-						<Text>{item.totalHour} hours</Text>
+						<Text>
+							{item.totalHour} {t('hour', { ns: 'courses' })}
+						</Text>
 					</Flex>
 					<Flex align={'center'} gap={1}>
 						<Icon as={SiGoogleanalytics} />
@@ -78,24 +84,24 @@ const InstructorEditCourseCard: FC<InstructoCoursesCardProps> = ({ item }): JSX.
 					</Flex>
 				</HStack>
 				<Divider />
-				<HStack>
-					<Button rightIcon={<VscOpenPreview />}>Preview</Button>
+				<Flex flexWrap={'wrap'} gap={5}>
+					<Button rightIcon={<VscOpenPreview />}>{t('preview', { ns: 'instructor' })}</Button>
 					<Button
 						rightIcon={<FiEdit2 />}
 						onClick={() => router.push(`/instructor/edit-courses/${item.slug}`)}
 					>
-						Edit
+						{t('edit_course', { ns: 'instructor' })}
 					</Button>
 					<Button rightIcon={<BsTrash />} onClick={onDelete}>
-						Delete
+						{t('delete_course', { ns: 'instructor' })}
 					</Button>
 					<Button
 						rightIcon={<HiOutlineStatusOnline />}
 						onClick={() => router.push(`/instructor/curriculum/${item.slug}`)}
 					>
-						Curriculum
+						{t('curriculum_course', { ns: 'instructor' })}
 					</Button>
-				</HStack>
+				</Flex>
 			</Stack>
 		</HStack>
 	);

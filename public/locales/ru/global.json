@@ -93,5 +93,22 @@
 	"last_name_required": "Требуется фамилия",
 	"social_media": "Социальные медиа",
 	"social_media_required": "Ссылка на социальные сети обязательна",
-	"send_to_verify_btn": "Отправить для проверки"
+	"send_to_verify_btn": "Отправить для проверки",
+	"title_is_required": "Требуется заголовок",
+	"title_min_char": "Название должно быть не менее 8 символов",
+	"exerpt_is_required": "Требуется выдержка",
+	"exerpt_min_char": "Выдержка должна быть не менее 15 символов",
+	"level_is_required": "Требуется уровень",
+	"category_is_required": "Укажите категорию",
+	"price_is_required": "Укажите цену",
+	"course_tags_is_required": "Укажите теги курса.",
+	"requirements_is_required": "Требования обязательны",
+	"learn_is_required": "Учиться требуется",
+	"description_is_required": "Требуется описание",
+	"description_min_char": "Описание должно быть не менее 100 символов",
+	"name_is_required": "Укажите имя",
+	"embed_video_is_required": "Требуется вставить видео",
+	"hour_is_required": "Требуется час",
+	"minute_is_required": "Требуется минута",
+	"second_is_required": "Требуется секунд"
 }

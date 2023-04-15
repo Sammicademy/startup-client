@@ -1,6 +1,7 @@
 import { Box, Button, Divider, Flex, Heading, HStack, Icon, Stack, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { CiViewList } from 'react-icons/ci';
 import { SiGoogleanalytics } from 'react-icons/si';
@@ -9,6 +10,8 @@ import { loadImage } from 'src/helpers/image.helper';
 import { InstructoCoursesCardProps } from './instructor-courses-card.props';
 
 const InstructorCoursesCard: FC<InstructoCoursesCardProps> = ({ item }): JSX.Element => {
+	const { t } = useTranslation();
+
 	return (
 		<HStack key={item.title} p={5} boxShadow={'dark-lg'} mt={5} borderRadius={'lg'}>
 			<Stack spacing={5} w={'70%'}>
@@ -19,11 +22,15 @@ const InstructorCoursesCard: FC<InstructoCoursesCardProps> = ({ item }): JSX.Ele
 				<HStack>
 					<Flex align={'center'} gap={1}>
 						<Icon as={CiViewList} />
-						<Text>{item.lessonCount} lesson</Text>
+						<Text>
+							{item.lessonCount} {t('lessons', { ns: 'courses' })}
+						</Text>
 					</Flex>
 					<Flex align={'center'} gap={1}>
 						<Icon as={AiOutlineClockCircle} />
-						<Text>{item.totalHour} hours</Text>
+						<Text>
+							{item.totalHour} {t('hour', { ns: 'courses' })}
+						</Text>
 					</Flex>
 					<Flex align={'center'} gap={1}>
 						<Icon as={SiGoogleanalytics} />
@@ -33,7 +40,7 @@ const InstructorCoursesCard: FC<InstructoCoursesCardProps> = ({ item }): JSX.Ele
 				<Divider />
 				<HStack>
 					<Button rightIcon={<VscOpenPreview />} w={'full'} h={16} colorScheme={'facebook'}>
-						Preview
+						{t('preview', { ns: 'instructor' })}
 					</Button>
 				</HStack>
 			</Stack>

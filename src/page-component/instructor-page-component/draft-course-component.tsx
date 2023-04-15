@@ -12,12 +12,14 @@ import {
 	Tabs,
 } from '@chakra-ui/react';
 import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 import { DraftCourseCard } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
 
 const DraftCourseComponent = () => {
 	const { courses } = useTypedSelector(state => state.instructor);
+	const { t } = useTranslation();
 
 	return (
 		<>
@@ -26,8 +28,8 @@ const DraftCourseComponent = () => {
 					<HStack justify={'center'}>
 						<Stack>
 							<SectionTitle
-								title='Draft courses'
-								subtitle='Manage your draft courses and activated it'
+								title={t('draft_courses', { ns: 'instructor' })}
+								subtitle={t('draft_courses_description', { ns: 'instructor' })}
 							/>
 						</Stack>
 						<Image width={480} height={480} src='/images/draft.png' alt='instructor' />
@@ -38,8 +40,8 @@ const DraftCourseComponent = () => {
 			<Box mt={10}>
 				<Tabs isFitted variant='enclosed'>
 					<TabList mb='1em'>
-						<Tab>Draft</Tab>
-						<Tab>Active</Tab>
+						<Tab>{t('draft', { ns: 'instructor' })}</Tab>
+						<Tab>{t('active', { ns: 'instructor' })}</Tab>
 					</TabList>
 					<TabPanels>
 						<TabPanel>

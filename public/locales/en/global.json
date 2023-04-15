@@ -93,5 +93,22 @@
 	"last_name_required": "Last Name is required",
 	"social_media": "Social media",
 	"social_media_required": "Social media link is required",
-	"send_to_verify_btn": "Send to verify"
+	"send_to_verify_btn": "Send to verify",
+	"title_is_required": "Title is required",
+	"title_min_char": "Title should be minimum 8 character",
+	"exerpt_is_required": "Excerpt is required",
+	"exerpt_min_char": "Excerpt should be minimum 15 character",
+	"level_is_required": "Level is required",
+	"category_is_required": "Category is required",
+	"price_is_required": "Price is required",
+	"course_tags_is_required": "Course tags is required",
+	"requirements_is_required": "Requirements is required",
+	"learn_is_required": "Learn is required",
+	"description_is_required": "Description is required",
+	"description_min_char": "Description should be minimum 100 characters",
+	"name_is_required": "Name is required",
+	"embed_video_is_required": "Embed Video is required",
+	"hour_is_required": "Hour is required",
+	"minute_is_required": "Minute is required",
+	"second_is_required": "Second is required"
 }
