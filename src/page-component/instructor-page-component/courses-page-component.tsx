@@ -47,14 +47,17 @@ const CoursesPageComponent = () => {
 					</TabPanel>
 					<TabPanel>
 						{courses
-							.map(item => <InstructorCoursesCard key={item.slug} item={item} />)
-							.splice(1, 4)}
+							.filter(c => c.isActive)
+							.map(item => (
+								<InstructorCoursesCard key={item.slug} item={item} />
+							))}
 					</TabPanel>
 					<TabPanel>
 						{courses
-							.map(item => <InstructorCoursesCard key={item.slug} item={item} />)
-							.reverse()
-							.splice(0, 2)}
+							.filter(c => !c.isActive)
+							.map(item => (
+								<InstructorCoursesCard key={item.slug} item={item} />
+							))}
 					</TabPanel>
 				</TabPanels>
 			</Tabs>

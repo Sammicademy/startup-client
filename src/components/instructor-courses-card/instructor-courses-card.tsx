@@ -2,10 +2,7 @@ import { Box, Button, Divider, Flex, Heading, HStack, Icon, Stack, Text } from '
 import Image from 'next/image';
 import { FC } from 'react';
 import { AiOutlineClockCircle } from 'react-icons/ai';
-import { BsTrash } from 'react-icons/bs';
 import { CiViewList } from 'react-icons/ci';
-import { FiEdit2 } from 'react-icons/fi';
-import { HiOutlineStatusOnline } from 'react-icons/hi';
 import { SiGoogleanalytics } from 'react-icons/si';
 import { VscOpenPreview } from 'react-icons/vsc';
 import { loadImage } from 'src/helpers/image.helper';
@@ -35,10 +32,9 @@ const InstructorCoursesCard: FC<InstructoCoursesCardProps> = ({ item }): JSX.Ele
 				</HStack>
 				<Divider />
 				<HStack>
-					<Button rightIcon={<VscOpenPreview />}>Preview</Button>
-					<Button rightIcon={<FiEdit2 />}>Edit</Button>
-					<Button rightIcon={<BsTrash />}>Delete</Button>
-					<Button rightIcon={<HiOutlineStatusOnline />}>Status</Button>
+					<Button rightIcon={<VscOpenPreview />} w={'full'} h={16} colorScheme={'facebook'}>
+						Preview
+					</Button>
 				</HStack>
 			</Stack>
 			<Box w={'30%'} h={'300px'} position={'relative'}>

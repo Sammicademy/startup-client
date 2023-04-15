@@ -14,9 +14,6 @@ export const lessonSlice = createSlice({
 			state.error = null;
 		},
 	},
-	extraReducers: builder => {
-		builder;
-	},
 });
 
 export const lessonReducer = lessonSlice.reducer;
