@@ -16,6 +16,7 @@ export interface CourseType {
 	description: string;
 	category: string;
 	_id: string;
+	language: string;
 	isActive: boolean;
 }
 export interface AuthorType {

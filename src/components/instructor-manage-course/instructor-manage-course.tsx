@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { FaTimes } from 'react-icons/fa';
 import { GiSave } from 'react-icons/gi';
 import 'react-quill/dist/quill.snow.css';
-import { courseCategory, courseLevel, coursePrice } from 'src/config/constants';
+import { courseCategory, courseLevel, courseLng, coursePrice } from 'src/config/constants';
 import { editorModules } from 'src/config/editor.config';
 import { loadImage } from 'src/helpers/image.helper';
 import { useActions } from 'src/hooks/useActions';
@@ -85,26 +85,32 @@ const InstructorManageCourse = ({
 										height={'150px'}
 										label={t('excerpt', { ns: 'instructor' }) || 'Exerpt'}
 									/>
-									<Flex gap={4}>
-										<TagField
-											label={t('what_students_will_learn', { ns: 'instructor' })}
-											name='learn'
-											values={formik.values.learn}
-											placeholder=''
-											formik={formik}
-											errorMessage={formik.touched.learn ? (formik.errors.learn as string) : ''}
-										/>
-										<TagField
-											label={t('requirements', { ns: 'instructor' })}
-											name='requirements'
-											values={formik.values.requirements}
-											placeholder=''
-											formik={formik}
-											errorMessage={
-												formik.touched.requirements ? (formik.errors.requirements as string) : ''
-											}
-										/>
-									</Flex>
+									<TagField
+										label={t('what_students_will_learn', { ns: 'instructor' })}
+										name='learn'
+										values={formik.values.learn}
+										placeholder=''
+										formik={formik}
+										errorMessage={formik.touched.learn ? (formik.errors.learn as string) : ''}
+									/>
+									<TagField
+										label={t('requirements', { ns: 'instructor' })}
+										name='requirements'
+										values={formik.values.requirements}
+										placeholder=''
+										formik={formik}
+										errorMessage={
+											formik.touched.requirements ? (formik.errors.requirements as string) : ''
+										}
+									/>
+									<TagField
+										label={t('course_tags', { ns: 'instructor' })}
+										name='tags'
+										values={formik.values.tags}
+										placeholder='JavaScript...'
+										formik={formik}
+										errorMessage={formik.touched.tags ? (formik.errors.tags as string) : ''}
+									/>
 									<Box>
 										<FormLabel mb={3}>
 											{t('description', { ns: 'instructor' })}{' '}
@@ -161,13 +167,11 @@ const InstructorManageCourse = ({
 										placeholder='-'
 										arrOptions={coursePrice}
 									/>
-									<TagField
-										label={t('course_tags', { ns: 'instructor' })}
-										name='tags'
-										values={formik.values.tags}
-										placeholder='JavaScript...'
-										formik={formik}
-										errorMessage={formik.touched.tags ? (formik.errors.tags as string) : ''}
+									<SelectField
+										name='language'
+										label={t('language', { ns: 'instructor' })}
+										placeholder='-'
+										arrOptions={courseLng}
 									/>
 									<FormLabel>
 										{t('course_preview_image', { ns: 'instructor' })}{' '}
