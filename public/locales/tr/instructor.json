@@ -93,5 +93,6 @@
 	"hour": "Saat",
 	"minute": "Dakika",
 	"second": "saniye",
-	"language": "Dil"
+	"language": "Dil",
+	"label_job": "Şu anki profesyonel işiniz"
 }

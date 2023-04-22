@@ -36,7 +36,7 @@ const Instructors = () => {
 								/>
 							</Box>
 							<Heading fontSize={'xl'}>{item.fullName}</Heading>
-							<Text color={'gray.500'}>Software engineer</Text>
+							<Text color={'gray.500'}>{item.job}</Text>
 							<HStack opacity={'.6'}>
 								<Flex align={'center'} gap={1}>
 									<Icon as={FaUserGraduate} />
@@ -44,7 +44,7 @@ const Instructors = () => {
 								</Flex>
 								<Flex align={'center'} gap={1}>
 									<Icon as={AiOutlinePlayCircle} />
-									<Text>2 courses</Text>
+									<Text>{item.totalCourses} courses</Text>
 								</Flex>
 							</HStack>
 						</Stack>
@@ -63,38 +63,3 @@ const Instructors = () => {
 };
 
 export default Instructors;
-
-const data = [
-	{
-		firstName: 'Samar',
-		lastName: 'Badrddinov',
-		job: 'Software Engineer',
-		students: 230,
-		courses: 20,
-		avatar: 'https://media.graphassets.com/NfxHACAlR4CkvdhnB3gs',
-	},
-	{
-		firstName: 'Samar',
-		lastName: 'Badrddinov',
-		job: 'Software Engineer',
-		students: 230,
-		courses: 20,
-		avatar: 'https://media.graphassets.com/NfxHACAlR4CkvdhnB3gs',
-	},
-	{
-		firstName: 'Samar',
-		lastName: 'Badrddinov',
-		job: 'Software Engineer',
-		students: 230,
-		courses: 20,
-		avatar: 'https://media.graphassets.com/NfxHACAlR4CkvdhnB3gs',
-	},
-	{
-		firstName: 'Samar',
-		lastName: 'Badrddinov',
-		job: 'Software Engineer',
-		students: 230,
-		courses: 20,
-		avatar: 'https://media.graphassets.com/NfxHACAlR4CkvdhnB3gs',
-	},
-];

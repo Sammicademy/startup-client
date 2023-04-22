@@ -110,5 +110,6 @@
 	"embed_video_is_required": "Требуется вставить видео",
 	"hour_is_required": "Требуется час",
 	"minute_is_required": "Требуется минута",
-	"second_is_required": "Требуется секунд"
+	"second_is_required": "Требуется секунд",
+	"job_required": "Ваша работа обязательное поле"
 }

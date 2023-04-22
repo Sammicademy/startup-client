@@ -1,8 +1,9 @@
 export interface InstructorType {
 	fullName: string;
 	avatar: string;
-	coursesCount: number;
+	totalCourses: number;
 	studentsCount: number;
+	job: string;
 }
 
 export interface SectionType {
