@@ -21,6 +21,7 @@ import { BiMenuAltLeft, BiUserCircle } from 'react-icons/bi';
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import { FiSettings } from 'react-icons/fi';
 import { IoIosLogOut } from 'react-icons/io';
+import { RiAdminFill } from 'react-icons/ri';
 import { TbWorld } from 'react-icons/tb';
 import { language } from 'src/config/constants';
 import { useActions } from 'src/hooks/useActions';
@@ -103,6 +104,16 @@ const Header = ({ onToggle }: HeaderProps) => {
 								<Avatar backgroundColor={'facebook.500'} src={user.avatar} />
 							</MenuButton>
 							<MenuList p={0} m={0}>
+								{user.role === 'INSTRUCTOR' && (
+									<MenuItem
+										h={14}
+										onClick={() => router.push('/instructor')}
+										fontWeight={'bold'}
+										icon={<RiAdminFill fontSize={17} />}
+									>
+										{t('instructor_admin', { ns: 'instructor' })}
+									</MenuItem>
+								)}
 								<MenuItem
 									h={14}
 									// onClick={() => router.push('/setting')}
@@ -111,6 +122,7 @@ const Header = ({ onToggle }: HeaderProps) => {
 								>
 									{t('settings', { ns: 'global' })}
 								</MenuItem>
+
 								<MenuItem
 									h={14}
 									onClick={logoutHandler}
