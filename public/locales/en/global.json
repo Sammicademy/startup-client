@@ -110,5 +110,6 @@
 	"embed_video_is_required": "Embed Video is required",
 	"hour_is_required": "Hour is required",
 	"minute_is_required": "Minute is required",
-	"second_is_required": "Second is required"
+	"second_is_required": "Second is required",
+	"job_required": "Job is required"
 }

@@ -155,7 +155,7 @@ const BecomeInstructorPageComponent = () => {
 				</CardBody>
 			</Card>
 
-			<Modal isOpen={isOpen} onClose={onClose} size={'4xl'} isCentered={true}>
+			<Modal isOpen={isOpen} onClose={onClose} size={'3xl'} isCentered={true}>
 				<ModalOverlay />
 				<ModalContent>
 					<ModalHeader fontSize={'2xl'}>
@@ -195,6 +195,11 @@ const BecomeInstructorPageComponent = () => {
 										label={t('login_input_email_label', { ns: 'global' })}
 										placeholder={'info@sammi.ac'}
 										type={'email'}
+									/>
+									<TextFiled
+										name={'job'}
+										label={t('label_job', { ns: 'instructor' })}
+										placeholder={'Senior software engineer'}
 									/>
 									<TextFiled
 										name={'socialMedia'}
