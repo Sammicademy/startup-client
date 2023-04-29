@@ -1,3 +1,4 @@
+import { adminSliceAction } from './admin/admin.slice';
 import * as courseActions from './course/course.action';
 import { courseSliceAction } from './course/course.slice';
 import * as instructorActions from './instructor/instructor.action';
@@ -20,4 +21,5 @@ export const allActions = {
 	...sectionSliceAction,
 	...lessonActions,
 	...lessonSliceAction,
+	...adminSliceAction,
 };

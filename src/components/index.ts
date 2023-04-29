@@ -1,4 +1,5 @@
 export { default as AccountRecovery } from './account-recovery/account-recovery';
+export { default as AdminCourseCard } from './admin-course-card/admin-course-card';
 export { default as AdminInstructorTable } from './admin-instructor-table/admin-instructor-table';
 export { default as AllCoursesCard } from './all-courses-card/all-courses-card';
 export { default as Categories } from './categories/categories';

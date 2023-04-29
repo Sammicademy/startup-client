@@ -1,3 +1,4 @@
+import { adminReducer } from './admin/admin.slice';
 import { courseReducer } from './course/course.slice';
 import { instructorReducer } from './instructor/instructor.slice';
 import { lessonReducer } from './lesson/lesson.slice';
@@ -10,4 +11,5 @@ export const reducer = {
 	course: courseReducer,
 	section: sectionReducer,
 	lesson: lessonReducer,
+	admin: adminReducer,
 };
