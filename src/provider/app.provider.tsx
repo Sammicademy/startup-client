@@ -14,12 +14,12 @@ const AppProvider: FC<Props> = ({ children, course, courses, instructors }): JSX
 	const { getCourses, getCourse, getInstructors } = useActions();
 
 	useEffect(() => {
-		if (courses.length) {
+		if (courses?.length) {
 			getCourses(courses);
 		} else {
 			getCourses([]);
 		}
-		if (instructors.length) {
+		if (instructors?.length) {
 			getInstructors(instructors);
 		} else {
 			getCourses([]);
