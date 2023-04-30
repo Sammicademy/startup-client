@@ -2,6 +2,7 @@ import { UserType } from './user.interface';
 
 export interface InstructorType {
 	fullName: string;
+	_id: string;
 	avatar: string;
 	totalCourses: number;
 	studentsCount: number;
