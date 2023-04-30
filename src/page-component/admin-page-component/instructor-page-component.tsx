@@ -12,9 +12,12 @@ import {
 } from '@chakra-ui/react';
 import { AdminInstructorTable } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import { RecordVideoIcon } from 'src/icons';
 
 const InstructorPageComponent = () => {
+	const { instructors } = useTypedSelector(state => state.admin);
+
 	return (
 		<>
 			<Card mt={10}>
@@ -29,6 +32,7 @@ const InstructorPageComponent = () => {
 					</HStack>
 				</CardBody>
 			</Card>
+
 			<Box mt={10} mx={'auto'}>
 				<Tabs isFitted variant='solid-rounded' colorScheme={'facebook'}>
 					<TabList mb='1em'>
@@ -37,10 +41,16 @@ const InstructorPageComponent = () => {
 					</TabList>
 					<TabPanels>
 						<TabPanel>
-							<AdminInstructorTable />
+							<AdminInstructorTable
+								instructors={instructors.filter(c => c.approved)}
+								approved={true}
+							/>
 						</TabPanel>
 						<TabPanel>
-							<AdminInstructorTable />
+							<AdminInstructorTable
+								instructors={instructors.filter(c => !c.approved)}
+								approved={false}
+							/>
 						</TabPanel>
 					</TabPanels>
 				</Tabs>

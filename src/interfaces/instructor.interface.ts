@@ -1,9 +1,14 @@
+import { UserType } from './user.interface';
+
 export interface InstructorType {
 	fullName: string;
 	avatar: string;
 	totalCourses: number;
 	studentsCount: number;
 	job: string;
+	socialMedia: string;
+	author: UserType;
+	approved: boolean;
 }
 
 export interface SectionType {

@@ -10,10 +10,14 @@ import {
 	Thead,
 	Tr,
 } from '@chakra-ui/react';
+import { FC } from 'react';
 import { AiOutlineFieldNumber, AiOutlineReload } from 'react-icons/ai';
-import { instructorUsers } from 'src/config/constants';
+import { AdminInstructorTableProps } from './admin-instructor-table.props';
 
-const AdminInstructorTable = () => {
+const AdminInstructorTable: FC<AdminInstructorTableProps> = ({
+	instructors,
+	approved,
+}): JSX.Element => {
 	return (
 		<TableContainer>
 			<Table variant='striped' colorScheme='teal'>
@@ -35,21 +39,24 @@ const AdminInstructorTable = () => {
 					</Tr>
 				</Thead>
 				<Tbody>
-					{instructorUsers.map((user, idx) => (
+					{instructors.map((user, idx) => (
 						<Tr key={idx}>
 							<Td>{idx + 1}</Td>
-							<Td>{user.email}</Td>
-							<Td>{user.fullName}</Td>
-							<Td>{user.job}</Td>
+							<Td>{user.author.email}</Td>
+							<Td>{user.author.fullName}</Td>
+							<Td>{user.author.job}</Td>
 							<Td>{user.socialMedia}</Td>
 							<Td>
 								<ButtonGroup variant='outline'>
-									<Button size={'sm'} colorScheme='facebook'>
-										Appr
-									</Button>
-									<Button size={'sm'} colorScheme={'red'}>
-										Del
-									</Button>
+									{approved ? (
+										<Button size={'sm'} colorScheme={'red'}>
+											Del
+										</Button>
+									) : (
+										<Button size={'sm'} colorScheme='facebook'>
+											Appr
+										</Button>
+									)}
 								</ButtonGroup>
 							</Td>
 						</Tr>

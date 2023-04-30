@@ -7,4 +7,5 @@ export interface UserType {
 	createdAt?: string;
 	password?: string;
 	avatar?: string;
+	job?: string;
 }
