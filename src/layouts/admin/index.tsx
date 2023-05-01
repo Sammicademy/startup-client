@@ -24,7 +24,12 @@ export const withAdminLayout = <T extends Record<string, unknown> & AdminProps>(
 	return function withLayoutComponent(props: T): JSX.Element {
 		return (
 			<Layout>
-				<AdminProvider courses={props.courses} instructors={props.instructors} users={props.users}>
+				<AdminProvider
+					courses={props.courses}
+					instructors={props.instructors}
+					users={props.users}
+					books={props.books}
+				>
 					<Component {...props} />
 				</AdminProvider>
 			</Layout>

@@ -9,3 +9,8 @@ export interface BooksInitialState {
 export interface ActionBody extends BooksType {
 	callback: () => void;
 }
+
+export interface DeleteBooksBody {
+	callback: () => void;
+	booksId: string;
+}

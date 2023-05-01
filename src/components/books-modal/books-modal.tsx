@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { Form, Formik, FormikValues } from 'formik';
 import Image from 'next/image';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { FileUploader } from 'react-drag-drop-files';
 import { FaTimes } from 'react-icons/fa';
 import { coursePrice } from 'src/config/constants';
@@ -29,12 +29,12 @@ import SelectField from '../select-field/select-field';
 import TextFiled from '../text-filed/text-filed';
 import { BookModalProps } from './books-modal.props';
 
-const BooksModal: FC<BookModalProps> = ({ isOpen, onClose }): JSX.Element => {
+const BooksModal: FC<BookModalProps> = ({ isOpen, onClose, booksValue }): JSX.Element => {
 	const [values, setValues] = useState(data);
 	const [file, setFile] = useState<File | string | null>();
 	const [errorFile, setErrorFile] = useState('');
 
-	const { startCreateBooksLoading, createBooks, clearBooksError } = useActions();
+	const { startCreateBooksLoading, createBooks, clearBooksError, updateBooks } = useActions();
 	const { isLoading, error } = useTypedSelector(state => state.books);
 	const toast = useToast();
 
@@ -56,21 +56,54 @@ const BooksModal: FC<BookModalProps> = ({ isOpen, onClose }): JSX.Element => {
 			imageUrl = response.url;
 		}
 
-		createBooks({
-			price: fomrikValues.price,
-			title: fomrikValues.title,
-			pdf: fomrikValues.pdf,
-			image: imageUrl as string,
-			callback: () => {
-				toast({
-					title: 'Successfully created',
-					position: 'top-right',
-					isClosable: true,
-					status: 'success',
-				});
-			},
-		});
+		if (!booksValue) {
+			createBooks({
+				price: fomrikValues.price,
+				title: fomrikValues.title,
+				pdf: fomrikValues.pdf,
+				image: imageUrl as string,
+				callback: () => {
+					toast({
+						title: 'Successfully created',
+						position: 'top-right',
+						isClosable: true,
+						status: 'success',
+					});
+					setFile(null);
+					onClose();
+				},
+			});
+		} else {
+			updateBooks({
+				price: fomrikValues.price,
+				title: fomrikValues.title,
+				pdf: fomrikValues.pdf,
+				_id: booksValue._id,
+				image: imageUrl as string,
+				callback: () => {
+					toast({
+						title: 'Successfully updated',
+						position: 'top-right',
+						isClosable: true,
+						status: 'success',
+					});
+					setFile(null);
+					onClose();
+				},
+			});
+		}
 	};
+
+	useEffect(() => {
+		setErrorFile('');
+		if (booksValue) {
+			setValues(booksValue);
+			setFile(booksValue.image);
+		} else {
+			setValues(data);
+			setFile(null);
+		}
+	}, [booksValue]);
 
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} isCentered={true} size={'xl'}>
@@ -82,6 +115,7 @@ const BooksModal: FC<BookModalProps> = ({ isOpen, onClose }): JSX.Element => {
 					onSubmit={onSubmit}
 					initialValues={values}
 					validationSchema={BooksValidation.createBooks}
+					enableReinitialize
 				>
 					<Form>
 						<ModalBody>
@@ -136,14 +170,8 @@ const BooksModal: FC<BookModalProps> = ({ isOpen, onClose }): JSX.Element => {
 						</ModalBody>
 
 						<ModalFooter>
-							<Button
-								type='submit'
-								isLoading={isLoading}
-								colorScheme='blue'
-								mr={3}
-								onClick={onClose}
-							>
-								Add books
+							<Button type='submit' isLoading={isLoading} colorScheme='blue' mr={3}>
+								{booksValue ? 'Edit book' : 'Add book'}
 							</Button>
 						</ModalFooter>
 					</Form>

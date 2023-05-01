@@ -11,16 +11,55 @@ import {
 	Text,
 	useColorModeValue,
 	useDisclosure,
+	useToast,
 } from '@chakra-ui/react';
+import { useState } from 'react';
 import { CgAdd } from 'react-icons/cg';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { BooksModal } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
+import { loadImage } from 'src/helpers/image.helper';
+import { useActions } from 'src/hooks/useActions';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import { PlanCurriculumIcon } from 'src/icons';
+import { BooksType } from 'src/interfaces/books.interface';
 
 const BooksPageComponent = () => {
+	const [booksValue, setBooksValue] = useState<BooksType | null>(null);
+
 	const priceBackgroundColor = useColorModeValue('gray.200', 'gray.900');
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const { books } = useTypedSelector(state => state.books);
+	const { deleteBooks } = useActions();
+	const toast = useToast();
+
+	const deleteBooksHandler = (id: string) => {
+		const isAgree = confirm('Are you sure?');
+
+		if (isAgree) {
+			deleteBooks({
+				booksId: id,
+				callback: () => {
+					toast({
+						title: 'Successfully deleted',
+						position: 'top-right',
+						isClosable: true,
+						status: 'success',
+					});
+				},
+			});
+		}
+	};
+
+	const editOpenModal = (book: BooksType) => {
+		setBooksValue(book);
+		onOpen();
+	};
+
+	const createOpenModal = () => {
+		setBooksValue(null);
+		onOpen();
+	};
 
 	return (
 		<>
@@ -41,7 +80,7 @@ const BooksPageComponent = () => {
 					colorScheme='facebook'
 					aria-label='Search database'
 					icon={<CgAdd />}
-					onClick={onOpen}
+					onClick={createOpenModal}
 				/>
 			</Flex>
 			<Grid
@@ -50,11 +89,11 @@ const BooksPageComponent = () => {
 				rowGap={20}
 				mt={5}
 			>
-				{data.map(item => (
-					<Box key={item.name} pos={'relative'}>
+				{books.map(item => (
+					<Box key={item._id} pos={'relative'}>
 						<Image
-							src={item.image}
-							alt={item.name}
+							src={loadImage(item.image)}
+							alt={item.title}
 							borderRadius={'lg'}
 							w={'full'}
 							h={'250px'}
@@ -74,16 +113,26 @@ const BooksPageComponent = () => {
 							flexDir={'column'}
 						>
 							<Box>
-								<Text fontSize={'lg'}>{item.name}</Text>
+								<Text fontSize={'lg'}>{item.title}</Text>
 								<Text fontSize={'2xl'}>
 									{item.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
 								</Text>
 							</Box>
 							<HStack>
-								<Button w={'full'} rightIcon={<FaTrash />} colorScheme={'red'}>
+								<Button
+									w={'full'}
+									rightIcon={<FaTrash />}
+									onClick={() => deleteBooksHandler(item._id as string)}
+									colorScheme={'red'}
+								>
 									Delete
 								</Button>
-								<Button w={'full'} rightIcon={<FaEdit />} colorScheme={'green'}>
+								<Button
+									onClick={() => editOpenModal(item)}
+									w={'full'}
+									rightIcon={<FaEdit />}
+									colorScheme={'green'}
+								>
 									Edit
 								</Button>
 							</HStack>
@@ -92,7 +141,7 @@ const BooksPageComponent = () => {
 				))}
 			</Grid>
 
-			<BooksModal isOpen={isOpen} onClose={onClose} />
+			<BooksModal isOpen={isOpen} onClose={onClose} booksValue={booksValue} />
 		</>
 	);
 };
