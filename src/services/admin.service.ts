@@ -57,4 +57,12 @@ export const AdminService = {
 
 		return data;
 	},
+
+	async deleteCourse(courseId: string) {
+		const { data } = await $axios.delete<CourseType[]>(`${getAdminUrl('delete-course')}`, {
+			params: { courseId },
+		});
+
+		return data;
+	},
 };

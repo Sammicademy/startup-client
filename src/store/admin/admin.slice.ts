@@ -4,6 +4,7 @@ import { InstructorType } from 'src/interfaces/instructor.interface';
 import { UserType } from 'src/interfaces/user.interface';
 import {
 	approveInstructor,
+	deleteAdminCourse,
 	deleteInstructor,
 	moreAdminUser,
 	searchAdminUsers,
@@ -87,6 +88,19 @@ export const adminSlice = createSlice({
 				state.users = payload;
 			})
 			.addCase(searchAdminUsers.rejected, (state, { payload }) => {
+				state.isLoading = false;
+				state.error = payload;
+			})
+			.addCase(deleteAdminCourse.pending, state => {
+				state.isLoading = true;
+				state.error = null;
+			})
+			.addCase(deleteAdminCourse.fulfilled, (state, { payload }) => {
+				state.isLoading = false;
+				state.error = null;
+				state.courses = payload;
+			})
+			.addCase(deleteAdminCourse.rejected, (state, { payload }) => {
 				state.isLoading = false;
 				state.error = payload;
 			});
