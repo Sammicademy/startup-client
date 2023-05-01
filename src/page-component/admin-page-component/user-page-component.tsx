@@ -15,14 +15,20 @@ import {
 	Thead,
 	Tr,
 } from '@chakra-ui/react';
+import { format } from 'date-fns';
+import Cookies from 'js-cookie';
 import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineFieldNumber, AiOutlineReload } from 'react-icons/ai';
+import { ErrorAlert } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
 import { courseusers } from 'src/config/constants';
+import { useActions } from 'src/hooks/useActions';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
 
 const UserPageComponent = () => {
+	const [limit, setLimit] = useState<number>(15);
 	const [chartData, setChartData] = useState({
 		labels: courseusers.map(data => data.year),
 		datasets: [
@@ -35,8 +41,16 @@ const UserPageComponent = () => {
 			},
 		],
 	});
-
+	const { users } = useTypedSelector(state => state.admin);
 	const { t } = useTranslation();
+	const { moreAdminUser, clearAdminError } = useActions();
+	const { isLoading, error } = useTypedSelector(state => state.admin);
+
+	const moreAdminUserHandler = () => {
+		setLimit(prev => prev + 5);
+		const token = Cookies.get('refresh');
+		moreAdminUser({ limit: String(limit), token, callback: () => {} });
+	};
 
 	return (
 		<>
@@ -58,7 +72,6 @@ const UserPageComponent = () => {
 					</Stack>
 				</CardBody>
 			</Card>
-
 			<Box mt={10}>
 				<Heading>{t('all_users', { ns: 'instructor' })}</Heading>
 				<Box pos={'relative'} mt={5}>
@@ -74,10 +87,17 @@ const UserPageComponent = () => {
 						{t('search_input_btn', { ns: 'courses' })}
 					</Button>
 				</Box>
+				<>{error && <ErrorAlert title={error as string} clearHandler={clearAdminError} />}</>
 				<TableContainer mt={10}>
 					<Table variant='striped' colorScheme='teal'>
 						<TableCaption>
-							<Button colorScheme={'facebook'} variant={'outline'} rightIcon={<AiOutlineReload />}>
+							<Button
+								colorScheme={'facebook'}
+								variant={'outline'}
+								rightIcon={<AiOutlineReload />}
+								isLoading={isLoading}
+								onClick={moreAdminUserHandler}
+							>
 								{t('more', { ns: 'instructor' })}...
 							</Button>
 						</TableCaption>
@@ -88,18 +108,18 @@ const UserPageComponent = () => {
 								</Th>
 								<Th>{t('email', { ns: 'instructor' })}</Th>
 								<Th>{t('full_name', { ns: 'instructor' })}</Th>
-								<Th>{t('courses', { ns: 'instructor' })}</Th>
+								<Th>Role</Th>
 								<Th>{t('enrolled_date', { ns: 'instructor' })}</Th>
 							</Tr>
 						</Thead>
 						<Tbody>
-							{courseusers.map((user, idx) => (
+							{users.map((user, idx) => (
 								<Tr key={idx}>
 									<Td>{idx + 1}</Td>
 									<Td>{user.email}</Td>
-									<Td>{user.fullName}</Td>
-									<Td>{2 * idx + 3}</Td>
-									<Td>{user.year}</Td>
+									<Td>{user.fullName || 'Not found'}</Td>
+									<Td>{user.role || 'USER'}</Td>
+									<Td>{format(new Date(user.createdAt as Date), 'dd MMMM, yyyy')}</Td>
 								</Tr>
 							))}
 						</Tbody>
