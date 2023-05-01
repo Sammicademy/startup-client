@@ -1,5 +1,7 @@
 import * as adminActions from './admin/admin.action';
 import { adminSliceAction } from './admin/admin.slice';
+import * as booksActions from './books/books.action';
+import { booksSliceAction } from './books/books.slice';
 import * as courseActions from './course/course.action';
 import { courseSliceAction } from './course/course.slice';
 import * as instructorActions from './instructor/instructor.action';
@@ -24,4 +26,6 @@ export const allActions = {
 	...lessonSliceAction,
 	...adminSliceAction,
 	...adminActions,
+	...booksSliceAction,
+	...booksActions,
 };

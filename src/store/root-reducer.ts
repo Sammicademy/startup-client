@@ -1,4 +1,5 @@
 import { adminReducer } from './admin/admin.slice';
+import { booksReducer } from './books/books.slice';
 import { courseReducer } from './course/course.slice';
 import { instructorReducer } from './instructor/instructor.slice';
 import { lessonReducer } from './lesson/lesson.slice';
@@ -12,4 +13,5 @@ export const reducer = {
 	section: sectionReducer,
 	lesson: lessonReducer,
 	admin: adminReducer,
+	books: booksReducer,
 };

@@ -2,6 +2,7 @@ export { default as AccountRecovery } from './account-recovery/account-recovery'
 export { default as AdminCourseCard } from './admin-course-card/admin-course-card';
 export { default as AdminInstructorTable } from './admin-instructor-table/admin-instructor-table';
 export { default as AllCoursesCard } from './all-courses-card/all-courses-card';
+export { default as BooksModal } from './books-modal/books-modal';
 export { default as Categories } from './categories/categories';
 export { default as Curriculum } from './curriculum/curriculum';
 export { default as DraftCourseCard } from './draft-course-card/draft-course-card';

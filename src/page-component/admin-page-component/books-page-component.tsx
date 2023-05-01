@@ -4,30 +4,18 @@ import {
 	Card,
 	CardBody,
 	Flex,
-	FormControl,
-	FormLabel,
 	Grid,
 	HStack,
 	IconButton,
 	Image,
-	Input,
-	Modal,
-	ModalBody,
-	ModalCloseButton,
-	ModalContent,
-	ModalFooter,
-	ModalHeader,
-	ModalOverlay,
-	Select,
 	Text,
 	useColorModeValue,
 	useDisclosure,
-	VStack,
 } from '@chakra-ui/react';
 import { CgAdd } from 'react-icons/cg';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { BooksModal } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
-import { coursePrice } from 'src/config/constants';
 import { PlanCurriculumIcon } from 'src/icons';
 
 const BooksPageComponent = () => {
@@ -104,46 +92,7 @@ const BooksPageComponent = () => {
 				))}
 			</Grid>
 
-			<Modal isOpen={isOpen} onClose={onClose} isCentered={true} size={'xl'}>
-				<ModalOverlay />
-				<ModalContent>
-					<ModalHeader>Add books</ModalHeader>
-					<ModalCloseButton />
-					<ModalBody>
-						<VStack>
-							<FormControl isRequired>
-								<FormLabel>Name</FormLabel>
-								<Input type='text' h={14} placeholder={'Harry Poter'} colorScheme={'facebook'} />
-							</FormControl>
-							<FormControl isRequired>
-								<FormLabel>Price</FormLabel>
-								<Select
-									borderRadius={'8px'}
-									height={14}
-									focusBorderColor={'green.500'}
-									placeholder={'-'}
-								>
-									{coursePrice.map(option => (
-										<option key={option} value={option}>
-											{option.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-										</option>
-									))}
-								</Select>
-							</FormControl>
-							<FormControl isRequired>
-								<FormLabel>PDF Link</FormLabel>
-								<Input type='text' h={14} colorScheme={'facebook'} />
-							</FormControl>
-						</VStack>
-					</ModalBody>
-
-					<ModalFooter>
-						<Button colorScheme='blue' mr={3} onClick={onClose}>
-							Add books
-						</Button>
-					</ModalFooter>
-				</ModalContent>
-			</Modal>
+			<BooksModal isOpen={isOpen} onClose={onClose} />
 		</>
 	);
 };
