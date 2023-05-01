@@ -2,7 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { errorCatch } from 'src/helpers/api.helper';
 import { UserType } from 'src/interfaces/user.interface';
 import { AdminService } from 'src/services/admin.service';
-import { AdminUserInterfaceResponse, ApproveAndDeleteBodyResponse } from './admin.interface';
+import {
+	AdminSearchUsersResponse,
+	AdminUserInterfaceResponse,
+	ApproveAndDeleteBodyResponse,
+} from './admin.interface';
 
 export const approveInstructor = createAsyncThunk<'Success', ApproveAndDeleteBodyResponse>(
 	'admin/approve-instructor',
@@ -35,7 +39,18 @@ export const moreAdminUser = createAsyncThunk<UserType[], AdminUserInterfaceResp
 	async (body, thunkApi) => {
 		try {
 			const response = await AdminService.getUsers(body.limit, body.token);
-			body.callback();
+			return response;
+		} catch (error) {
+			return thunkApi.rejectWithValue(errorCatch(error));
+		}
+	}
+);
+
+export const searchAdminUsers = createAsyncThunk<UserType[], AdminSearchUsersResponse>(
+	'admin/search-users',
+	async (body, thunkApi) => {
+		try {
+			const response = await AdminService.searchUsers(body.query, body.limit);
 			return response;
 		} catch (error) {
 			return thunkApi.rejectWithValue(errorCatch(error));

@@ -49,4 +49,12 @@ export const AdminService = {
 
 		return data;
 	},
+
+	async searchUsers(query: string, limit: string) {
+		const { data } = await $axios.get<UserType[]>(`${getAdminUrl('search-users')}`, {
+			params: { email: query, limit },
+		});
+
+		return data;
+	},
 };
