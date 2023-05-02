@@ -111,5 +111,7 @@
 	"hour_is_required": "Требуется час",
 	"minute_is_required": "Требуется минута",
 	"second_is_required": "Требуется секунд",
-	"job_required": "Ваша работа обязательное поле"
+	"job_required": "Ваша работа обязательное поле",
+	"preview_img_is_requried": "Необходимо изображение для предварительного просмотра.",
+	"pdf_is_requried": "PDF требуется"
 }

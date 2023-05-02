@@ -14,6 +14,7 @@ import {
 	useToast,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CgAdd } from 'react-icons/cg';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { BooksModal } from 'src/components';
@@ -32,6 +33,7 @@ const BooksPageComponent = () => {
 	const { books } = useTypedSelector(state => state.books);
 	const { deleteBooks } = useActions();
 	const toast = useToast();
+	const { t } = useTranslation();
 
 	const deleteBooksHandler = (id: string) => {
 		const isAgree = confirm('Are you sure?');
@@ -41,7 +43,7 @@ const BooksPageComponent = () => {
 				booksId: id,
 				callback: () => {
 					toast({
-						title: 'Successfully deleted',
+						title: t('successfully_deleted'),
 						position: 'top-right',
 						isClosable: true,
 						status: 'success',
@@ -67,7 +69,10 @@ const BooksPageComponent = () => {
 				<CardBody>
 					<HStack>
 						<Box w={'30%'}>
-							<SectionTitle title='Books' subtitle='All books and managing on platform' />
+							<SectionTitle
+								title={t('books_section_title', { ns: 'admin' })}
+								subtitle={t('books_section_descr', { ns: 'admin' })}
+							/>
 						</Box>
 						<Flex w={'70%'} justify={'flex-end'}>
 							<PlanCurriculumIcon />
@@ -125,7 +130,7 @@ const BooksPageComponent = () => {
 									onClick={() => deleteBooksHandler(item._id as string)}
 									colorScheme={'red'}
 								>
-									Delete
+									{t('delete_course', { ns: 'instructor' })}
 								</Button>
 								<Button
 									onClick={() => editOpenModal(item)}
@@ -133,7 +138,7 @@ const BooksPageComponent = () => {
 									rightIcon={<FaEdit />}
 									colorScheme={'green'}
 								>
-									Edit
+									{t('edit_course', { ns: 'instructor' })}
 								</Button>
 							</HStack>
 						</Flex>

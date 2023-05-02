@@ -17,6 +17,7 @@ import { Form, Formik, FormikValues } from 'formik';
 import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
 import { FileUploader } from 'react-drag-drop-files';
+import { useTranslation } from 'react-i18next';
 import { FaTimes } from 'react-icons/fa';
 import { coursePrice } from 'src/config/constants';
 import { loadImage } from 'src/helpers/image.helper';
@@ -37,6 +38,7 @@ const BooksModal: FC<BookModalProps> = ({ isOpen, onClose, booksValue }): JSX.El
 	const { startCreateBooksLoading, createBooks, clearBooksError, updateBooks } = useActions();
 	const { isLoading, error } = useTypedSelector(state => state.books);
 	const toast = useToast();
+	const { t } = useTranslation();
 
 	const handleChange = (file: File) => {
 		setFile(file);
@@ -44,7 +46,7 @@ const BooksModal: FC<BookModalProps> = ({ isOpen, onClose, booksValue }): JSX.El
 
 	const onSubmit = async (fomrikValues: FormikValues) => {
 		if (!file) {
-			setErrorFile('Preview image is required');
+			setErrorFile(t('preview_img_is_requried', { ns: 'global' }) as string);
 			return;
 		}
 		let imageUrl = file;
@@ -64,7 +66,7 @@ const BooksModal: FC<BookModalProps> = ({ isOpen, onClose, booksValue }): JSX.El
 				image: imageUrl as string,
 				callback: () => {
 					toast({
-						title: 'Successfully created',
+						title: t('successfully_created_course', { ns: 'instructor' }),
 						position: 'top-right',
 						isClosable: true,
 						status: 'success',
@@ -82,7 +84,7 @@ const BooksModal: FC<BookModalProps> = ({ isOpen, onClose, booksValue }): JSX.El
 				image: imageUrl as string,
 				callback: () => {
 					toast({
-						title: 'Successfully updated',
+						title: t('successfully_edited', { ns: 'instructor' }),
 						position: 'top-right',
 						isClosable: true,
 						status: 'success',
@@ -121,14 +123,18 @@ const BooksModal: FC<BookModalProps> = ({ isOpen, onClose, booksValue }): JSX.El
 						<ModalBody>
 							<>{error && <ErrorAlert title={error as string} clearHandler={clearBooksError} />}</>
 							<VStack>
-								<TextFiled name='title' label='Title' placeholder={'Harry Poter'} />
+								<TextFiled
+									name='title'
+									label={t('title', { ns: 'instructor' })}
+									placeholder={'Harry Poter'}
+								/>
 								<SelectField
 									name='price'
-									label={'Books price'}
+									label={t('books_price', { ns: 'admin' })}
 									placeholder='-'
 									arrOptions={coursePrice}
 								/>
-								<TextFiled name='pdf' label='PDF Link' />
+								<TextFiled name='pdf' label={t('pdf_link', { ns: 'admin' })} />
 								{file ? (
 									<Box pos={'relative'} w={'full'} h={200}>
 										<Image
@@ -171,7 +177,7 @@ const BooksModal: FC<BookModalProps> = ({ isOpen, onClose, booksValue }): JSX.El
 
 						<ModalFooter>
 							<Button type='submit' isLoading={isLoading} colorScheme='blue' mr={3}>
-								{booksValue ? 'Edit book' : 'Add book'}
+								{booksValue ? t('edit_book', { ns: 'admin' }) : t('add_book', { ns: 'admin' })}
 							</Button>
 						</ModalFooter>
 					</Form>

@@ -1,4 +1,5 @@
 import { Box, Card, CardBody, Flex, Grid, HStack } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 import { AdminCourseCard, ErrorAlert } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
 import { useActions } from 'src/hooks/useActions';
@@ -9,6 +10,7 @@ const CoursesPageComponent = () => {
 	const { courses } = useTypedSelector(state => state.admin);
 	const { error } = useTypedSelector(state => state.admin);
 	const { clearAdminError } = useActions();
+	const { t } = useTranslation();
 
 	return (
 		<>
@@ -16,7 +18,10 @@ const CoursesPageComponent = () => {
 				<CardBody>
 					<HStack>
 						<Box w={'30%'}>
-							<SectionTitle title='Courses' subtitle='All courses and managing on platform' />
+							<SectionTitle
+								title={t('courses_section_title', { ns: 'admin' })}
+								subtitle={t('courses_section_descr', { ns: 'admin' })}
+							/>
 						</Box>
 						<Flex w={'70%'} justify={'flex-end'}>
 							<LaunchCourseIcon />

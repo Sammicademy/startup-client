@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BsTrash } from 'react-icons/bs';
 import { VscOpenPreview } from 'react-icons/vsc';
 import { loadImage } from 'src/helpers/image.helper';
@@ -22,6 +23,7 @@ const AdminCourseCard: FC<AdminCourseCardProps> = ({ course }): JSX.Element => {
 	const { deleteAdminCourse } = useActions();
 	const { isLoading } = useTypedSelector(state => state.admin);
 	const toast = useToast();
+	const { t } = useTranslation();
 
 	const deleteCourseHandler = () => {
 		const isAgree = confirm('Are you sure?');
@@ -30,7 +32,7 @@ const AdminCourseCard: FC<AdminCourseCardProps> = ({ course }): JSX.Element => {
 				courseId: course._id,
 				callback: () => {
 					toast({
-						title: 'Successfully deleted',
+						title: t('successfully_deleted', { ns: 'instructor' }),
 						status: 'success',
 						position: 'top-right',
 						isClosable: true,
@@ -54,17 +56,17 @@ const AdminCourseCard: FC<AdminCourseCardProps> = ({ course }): JSX.Element => {
 				<Heading fontSize={'xl'}>{course.title}</Heading>
 				<Divider />
 				<Flex align={'center'} gap={2} fontSize={'16px'} color={'facebook.200'} fontWeight={'bold'}>
-					Language: {course.language}
+					{t('language', { ns: 'instructor' })}: {course.language}
 				</Flex>
 				<Text fontWeight={'bold'} color={'facebook.500'}>
-					Status:{' '}
+					{t('status', { ns: 'instructor' })}:{' '}
 					<Box as={'span'} color={course.isActive ? 'green.500' : 'red.500'}>
 						{course.isActive ? 'Active' : 'Draft'}
 					</Box>
 				</Text>
 				<ButtonGroup>
 					<Button w={'full'} rightIcon={<VscOpenPreview />} colorScheme={'facebook'}>
-						Preview
+						{t('preview', { ns: 'instructor' })}
 					</Button>
 					<Button
 						w={'full'}
@@ -73,7 +75,7 @@ const AdminCourseCard: FC<AdminCourseCardProps> = ({ course }): JSX.Element => {
 						rightIcon={<BsTrash />}
 						isLoading={isLoading}
 					>
-						Delete
+						{t('delete_course', { ns: 'instructor' })}
 					</Button>
 				</ButtonGroup>
 			</Stack>

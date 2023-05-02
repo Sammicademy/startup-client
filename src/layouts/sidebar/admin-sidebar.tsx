@@ -24,7 +24,7 @@ import { DarkLogo, LightLogo } from 'src/icons';
 
 const AdminSidebar = () => {
 	const { toggleColorMode, colorMode } = useColorMode();
-	const { i18n } = useTranslation();
+	const { i18n, t } = useTranslation();
 	const router = useRouter();
 
 	const onLanguage = (lng: string) => {
@@ -96,7 +96,7 @@ const AdminSidebar = () => {
 							>
 								<HStack gap={2}>
 									<Icon as={item.icon} />
-									<Text>{item.name}</Text>
+									<Text>{t(item.name, { ns: 'admin' })}</Text>
 								</HStack>
 							</Button>
 						</Link>

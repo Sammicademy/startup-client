@@ -540,22 +540,22 @@ export const courseLng = ['en', 'uz', 'ru', 'tr'];
 
 export const adminSidebar = [
 	{
-		name: 'Users',
+		name: 'user_section_title',
 		icon: FaUserGraduate,
 		route: 'users',
 	},
 	{
-		name: 'Instructors',
+		name: 'instructors_section_title',
 		icon: FaChalkboardTeacher,
 		route: 'instructors',
 	},
 	{
-		name: 'Courses',
+		name: 'courses_section_title',
 		icon: AiOutlineUnorderedList,
 		route: 'courses',
 	},
 	{
-		name: 'Books',
+		name: 'books_section_title',
 		icon: ImBooks,
 		route: 'books',
 	},
