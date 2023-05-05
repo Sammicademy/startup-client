@@ -12,8 +12,18 @@ const Categories = () => {
 
 	return (
 		<>
-			<SectionTitle title={t('category_title', { ns: 'home' })} subtitle={t('category_description', { ns: 'home' })} />
-			<Carousel responsive={categoryCarousel} showDots={false} arrows={false} autoPlay={true} autoPlaySpeed={2000} infinite>
+			<SectionTitle
+				title={t('category_title', { ns: 'home' })}
+				subtitle={t('category_description', { ns: 'home' })}
+			/>
+			<Carousel
+				responsive={categoryCarousel}
+				showDots={false}
+				arrows={false}
+				autoPlay={true}
+				autoPlaySpeed={2000}
+				infinite
+			>
 				{categories.map(item => (
 					<Box
 						key={item.id}
