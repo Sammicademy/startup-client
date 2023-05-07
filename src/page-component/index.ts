@@ -23,3 +23,4 @@ export { default as RevenuePageComponent } from './instructor-page-component/rev
 export { default as InstructorStudentsPageComponent } from './instructor-page-component/students-page-component';
 export { default as PricingPageComponent } from './pricing-page-component/pricing-page-component';
 export { default as CartPageComponent } from './shop-page-component/cart-page-component';
+export { default as CheckoutPageComponent } from './shop-page-component/checkout-page-component';

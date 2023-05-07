@@ -4,6 +4,7 @@ export { default as AdminInstructorTable } from './admin-instructor-table/admin-
 export { default as AllCoursesCard } from './all-courses-card/all-courses-card';
 export { default as BooksModal } from './books-modal/books-modal';
 export { default as Categories } from './categories/categories';
+export { default as CheckoutForm } from './checkout-form/checkout-form';
 export { default as Curriculum } from './curriculum/curriculum';
 export { default as DraftCourseCard } from './draft-course-card/draft-course-card';
 export { default as ErrorAlert } from './error-alert/error-alert';

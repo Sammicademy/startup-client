@@ -15,6 +15,7 @@ import {
 	useColorModeValue,
 } from '@chakra-ui/react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
 import SectionTitle from 'src/components/section-title/section-title';
@@ -24,6 +25,7 @@ import { useTypedSelector } from 'src/hooks/useTypedSelector';
 
 const CartPageComponent = () => {
 	const cart = useTypedSelector(state => state.cart);
+	const router = useRouter();
 
 	const getSubtitle = () => {
 		let textCourse: string = '';
@@ -100,7 +102,7 @@ const CartPageComponent = () => {
 							h={14}
 							colorScheme={'facebook'}
 							borderRadius={0}
-							// onClick={() => router.push('/shop/checkout')}
+							onClick={() => router.push('/shop/checkout')}
 						>
 							Checkout
 						</Button>

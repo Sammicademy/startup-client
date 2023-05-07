@@ -10,3 +10,4 @@ export const getSectionUrl = (url: string) => `/section/${url}`;
 export const getLessonUrl = (url: string) => `/lesson/${url}`;
 export const getAdminUrl = (url: string) => `/admin/${url}`;
 export const getBooksUrl = (url: string) => `/books/${url}`;
+export const getPaymentUrl = (url: string) => `/payment/${url}`;
