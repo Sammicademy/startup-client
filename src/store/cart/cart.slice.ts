@@ -18,11 +18,11 @@ export const cartSlice = createSlice({
 		addCourseToCart: (state, { payload }: PayloadAction<CourseType>) => {
 			state.courses = [...state.courses, payload];
 		},
-		removeBookToCart: (state, { payload }: PayloadAction<string>) => {
+		removeBookFromCart: (state, { payload }: PayloadAction<string>) => {
 			const newArr = state.books.filter(c => c._id !== payload);
 			state.books = newArr;
 		},
-		removeCourseToCart: (state, { payload }: PayloadAction<string>) => {
+		removeCourseFromCart: (state, { payload }: PayloadAction<string>) => {
 			const newArr = state.courses.filter(c => c._id !== payload);
 			state.courses = newArr;
 		},

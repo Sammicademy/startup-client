@@ -21,11 +21,13 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import SectionTitle from 'src/components/section-title/section-title';
 import { loadImage } from 'src/helpers/image.helper';
 import { getTotalPrice } from 'src/helpers/total-price.helper';
+import { useActions } from 'src/hooks/useActions';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
 
 const CartPageComponent = () => {
 	const cart = useTypedSelector(state => state.cart);
 	const router = useRouter();
+	const { removeBookFromCart } = useActions();
 
 	const getSubtitle = () => {
 		let textCourse: string = '';
@@ -74,7 +76,12 @@ const CartPageComponent = () => {
 									<Text color={'facebook.300'} fontSize={'2xl'} fontWeight={'bold'}>
 										{book.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
 									</Text>
-									<IconButton aria-label='remove' icon={<BsFillTrashFill />} colorScheme={'red'} />
+									<IconButton
+										aria-label='remove'
+										icon={<BsFillTrashFill />}
+										colorScheme={'red'}
+										onClick={() => removeBookFromCart(book._id)}
+									/>
 								</Stack>
 							</Flex>
 							<Divider my={5} />
