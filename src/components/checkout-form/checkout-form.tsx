@@ -1,4 +1,14 @@
-import { Box, Button, Flex, Stack, useColorMode, useColorModeValue } from '@chakra-ui/react';
+import {
+	Box,
+	Button,
+	Flex,
+	Radio,
+	RadioGroup,
+	Stack,
+	Text,
+	useColorMode,
+	useColorModeValue,
+} from '@chakra-ui/react';
 import {
 	AddressElement,
 	CardCvcElement,
@@ -17,12 +27,13 @@ import { useActions } from 'src/hooks/useActions';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import ErrorAlert from '../error-alert/error-alert';
 
-export default function CheckoutForm() {
+export default function CheckoutForm({ cards }) {
 	const stripe = useStripe();
 	const elements = useElements();
 
 	const [error, setError] = useState<string>('');
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [radioValue, setRadioValue] = useState<string>('0');
 
 	const { courses, books } = useTypedSelector(state => state.cart);
 	const { colorMode } = useColorMode();
@@ -60,7 +71,7 @@ export default function CheckoutForm() {
 			card: elements.getElement(CardNumberElement),
 			billing_details: {
 				address: value.address,
-				name: `${value.firstName} ${value.lastName}`,
+				name: value.name,
 			},
 		});
 
@@ -89,77 +100,154 @@ export default function CheckoutForm() {
 		}
 	};
 
+	const savedCardHandler = async (paymentMethod: string) => {
+		if (!stripe || !elements) return;
+		setIsLoading(true);
+
+		const { data } = await $axios.post(`/payment/books`, {
+			price: getTotalPrice(courses, books),
+			paymentMethod: paymentMethod,
+		});
+
+		const payload = await stripe.confirmCardPayment(data);
+
+		if (payload.error) {
+			setIsLoading(false);
+			setError(`Your payment details couldn't be verified: ${payload.error.message}`);
+		} else {
+			for (const book of books) {
+				await $axios.post(`${getMailUrl('books')}/${book._id}`);
+			}
+			getBooks([]);
+			router.push('/shop/success');
+		}
+	};
+
 	return (
 		<Stack>
 			{error && <ErrorAlert title={error} clearHandler={() => setError('')} />}
-			<Flex gap={2}>
-				<Box
-					px={2}
-					py={3}
-					w={'60%'}
-					boxShadow={
-						colorMode === 'dark'
-							? '0px 2px 4px rgba(0, 0, 0, 0.5), 0px 1px 6px rgba(0, 0, 0, 0.25)'
-							: ''
-					}
-					borderRadius={'md'}
-					border={'1px'}
-					borderColor={useColorModeValue('rgba(0,0,0,.1)', 'rgba(255,255,255,.1)')}
-					bg={useColorModeValue('white', '#30303d')}
-				>
-					<CardNumberElement
-						options={{ style: cardStyles, placeholder: 'XXXX XXXX XXXX XXXX', showIcon: true }}
-					/>
-				</Box>
-				<Box
-					px={2}
-					w='20%'
-					py={3}
-					boxShadow={
-						colorMode === 'dark'
-							? '0px 2px 4px rgba(0, 0, 0, 0.5), 0px 1px 6px rgba(0, 0, 0, 0.25)'
-							: ''
-					}
-					borderRadius={'md'}
-					border={'1px'}
-					borderColor={useColorModeValue('rgba(0,0,0,.1)', 'rgba(255,255,255,.1)')}
-					bg={useColorModeValue('white', '#30303d')}
-				>
-					<CardExpiryElement options={{ style: cardStyles }} />
-				</Box>
-				<Box
-					px={2}
-					w='20%'
-					py={3}
-					boxShadow={
-						colorMode === 'dark'
-							? '0px 2px 4px rgba(0, 0, 0, 0.5), 0px 1px 6px rgba(0, 0, 0, 0.25)'
-							: ''
-					}
-					borderRadius={'md'}
-					border={'1px'}
-					borderColor={useColorModeValue('rgba(0,0,0,.1)', 'rgba(255,255,255,.1)')}
-					bg={useColorModeValue('white', '#30303d')}
-				>
-					<CardCvcElement options={{ style: cardStyles, placeholder: 'Security code' }} />
-				</Box>
-			</Flex>
-			<AddressElement options={{ mode: 'billing' }} />
-			<Button
-				w={'full'}
-				h={'14'}
-				mt={5}
-				isDisabled={isLoading || !stripe || !elements}
-				isLoading={isLoading}
-				boxShadow={'xl'}
-				onClick={handleSubmit}
-			>
-				Pay now{' '}
-				{getTotalPrice(courses, books).toLocaleString('en-US', {
-					style: 'currency',
-					currency: 'USD',
-				})}
-			</Button>
+			<RadioGroup onChange={setRadioValue} value={radioValue}>
+				<Stack direction={'column'}>
+					{cards.map((card, idx) => (
+						<Box
+							key={idx}
+							p='4'
+							border={'1px'}
+							borderColor={useColorModeValue('rgba(0,0,0,.1)', 'rgba(255,255,255,.1)')}
+							bg={useColorModeValue('white', '#30303d')}
+						>
+							<Flex>
+								<Radio value={String(idx)}>{card.billing_details.name} |</Radio>
+
+								<Text ml='2' fontWeight='bold' textTransform='capitalize'>
+									{card.card.brand} {card.card.last4}
+								</Text>
+							</Flex>
+							<Text ml='6'>
+								Exp {card.card.exp_month} / {card.card.exp_year}
+							</Text>
+							{radioValue == idx && (
+								<Box mt={5}>
+									<Button
+										onClick={() => savedCardHandler(card.id)}
+										w={'full'}
+										h={'14'}
+										isLoading={isLoading}
+										isActive
+										colorScheme={'facebook'}
+									>
+										Pay now{' '}
+										{getTotalPrice(courses, books).toLocaleString('en-US', {
+											style: 'currency',
+											currency: 'USD',
+										})}
+									</Button>
+								</Box>
+							)}
+						</Box>
+					))}
+					<Box
+						p='4'
+						border={'1px'}
+						borderColor={useColorModeValue('rgba(0,0,0,.1)', 'rgba(255,255,255,.1)')}
+						bg={useColorModeValue('white', '#30303d')}
+					>
+						<Radio value='3'>New Credit card</Radio>
+					</Box>
+				</Stack>
+			</RadioGroup>
+			{radioValue == '3' && (
+				<>
+					<Flex gap={2}>
+						<Box
+							px={2}
+							py={3}
+							w={'60%'}
+							boxShadow={
+								colorMode === 'dark'
+									? '0px 2px 4px rgba(0, 0, 0, 0.5), 0px 1px 6px rgba(0, 0, 0, 0.25)'
+									: ''
+							}
+							borderRadius={'md'}
+							border={'1px'}
+							borderColor={useColorModeValue('rgba(0,0,0,.1)', 'rgba(255,255,255,.1)')}
+							bg={useColorModeValue('white', '#30303d')}
+						>
+							<CardNumberElement
+								options={{ style: cardStyles, placeholder: 'XXXX XXXX XXXX XXXX', showIcon: true }}
+							/>
+						</Box>
+						<Box
+							px={2}
+							w='20%'
+							py={3}
+							boxShadow={
+								colorMode === 'dark'
+									? '0px 2px 4px rgba(0, 0, 0, 0.5), 0px 1px 6px rgba(0, 0, 0, 0.25)'
+									: ''
+							}
+							borderRadius={'md'}
+							border={'1px'}
+							borderColor={useColorModeValue('rgba(0,0,0,.1)', 'rgba(255,255,255,.1)')}
+							bg={useColorModeValue('white', '#30303d')}
+						>
+							<CardExpiryElement options={{ style: cardStyles }} />
+						</Box>
+						<Box
+							px={2}
+							w='20%'
+							py={3}
+							boxShadow={
+								colorMode === 'dark'
+									? '0px 2px 4px rgba(0, 0, 0, 0.5), 0px 1px 6px rgba(0, 0, 0, 0.25)'
+									: ''
+							}
+							borderRadius={'md'}
+							border={'1px'}
+							borderColor={useColorModeValue('rgba(0,0,0,.1)', 'rgba(255,255,255,.1)')}
+							bg={useColorModeValue('white', '#30303d')}
+						>
+							<CardCvcElement options={{ style: cardStyles, placeholder: 'Security code' }} />
+						</Box>
+					</Flex>
+					<AddressElement options={{ mode: 'billing' }} />
+					<Button
+						w={'full'}
+						h={'14'}
+						mt={5}
+						isDisabled={isLoading || !stripe || !elements}
+						isLoading={isLoading}
+						boxShadow={'xl'}
+						onClick={handleSubmit}
+					>
+						Pay now{' '}
+						{getTotalPrice(courses, books).toLocaleString('en-US', {
+							style: 'currency',
+							currency: 'USD',
+						})}
+					</Button>
+				</>
+			)}
 		</Stack>
 	);
 }
