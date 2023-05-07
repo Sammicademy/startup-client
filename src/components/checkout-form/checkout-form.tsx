@@ -1,20 +1,20 @@
-import {
-	LinkAuthenticationElement,
-	PaymentElement,
-	useElements,
-	useStripe,
-} from '@stripe/react-stripe-js';
-import React from 'react';
+import { Button } from '@chakra-ui/react';
+import { AddressElement, PaymentElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { FormEvent, useEffect, useState } from 'react';
+import { getTotalPrice } from 'src/helpers/total-price.helper';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
+import ErrorAlert from '../error-alert/error-alert';
 
 export default function CheckoutForm() {
 	const stripe = useStripe();
 	const elements = useElements();
 
-	const [email, setEmail] = React.useState('');
-	const [message, setMessage] = React.useState(null);
-	const [isLoading, setIsLoading] = React.useState(false);
+	const [message, setMessage] = useState<string | null>(null);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
-	React.useEffect(() => {
+	const { courses, books } = useTypedSelector(state => state.cart);
+
+	useEffect(() => {
 		if (!stripe) {
 			return;
 		}
@@ -28,7 +28,7 @@ export default function CheckoutForm() {
 		}
 
 		stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-			switch (paymentIntent.status) {
+			switch (paymentIntent?.status) {
 				case 'succeeded':
 					setMessage('Payment succeeded!');
 					break;
@@ -45,12 +45,10 @@ export default function CheckoutForm() {
 		});
 	}, [stripe]);
 
-	const handleSubmit = async e => {
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		if (!stripe || !elements) {
-			// Stripe.js hasn't yet loaded.
-			// Make sure to disable form submission until Stripe.js has loaded.
 			return;
 		}
 
@@ -59,18 +57,12 @@ export default function CheckoutForm() {
 		const { error } = await stripe.confirmPayment({
 			elements,
 			confirmParams: {
-				// Make sure to change this to your payment completion page
-				return_url: 'http://localhost:3000',
+				return_url: `${process.env.NEXT_PUBLIC_CLIENT_DOMAIN}/shop/success`,
 			},
 		});
 
-		// This point will only be reached if there is an immediate error when
-		// confirming the payment. Otherwise, your customer will be redirected to
-		// your `return_url`. For some payment methods like iDEAL, your customer will
-		// be redirected to an intermediate site first to authorize the payment, then
-		// redirected to the `return_url`.
 		if (error.type === 'card_error' || error.type === 'validation_error') {
-			setMessage(error.message);
+			setMessage(error.message as string);
 		} else {
 			setMessage('An unexpected error occurred.');
 		}
@@ -78,24 +70,27 @@ export default function CheckoutForm() {
 		setIsLoading(false);
 	};
 
-	const paymentElementOptions = {
-		layout: 'tabs',
-	};
-
 	return (
 		<form id='payment-form' onSubmit={handleSubmit}>
-			<LinkAuthenticationElement
-				id='link-authentication-element'
-				onChange={e => setEmail(e.target.value)}
-			/>
-			<PaymentElement id='payment-element' options={paymentElementOptions} />
-			<button disabled={isLoading || !stripe || !elements} id='submit'>
-				<span id='button-text'>
-					{isLoading ? <div className='spinner' id='spinner'></div> : 'Pay now'}
-				</span>
-			</button>
-			{/* Show any error or success messages */}
-			{message && <div id='payment-message'>{message}</div>}
+			{message && <ErrorAlert title={message} clearHandler={() => setMessage(null)} />}
+
+			<PaymentElement id='payment-element' options={{ layout: 'tabs' }} />
+			<AddressElement options={{ mode: 'billing' }} />
+			<Button
+				w={'full'}
+				h={'14'}
+				mt={5}
+				isDisabled={isLoading || !stripe || !elements}
+				isLoading={isLoading}
+				boxShadow={'xl'}
+				type={'submit'}
+			>
+				Pay now{' '}
+				{getTotalPrice(courses, books).toLocaleString('en-US', {
+					style: 'currency',
+					currency: 'USD',
+				})}
+			</Button>
 		</form>
 	);
 }

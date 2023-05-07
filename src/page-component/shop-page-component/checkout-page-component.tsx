@@ -16,6 +16,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { CheckoutForm } from 'src/components';
 import SectionTitle from 'src/components/section-title/section-title';
 import { loadImage } from 'src/helpers/image.helper';
+import { getTotalPrice } from 'src/helpers/total-price.helper';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import { PaymentService } from 'src/services/payment.service';
 
@@ -24,11 +25,11 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY 
 const CheckoutPageComponent = () => {
 	const [clientSecret, setClientSecret] = useState('');
 
-	const { books } = useTypedSelector(state => state.cart);
+	const { books, courses } = useTypedSelector(state => state.cart);
 
 	useEffect(() => {
 		const getClientSecret = async () => {
-			const response = await PaymentService.paymentBooks(10);
+			const response = await PaymentService.paymentBooks(getTotalPrice(courses, books));
 			setClientSecret(response);
 		};
 
