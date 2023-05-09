@@ -27,7 +27,6 @@ import { useTypedSelector } from 'src/hooks/useTypedSelector';
 const CartPageComponent = () => {
 	const cart = useTypedSelector(state => state.cart);
 	const router = useRouter();
-	const { removeBookFromCart } = useActions();
 
 	const getSubtitle = () => {
 		let textCourse: string = '';
@@ -50,40 +49,13 @@ const CartPageComponent = () => {
 					<Divider my={5} />
 					{cart.books.map(book => (
 						<Fragment key={book._id}>
-							<Flex justify={'space-between'}>
-								<HStack>
-									<Box pos={'relative'} w={'200px'} h={'100px'}>
-										<Image
-											fill
-											src={loadImage(book.image)}
-											alt={book.title}
-											style={{ objectFit: 'cover', borderRadius: '10px' }}
-										/>
-									</Box>
-									<Stack>
-										<Heading fontSize={'xl'}>{book.title}</Heading>
-										<Text>by Admin Platform</Text>
-										<HStack>
-											<Tag colorScheme={'facebook'}>Books</Tag>
-											<Tag colorScheme={'facebook'}>Usefull</Tag>
-											<Tag colorScheme={'facebook'} textTransform={'capitalize'}>
-												{book.category}
-											</Tag>
-										</HStack>
-									</Stack>
-								</HStack>
-								<Stack spacing={0}>
-									<Text color={'facebook.300'} fontSize={'2xl'} fontWeight={'bold'}>
-										{book.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-									</Text>
-									<IconButton
-										aria-label='remove'
-										icon={<BsFillTrashFill />}
-										colorScheme={'red'}
-										onClick={() => removeBookFromCart(book._id)}
-									/>
-								</Stack>
-							</Flex>
+							<ShoppingCartCard item={book} image={book.image} />
+							<Divider my={5} />
+						</Fragment>
+					))}
+					{cart.courses.map(book => (
+						<Fragment key={book._id}>
+							<ShoppingCartCard item={book} image={book.previewImage} />
 							<Divider my={5} />
 						</Fragment>
 					))}
@@ -145,3 +117,52 @@ const CartPageComponent = () => {
 };
 
 export default CartPageComponent;
+
+const ShoppingCartCard = ({ item, image }) => {
+	const { removeBookFromCart, removeCourseFromCart } = useActions();
+
+	const removeCartItem = () => {
+		if (item.previewImage) {
+			removeCourseFromCart(item._id);
+		} else {
+			removeBookFromCart(item._id);
+		}
+	};
+
+	return (
+		<Flex justify={'space-between'}>
+			<HStack>
+				<Box pos={'relative'} w={'200px'} h={'100px'}>
+					<Image
+						fill
+						src={loadImage(image)}
+						alt={item.title}
+						style={{ objectFit: 'cover', borderRadius: '10px' }}
+					/>
+				</Box>
+				<Stack>
+					<Heading fontSize={'xl'}>{item.title}</Heading>
+					<Text>by Admin Platform</Text>
+					<HStack>
+						<Tag colorScheme={'facebook'}>Books</Tag>
+						<Tag colorScheme={'facebook'}>Usefull</Tag>
+						<Tag colorScheme={'facebook'} textTransform={'capitalize'}>
+							{item.category}
+						</Tag>
+					</HStack>
+				</Stack>
+			</HStack>
+			<Stack spacing={0}>
+				<Text color={'facebook.300'} fontSize={'2xl'} fontWeight={'bold'}>
+					{item.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+				</Text>
+				<IconButton
+					aria-label='remove'
+					icon={<BsFillTrashFill />}
+					colorScheme={'red'}
+					onClick={removeCartItem}
+				/>
+			</Stack>
+		</Flex>
+	);
+};

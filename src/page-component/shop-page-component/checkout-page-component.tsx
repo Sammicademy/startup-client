@@ -21,7 +21,7 @@ import { CardType } from 'src/interfaces/constants.interface';
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string);
 
 const CheckoutPageComponent = ({ cards }: { cards: CardType[] }) => {
-	const { books } = useTypedSelector(state => state.cart);
+	const { books, courses } = useTypedSelector(state => state.cart);
 	const { colorMode } = useColorMode();
 
 	return (
@@ -52,25 +52,13 @@ const CheckoutPageComponent = ({ cards }: { cards: CardType[] }) => {
 					</Text>
 					{books.map(book => (
 						<Fragment key={book._id}>
-							<HStack justify={'space-between'}>
-								<HStack>
-									<Box pos={'relative'} w={'40px'} h={'30px'}>
-										<Image
-											src={loadImage(book.image)}
-											fill
-											alt={book.title}
-											style={{ objectFit: 'cover' }}
-										/>
-									</Box>
-									<Text>{book.title}</Text>
-								</HStack>
-								<Text fontWeight={'bold'} color={'facebook.500'}>
-									{book.price.toLocaleString('en-US', {
-										style: 'currency',
-										currency: 'USD',
-									})}
-								</Text>
-							</HStack>
+							<OrderedDetailedCart item={book} image={book.image} />
+							<Divider my={5} />
+						</Fragment>
+					))}
+					{courses.map(book => (
+						<Fragment key={book._id}>
+							<OrderedDetailedCart item={book} image={book.previewImage} />
 							<Divider my={5} />
 						</Fragment>
 					))}
@@ -81,3 +69,20 @@ const CheckoutPageComponent = ({ cards }: { cards: CardType[] }) => {
 };
 
 export default CheckoutPageComponent;
+
+const OrderedDetailedCart = ({ item, image }) => (
+	<HStack justify={'space-between'}>
+		<HStack>
+			<Box pos={'relative'} w={'40px'} h={'30px'}>
+				<Image src={loadImage(image)} fill alt={item.title} style={{ objectFit: 'cover' }} />
+			</Box>
+			<Text>{item.title}</Text>
+		</HStack>
+		<Text fontWeight={'bold'} color={'facebook.500'}>
+			{item.price.toLocaleString('en-US', {
+				style: 'currency',
+				currency: 'USD',
+			})}
+		</Text>
+	</HStack>
+);

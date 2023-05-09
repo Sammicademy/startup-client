@@ -24,7 +24,7 @@ const AppProvider: FC<Props> = ({ children, course, courses, instructors, books 
 		if (instructors?.length) {
 			getInstructors(instructors);
 		} else {
-			getCourses([]);
+			getInstructors([]);
 		}
 		if (course) {
 			getCourse(course);
