@@ -22,7 +22,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import $axios from 'src/api/axios';
 import { getMailUrl } from 'src/config/api.config';
-import { getTotalPrice } from 'src/helpers/total-price.helper';
+import { getBooksPrice, getTotalPrice } from 'src/helpers/total-price.helper';
 import { useActions } from 'src/hooks/useActions';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import { CardType } from 'src/interfaces/constants.interface';
@@ -94,22 +94,50 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
 		if (!stripe) return;
 
 		try {
-			const { data } = await $axios.post(`/payment/books`, {
-				price: getTotalPrice(courses, books),
-				paymentMethod: paymentMethod,
-			});
+			if (books.length) {
+				const { data } = await $axios.post(`/payment/books`, {
+					price: getBooksPrice(books),
+					paymentMethod: paymentMethod,
+				});
 
-			const payload = await stripe.confirmCardPayment(data);
+				const payload = await stripe.confirmCardPayment(data);
 
-			if (payload.error) {
-				setIsLoading(false);
-				setError(`Your payment details couldn't be verified: ${payload.error.message}`);
-			} else {
-				for (const book of books) {
-					await $axios.post(`${getMailUrl('books')}/${book._id}`);
+				if (payload.error) {
+					setIsLoading(false);
+					setError(`Your payment details couldn't be verified: ${payload.error.message}`);
+				} else {
+					for (const book of books) {
+						await $axios.post(`${getMailUrl('books')}/${book._id}`);
+					}
+					getBooks([]);
+					router.push('/shop/success');
 				}
-				getBooks([]);
-				router.push('/shop/success');
+			}
+
+			if (courses.length) {
+				let counter = courses.length;
+				for (const course of courses) {
+					const { data } = await $axios.post(`/payment/course`, {
+						price: course.price,
+						paymentMethod: paymentMethod,
+						courseId: course._id,
+					});
+
+					const payload = await stripe.confirmCardPayment(data);
+
+					if (payload.error) {
+						setIsLoading(false);
+						setError(`Your payment details couldn't be verified: ${payload.error.message}`);
+					} else {
+						counter -= 1;
+						// await $axios.post(`${getMailUrl('books')}/${book._id}`);
+					}
+
+					if (counter == 0) {
+						getBooks([]);
+						router.push('/shop/success');
+					}
+				}
 			}
 		} catch (error) {
 			const result = error as Error;
