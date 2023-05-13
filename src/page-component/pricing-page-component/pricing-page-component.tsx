@@ -1,6 +1,8 @@
 import { Divider, Heading, Stack, Text } from '@chakra-ui/react';
+import { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pricing } from 'src/components';
+import { ProductsType } from 'src/interfaces/constants.interface';
 
 const options = [
 	{ id: 1, desc: '1 lorem ipsum' },
@@ -8,7 +10,7 @@ const options = [
 	{ id: 3, desc: 'Monthly Updates' },
 ];
 
-const PricingPageComponent = () => {
+const PricingPageComponent = ({ products }: { products: ProductsType[] }) => {
 	const { t } = useTranslation();
 
 	return (
@@ -23,23 +25,23 @@ const PricingPageComponent = () => {
 					<Stack width={{ base: '100%', md: '40%' }} textAlign={'center'}>
 						<Heading size={'lg'}>
 							{t('pricing_title', { ns: 'global' })}{' '}
-							<Text color='green.400'>
-								{t('pricing_title_green', { ns: 'global' })}
-							</Text>
+							<Text color='green.400'>{t('pricing_title_green', { ns: 'global' })}</Text>
 						</Heading>
 					</Stack>
 					<Stack width={{ base: '100%', md: '60%' }}>
-						<Text textAlign={'center'}>
-							{t('pricing_description', { ns: 'global' })}
-						</Text>
+						<Text textAlign={'center'}>{t('pricing_description', { ns: 'global' })}</Text>
 					</Stack>
 				</Stack>
-				<Divider />
-				<Pricing title={'Standard'} price={20} options={options} />
-				<Divider />
-				<Pricing title={'Premium'} price={32} options={options} checked />
-				<Divider />
-				<Pricing title={'Business'} price={50} options={options} />
+				{products.map(product => (
+					<Fragment key={product.id}>
+						<Divider />
+						<Pricing
+							title={product.name}
+							price={product.default_price.unit_amount / 100}
+							options={product.description.split(', ').map((c, idx) => ({ id: idx, desc: c }))}
+						/>
+					</Fragment>
+				))}
 			</Stack>
 		</>
 	);

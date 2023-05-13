@@ -27,3 +27,14 @@ export interface CardType {
 		last4: string;
 	};
 }
+
+export interface ProductsType {
+	default_price: {
+		id: string;
+		nickname: string;
+		unit_amount: number;
+	};
+	description: string;
+	id: string;
+	name: string;
+}
