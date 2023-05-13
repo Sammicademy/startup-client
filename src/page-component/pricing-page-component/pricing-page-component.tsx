@@ -4,12 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Pricing } from 'src/components';
 import { ProductsType } from 'src/interfaces/constants.interface';
 
-const options = [
-	{ id: 1, desc: '1 lorem ipsum' },
-	{ id: 2, desc: 'Lorem, ipsum dolor.' },
-	{ id: 3, desc: 'Monthly Updates' },
-];
-
 const PricingPageComponent = ({ products }: { products: ProductsType[] }) => {
 	const { t } = useTranslation();
 
@@ -39,6 +33,7 @@ const PricingPageComponent = ({ products }: { products: ProductsType[] }) => {
 							title={product.name}
 							price={product.default_price.unit_amount / 100}
 							options={product.description.split(', ').map((c, idx) => ({ id: idx, desc: c }))}
+							product={product}
 						/>
 					</Fragment>
 				))}

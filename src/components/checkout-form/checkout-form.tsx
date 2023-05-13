@@ -37,7 +37,7 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [radioValue, setRadioValue] = useState<string>('0');
 
-	const { courses, books } = useTypedSelector(state => state.cart);
+	const { courses, books, product } = useTypedSelector(state => state.cart);
 	const { colorMode } = useColorMode();
 	const router = useRouter();
 	const { getBooks } = useActions();
@@ -96,9 +96,9 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
 		if (!stripe) return;
 
 		try {
-			if (books.length) {
-				const { data } = await $axios.post(`/payment/books`, {
-					price: getTotalPrice(courses, books),
+			if (product.id) {
+				const { data } = await $axios.post(`/payment/create-subscription`, {
+					price: product.default_price.id,
 					paymentMethod: paymentMethod,
 				});
 
@@ -108,21 +108,17 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
 					setIsLoading(false);
 					setError(`Your payment details couldn't be verified: ${payload.error.message}`);
 				} else {
-					for (const book of books) {
-						await $axios.post(`${getMailUrl('books')}/${book._id}`);
-					}
-					getBooks([]);
+					toast({
+						title: 'Successfully purchased',
+						position: 'top-right',
+					});
 					router.push('/shop/success');
 				}
-			}
-
-			if (courses.length) {
-				let counter = courses.length;
-				for (const course of courses) {
-					const { data } = await $axios.post(`/payment/courses`, {
-						price: course.price,
+			} else {
+				if (books.length) {
+					const { data } = await $axios.post(`/payment/books`, {
+						price: getTotalPrice(courses, books),
 						paymentMethod: paymentMethod,
-						courseId: course._id,
 					});
 
 					const payload = await stripe.confirmCardPayment(data);
@@ -131,16 +127,40 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
 						setIsLoading(false);
 						setError(`Your payment details couldn't be verified: ${payload.error.message}`);
 					} else {
-						counter -= 1;
-						toast({
-							title: course.title,
-							description: 'Successfully purchased',
-							position: 'top-right',
-						});
-					}
-
-					if (counter == 0) {
+						for (const book of books) {
+							await $axios.post(`${getMailUrl('books')}/${book._id}`);
+						}
+						getBooks([]);
 						router.push('/shop/success');
+					}
+				}
+
+				if (courses.length) {
+					let counter = courses.length;
+					for (const course of courses) {
+						const { data } = await $axios.post(`/payment/courses`, {
+							price: course.price,
+							paymentMethod: paymentMethod,
+							courseId: course._id,
+						});
+
+						const payload = await stripe.confirmCardPayment(data);
+
+						if (payload.error) {
+							setIsLoading(false);
+							setError(`Your payment details couldn't be verified: ${payload.error.message}`);
+						} else {
+							counter -= 1;
+							toast({
+								title: course.title,
+								description: 'Successfully purchased',
+								position: 'top-right',
+							});
+						}
+
+						if (counter == 0) {
+							router.push('/shop/success');
+						}
 					}
 				}
 			}
