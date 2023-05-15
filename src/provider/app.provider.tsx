@@ -18,21 +18,15 @@ const AppProvider: FC<Props> = ({ children, course, courses, instructors, books 
 	useEffect(() => {
 		if (courses?.length) {
 			getCourses(courses);
-		} else {
-			getCourses([]);
 		}
 		if (instructors?.length) {
 			getInstructors(instructors);
-		} else {
-			getInstructors([]);
 		}
 		if (course) {
 			getCourse(course);
 		}
 		if (books?.length) {
 			getBooks(books);
-		} else {
-			getBooks([]);
 		}
 	}, [courses, course]);
 

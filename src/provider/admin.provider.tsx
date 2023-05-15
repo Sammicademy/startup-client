@@ -25,23 +25,15 @@ const AdminProvider: FC<Props> = ({
 	useEffect(() => {
 		if (courses?.length) {
 			getAdminCourses(courses);
-		} else {
-			getAdminCourses([]);
 		}
 		if (instructors?.length) {
 			getAdminInstructors(instructors);
-		} else {
-			getAdminInstructors([]);
 		}
 		if (users?.length) {
 			getAdminUsers(users);
-		} else {
-			getAdminUsers([]);
 		}
 		if (books?.length) {
 			getBooks(books);
-		} else {
-			getBooks([]);
 		}
 	}, [courses, instructors, users, books]);
 

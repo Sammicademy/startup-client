@@ -50,19 +50,8 @@ const CheckoutPageComponent = ({ cards }: { cards: CardType[] }) => {
 					<Text fontSize={'2xl'} fontWeight={'bold'}>
 						Order details
 					</Text>
-					{books.map(book => (
-						<Fragment key={book._id}>
-							<OrderedDetailedCart item={book} image={book.image} />
-							<Divider my={5} />
-						</Fragment>
-					))}
-					{courses.map(book => (
-						<Fragment key={book._id}>
-							<OrderedDetailedCart item={book} image={book.previewImage} />
-							<Divider my={5} />
-						</Fragment>
-					))}
-					{product.id && (
+
+					{product.id ? (
 						<>
 							<Divider my={5} />
 							<HStack justify={'space-between'}>
@@ -79,6 +68,21 @@ const CheckoutPageComponent = ({ cards }: { cards: CardType[] }) => {
 									})}
 								</Text>
 							</HStack>
+						</>
+					) : (
+						<>
+							{books.map(book => (
+								<Fragment key={book._id}>
+									<OrderedDetailedCart item={book} image={book.image} />
+									<Divider my={5} />
+								</Fragment>
+							))}
+							{courses.map(book => (
+								<Fragment key={book._id}>
+									<OrderedDetailedCart item={book} image={book.previewImage} />
+									<Divider my={5} />
+								</Fragment>
+							))}
 						</>
 					)}
 				</GridItem>

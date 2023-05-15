@@ -97,23 +97,16 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
 
 		try {
 			if (product.id) {
-				const { data } = await $axios.post(`/payment/create-subscription`, {
+				await $axios.post(`/payment/create-subscription`, {
 					price: product.default_price.id,
 					paymentMethod: paymentMethod,
 				});
 
-				const payload = await stripe.confirmCardPayment(data);
-
-				if (payload.error) {
-					setIsLoading(false);
-					setError(`Your payment details couldn't be verified: ${payload.error.message}`);
-				} else {
-					toast({
-						title: 'Successfully purchased',
-						position: 'top-right',
-					});
-					router.push('/shop/success');
-				}
+				toast({
+					title: 'Successfully purchased',
+					position: 'top-right',
+				});
+				router.push('/shop/success');
 			} else {
 				if (books.length) {
 					const { data } = await $axios.post(`/payment/books`, {
@@ -131,7 +124,9 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
 							await $axios.post(`${getMailUrl('books')}/${book._id}`);
 						}
 						getBooks([]);
-						router.push('/shop/success');
+						if (!courses.length) {
+							router.push('/shop/success');
+						}
 					}
 				}
 
@@ -204,10 +199,15 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
 										colorScheme={'facebook'}
 									>
 										Pay now{' '}
-										{getTotalPrice(courses, books).toLocaleString('en-US', {
-											style: 'currency',
-											currency: 'USD',
-										})}
+										{product.id
+											? (product.default_price.unit_amount / 100).toLocaleString('en-US', {
+													style: 'currency',
+													currency: 'USD',
+											  })
+											: getTotalPrice(courses, books).toLocaleString('en-US', {
+													style: 'currency',
+													currency: 'USD',
+											  })}
 									</Button>
 								</Box>
 							)}
@@ -288,10 +288,15 @@ export default function CheckoutForm({ cards }: { cards: CardType[] }) {
 						onClick={handleSubmit}
 					>
 						Pay now{' '}
-						{getTotalPrice(courses, books).toLocaleString('en-US', {
-							style: 'currency',
-							currency: 'USD',
-						})}
+						{product.id
+							? (product.default_price.unit_amount / 100).toLocaleString('en-US', {
+									style: 'currency',
+									currency: 'USD',
+							  })
+							: getTotalPrice(courses, books).toLocaleString('en-US', {
+									style: 'currency',
+									currency: 'USD',
+							  })}
 					</Button>
 				</>
 			)}
