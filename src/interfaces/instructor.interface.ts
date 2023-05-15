@@ -27,3 +27,13 @@ export interface LessonType {
 	second: number;
 	_id: string;
 }
+
+export interface BalanceType {
+	available: AmountBalanceType[];
+	instant_available: AmountBalanceType[];
+	pending: AmountBalanceType[];
+}
+
+interface AmountBalanceType {
+	amount: number;
+}
