@@ -8,4 +8,5 @@ export interface UserType {
 	password?: string;
 	avatar?: string;
 	job?: string;
+	courses: string[];
 }
