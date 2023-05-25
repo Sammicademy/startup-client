@@ -11,7 +11,10 @@ const Courses = () => {
 
 	return (
 		<Seo
-			metaTitle={`Sammi | ${t('course_page_title', { ns: 'seo' })}` || 'Sammi | All Courses'}
+			metaTitle={
+				`Sammi | ${t('course_page_title', { ns: 'seo' })}` ||
+				'Sammi | All Courses'
+			}
 			metaDescription={
 				`Sammi | ${t('course_page_description', { ns: 'seo' })}` ||
 				'All courses in sammi platform just learn and relax'
@@ -24,7 +27,9 @@ const Courses = () => {
 
 export default withLayout(Courses);
 
-export const getServerSideProps: GetServerSideProps<MainPageProps> = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps<
+	MainPageProps
+> = async ({ req }) => {
 	const courses = await AppService.getCourses(req.cookies.i18next);
 
 	return {

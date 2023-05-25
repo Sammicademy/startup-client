@@ -10,7 +10,7 @@ import {
 	Image,
 	Stack,
 	Text,
-	useToast,
+	useToast
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { AiOutlineClockCircle } from 'react-icons/ai';

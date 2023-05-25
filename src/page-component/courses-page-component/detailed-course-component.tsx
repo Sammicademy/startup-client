@@ -1,22 +1,24 @@
 import {
 	Box,
+	Button,
 	Card,
 	CardBody,
+	Divider,
 	Flex,
 	Heading,
-	Stack,
-	Text,
 	Icon,
-	useMediaQuery,
 	Image,
-	Button,
-	Divider,
-	Tabs,
-	TabList,
+	Stack,
 	Tab,
+	TabList,
+	Tabs,
+	Text,
+	useMediaQuery,
 } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { format } from 'date-fns';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { BsBarChart } from 'react-icons/bs';
 import {
 	FaBook,
 	FaLanguage,
@@ -25,33 +27,30 @@ import {
 	FaUserGraduate,
 	FaUserTie,
 } from 'react-icons/fa';
-import ReactStars from 'react-stars';
-import { courses } from 'src/config/constants';
-import { CourseType } from 'src/interfaces/course.interface';
-import { TfiAlarmClock, TfiTimer } from 'react-icons/tfi';
-import { format } from 'date-fns';
-import { MdPlayLesson } from 'react-icons/md';
-import { BsBarChart } from 'react-icons/bs';
-import { TbCertificate } from 'react-icons/tb';
 import { GiInfinity } from 'react-icons/gi';
+import { MdPlayLesson } from 'react-icons/md';
+import { TbCertificate } from 'react-icons/tb';
+import { TfiAlarmClock, TfiTimer } from 'react-icons/tfi';
+import ReactStars from 'react-stars';
 import { Curriculum, Mentor, Overview, Review } from 'src/components';
-import { useTranslation } from 'react-i18next';
+import { loadImage } from 'src/helpers/image.helper';
+import { useActions } from 'src/hooks/useActions';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
 
 const DetailedCourseComponent = () => {
-	const [course, setData] = useState<CourseType>();
 	const [tabIndex, setTabIndex] = useState(0);
 
-	const router = useRouter();
+	const { course } = useTypedSelector(state => state.course);
+	const { sections } = useTypedSelector(state => state.section);
 	const [media] = useMediaQuery('(min-width: 592px)');
 	const { t } = useTranslation();
-
-	useEffect(() => {
-		const currentCourse = courses.find(c => c.slug === router.query.slug);
-		setData(currentCourse);
-	}, [router.query]);
+	const { getSection } = useActions();
 
 	const tabHandler = (idx: number) => {
 		setTabIndex(idx);
+		if (idx == 1 && !sections.length) {
+			getSection({ courseId: course?._id, callback: () => {} });
+		}
 	};
 
 	return (
@@ -64,12 +63,12 @@ const DetailedCourseComponent = () => {
 							<Heading mt={5} fontSize={'3xl'}>
 								{course?.title}
 							</Heading>
-							<Text mt={5}>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit.
-								Laboriosam quaerat exercitationem architecto quos at odio totam,
-								doloribus dolorem asperiores. Animi?
-							</Text>
-							<Stack mt={5} direction={!media ? 'column' : 'row'} gap={1}>
+							<Text mt={5}>{course?.exerpt}</Text>
+							<Stack
+								mt={5}
+								direction={!media ? 'column' : 'row'}
+								gap={1}
+							>
 								<Flex fontSize={'sm'} align={'flex-end'} gap={1}>
 									<Text>5.0</Text>
 									<ReactStars edit={false} value={5} />
@@ -82,7 +81,12 @@ const DetailedCourseComponent = () => {
 								<Flex align={'center'} fontSize={'sm'} gap={1}>
 									<Icon as={TfiAlarmClock} />
 									<Text>
-										Oxirgi yangilanish {format(new Date(), 'dd MMMM, yyyy')}
+										Oxirgi yangilanish{' '}
+										{course &&
+											format(
+												new Date(course.updatedAt),
+												'dd MMMM, yyyy'
+											)}
 									</Text>
 								</Flex>
 							</Stack>
@@ -97,9 +101,12 @@ const DetailedCourseComponent = () => {
 									<Image
 										w={'full'}
 										h={'300px'}
-										src={course?.image}
+										src={loadImage(course?.previewImage)}
 										alt={course?.title}
-										style={{ objectFit: 'cover', borderRadius: '8px' }}
+										style={{
+											objectFit: 'cover',
+											borderRadius: '8px',
+										}}
 									/>
 									<Stack
 										mt={5}
@@ -107,15 +114,19 @@ const DetailedCourseComponent = () => {
 										align={'flex-end'}
 										justify={'space-between'}
 									>
-										<Heading fontSize={'2xl'}>Bepul</Heading>
-										<Text textDecoration={'line-through'}>
+										<Heading fontSize={'2xl'}>
 											{course?.price.toLocaleString('en-US', {
 												currency: 'USD',
 												style: 'currency',
 											})}
-										</Text>
+										</Heading>
 									</Stack>
-									<Button mt={5} w={'full'} h={14} colorScheme={'facebook'}>
+									<Button
+										mt={5}
+										w={'full'}
+										h={14}
+										colorScheme={'facebook'}
+									>
 										{t('enroll', { ns: 'courses' })}
 									</Button>
 									<Box mt={3}>
@@ -149,7 +160,8 @@ const DetailedCourseComponent = () => {
 												</Text>
 											</Flex>
 											<Text>
-												{course?.totalHour} {t('hour', { ns: 'courses' })}
+												{course?.totalHour}{' '}
+												{t('hour', { ns: 'courses' })}
 											</Text>
 										</Flex>
 										<Divider />
@@ -182,7 +194,7 @@ const DetailedCourseComponent = () => {
 													{t('language', { ns: 'courses' })}
 												</Text>
 											</Flex>
-											<Text>English</Text>
+											<Text>{course?.language}</Text>
 										</Flex>
 										<Divider />
 										<Flex

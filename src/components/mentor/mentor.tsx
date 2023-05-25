@@ -10,9 +10,11 @@ import {
 import { useTranslation } from 'react-i18next';
 import { BsPlayCircle } from 'react-icons/bs';
 import { FaStar, FaUserGraduate } from 'react-icons/fa';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
 
 const Mentor = () => {
 	const { t } = useTranslation();
+	const { course } = useTypedSelector(state => state.course);
 
 	return (
 		<>
@@ -20,14 +22,15 @@ const Mentor = () => {
 			<Flex mt={5} gap={5} align={'center'}>
 				<Avatar
 					display={{ base: 'none', md: 'block' }}
-					src='https://media.graphassets.com/NfxHACAlR4CkvdhnB3gs'
+					src={course?.author.avatar}
+					name={course?.author.fullName}
 					size={'2xl'}
 				/>
 				<Box>
 					<Text fontWeight={'bold'} fontSize={'20px'}>
-						Samar Badriddinov
+						{course?.author.fullName}
 					</Text>
-					<Text>Software Engineer & Coding instructor</Text>
+					<Text>{course?.author.job}</Text>
 					<Stack
 						direction={{ base: 'column', md: 'row' }}
 						mt={2}
@@ -51,19 +54,21 @@ const Mentor = () => {
 			</Flex>
 			<Text mt={4}>
 				<Box as={'span'} fontWeight={'bold'} color={'facebook.500'}>
-					Samar Badriddinov
+					{course?.author.fullName}
 				</Box>{' '}
-				- Sammi platformasi asoschisi hamda Amerika, Tunisia va Rossiya
-				do'vlatrida bir nachta StartUp loyihalarda ishtrok etgan. Xozirgi kunda
-				Amerikadagi sug'urta kompaniyasida ishlaydi.
+				- Sammi platformasi asoschisi hamda Amerika, Tunisia va
+				Rossiya do'vlatrida bir nachta StartUp loyihalarda ishtrok
+				etgan. Xozirgi kunda Amerikadagi sug'urta kompaniyasida
+				ishlaydi.
 			</Text>
 			<Text mt={4}>
 				<Box as={'span'} fontWeight={'bold'} color={'facebook.500'}>
 					Stack
 				</Box>{' '}
-				- O'z tajribam davomida men bir nechta stack lardan foydalanganman, MERN
-				(TypeScript, NextJS), Angular, VueJS, AWS, React Native. Ushbu
-				platformaning asosiy maqsadi o'z bilimlarimni bo'lishish.
+				- O'z tajribam davomida men bir nechta stack lardan
+				foydalanganman, MERN (TypeScript, NextJS), Angular, VueJS,
+				AWS, React Native. Ushbu platformaning asosiy maqsadi o'z
+				bilimlarimni bo'lishish.
 			</Text>
 		</>
 	);
