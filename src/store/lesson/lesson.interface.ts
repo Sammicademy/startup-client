@@ -1,5 +1,8 @@
+import { LessonType } from 'src/interfaces/instructor.interface';
+
 export interface LessonInitialStateType {
 	isLoading: boolean;
+	lesson: LessonType;
 	error: string | null | unknown;
 }
 

@@ -15,24 +15,53 @@ import {
 	useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { getLessonTime } from 'src/helpers/time.helper';
 import { useActions } from 'src/hooks/useActions';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
+import { LessonType } from 'src/interfaces/instructor.interface';
 
 const Sidebar = () => {
+	const [moduleIndex, setModuleIndex] = useState<number>(0);
+
 	const { sections, pendingSection } = useTypedSelector(
 		state => state.section
 	);
 	const { course } = useTypedSelector(state => state.course);
 	const { user } = useTypedSelector(state => state.user);
-	const { getSection } = useActions();
+	const { getSection, getLesson } = useActions();
 	const router = useRouter();
 
 	useEffect(() => {
 		getSection({ courseId: course?._id, callback: () => {} });
 	}, [course]);
+
+	const onLesson = (lesson: LessonType) => {
+		getLesson(lesson);
+		localStorage.setItem(`${course?._id}`, lesson._id);
+		const link = `/courses/dashboard/${course?.slug}`;
+
+		router.replace(
+			{ pathname: link, query: { lesson: lesson._id } },
+			undefined,
+			{ shallow: true }
+		);
+	};
+
+	useEffect(() => {
+		const lessonId = localStorage.getItem(course?._id as string);
+
+		const currentModuleId = sections.find(item =>
+			item.lessons.map(c => c._id).includes(lessonId as string)
+		)?._id;
+
+		const findIndex = sections
+			.map(c => c._id)
+			.indexOf(currentModuleId as string);
+
+		setModuleIndex(findIndex === -1 ? 0 : findIndex);
+	}, [sections]);
 
 	return (
 		<Box
@@ -77,8 +106,8 @@ const Sidebar = () => {
 						ta Darslik
 					</Flex>
 
-					<Accordion mb={5} mr={2} allowToggle>
-						{sections.map(section => (
+					<Accordion mb={5} mr={2} index={moduleIndex}>
+						{sections.map((section, idx) => (
 							<AccordionItem
 								key={section._id}
 								borderRadius={'8px'}
@@ -93,7 +122,7 @@ const Sidebar = () => {
 									borderRadius={'md'}
 									_hover={{}}
 									fontWeight={'bold'}
-									// onClick={() => onModule(id)}
+									onClick={() => setModuleIndex(idx)}
 								>
 									<Box flex='1' textAlign='left'>
 										<AccordionIcon />
@@ -112,20 +141,20 @@ const Sidebar = () => {
 											}}
 											transition={'all .3s ease'}
 											borderRadius={'md'}
-											// onClick={() => onLesson(lesson)}
+											onClick={() => onLesson(lesson)}
 											bg={
-												router.query.lessonId === lesson._id
+												router.query.lesson === lesson._id
 													? useColorModeValue('gray.100', 'gray.800')
 													: 'transparent'
 											}
 											fontWeight={
-												router.query.lessonId === lesson._id
+												router.query.lesson === lesson._id
 													? 'bold'
 													: 'normal'
 											}
 											color={
-												router.query.lessonId === lesson._id
-													? 'green.500'
+												router.query.lesson === lesson._id
+													? 'facebook.500'
 													: 'normal'
 											}
 										>

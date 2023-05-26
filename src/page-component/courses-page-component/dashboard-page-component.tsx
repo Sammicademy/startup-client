@@ -1,8 +1,18 @@
-import { Box, Card, CardBody, Container } from '@chakra-ui/react';
+import {
+	Box,
+	Card,
+	CardBody,
+	Container,
+	Divider,
+	Heading,
+} from '@chakra-ui/react';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import Header from './header';
 import Sidebar from './sidebar';
 
 const DashboardPageComponent = () => {
+	const { lesson } = useTypedSelector(state => state.lesson);
+
 	return (
 		<>
 			<Header />
@@ -14,8 +24,30 @@ const DashboardPageComponent = () => {
 			>
 				<Container maxW={'container.lg'}>
 					<Card>
-						<CardBody></CardBody>
+						<CardBody>
+							<Box
+								dangerouslySetInnerHTML={{
+									__html: lesson.embedVideo,
+								}}
+							/>
+						</CardBody>
 					</Card>
+
+					<Heading mt={5} as={'h2'}>
+						{lesson.name}
+					</Heading>
+					<Divider mt={5} />
+					<Box
+						mb={10}
+						mt={5}
+						css={{
+							a: { color: 'teal', textDecoration: 'underline' },
+							li: { listStyle: 'none' },
+						}}
+						dangerouslySetInnerHTML={{
+							__html: lesson.material,
+						}}
+					/>
 				</Container>
 			</Box>
 		</>
