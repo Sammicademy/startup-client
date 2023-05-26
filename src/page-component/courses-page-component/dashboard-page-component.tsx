@@ -16,7 +16,14 @@ const DashboardPageComponent = () => {
 	return (
 		<>
 			<Header />
-			<Sidebar />
+			<Sidebar
+				display={{ base: 'none', lg: 'block' }}
+				position={'fixed'}
+				top={'12vh'}
+				right={'2vh'}
+				bottom={'2vh'}
+				w={'400px'}
+			/>
 			<Box
 				mt={'12vh'}
 				marginRight={{ base: 2, lg: '450px' }}
@@ -38,7 +45,6 @@ const DashboardPageComponent = () => {
 					</Heading>
 					<Divider mt={5} />
 					<Box
-						mb={10}
 						mt={5}
 						css={{
 							a: { color: 'teal', textDecoration: 'underline' },
@@ -47,6 +53,12 @@ const DashboardPageComponent = () => {
 						dangerouslySetInnerHTML={{
 							__html: lesson.material,
 						}}
+					/>
+					<Sidebar
+						display={{ base: 'block', lg: 'none' }}
+						pos={'relative'}
+						width={'100%'}
+						mb={10}
 					/>
 				</Container>
 			</Box>
