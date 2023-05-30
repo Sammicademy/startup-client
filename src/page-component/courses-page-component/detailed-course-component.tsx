@@ -38,10 +38,16 @@ import { Curriculum, Mentor, Overview, Review } from 'src/components';
 import { loadImage } from 'src/helpers/image.helper';
 import { useActions } from 'src/hooks/useActions';
 import { useTypedSelector } from 'src/hooks/useTypedSelector';
-import { CourseType } from 'src/interfaces/course.interface';
+import {
+	CourseType,
+	ReviewType,
+} from 'src/interfaces/course.interface';
+import { CourseService } from 'src/services/course.service';
 
 const DetailedCourseComponent = () => {
 	const [tabIndex, setTabIndex] = useState(0);
+	const [reviews, setReviews] = useState<ReviewType[]>([]);
+	const [isLoading, setisLoading] = useState(false);
 
 	const { course } = useTypedSelector(state => state.course);
 	const { sections } = useTypedSelector(state => state.section);
@@ -53,10 +59,15 @@ const DetailedCourseComponent = () => {
 	const { push } = useRouter();
 	const toast = useToast();
 
-	const tabHandler = (idx: number) => {
+	const tabHandler = async (idx: number) => {
 		setTabIndex(idx);
 		if (idx == 1 && !sections.length) {
 			getSection({ courseId: course?._id, callback: () => {} });
+		} else if (idx == 2 && !reviews.length) {
+			setisLoading(true);
+			const response = await CourseService.getReviews(course?._id);
+			setReviews(response);
+			setisLoading(false);
 		}
 	};
 
@@ -301,7 +312,9 @@ const DetailedCourseComponent = () => {
 				<Box w={'full'}>
 					{tabIndex === 0 && <Overview />}
 					{tabIndex === 1 && <Curriculum />}
-					{tabIndex === 2 && <Review />}
+					{tabIndex === 2 && (
+						<Review reviews={reviews} isLoading={isLoading} />
+					)}
 					{tabIndex === 3 && <Mentor />}
 				</Box>
 			</Tabs>

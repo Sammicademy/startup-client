@@ -25,3 +25,11 @@ export interface AuthorType {
 	avatar: string;
 	job: string;
 }
+
+export interface ReviewType {
+	author: AuthorType;
+	createdAt: Date;
+	updatedAt: Date;
+	rating: number;
+	summary: string;
+}
