@@ -10,7 +10,7 @@ import {
 	Image,
 	Stack,
 	Text,
-	useToast
+	useToast,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { AiOutlineClockCircle } from 'react-icons/ai';
@@ -29,13 +29,18 @@ const AllCoursesCard = ({ course }: AllCoursesCardProps) => {
 	const { courses } = useTypedSelector(state => state.cart);
 	const toast = useToast();
 
-	const onDetailedCourse = () => router.push(`/courses/${course.slug}`);
+	const onDetailedCourse = () =>
+		router.push(`/courses/${course.slug}`);
 
 	const addCourseToCardHandler = () => {
 		const existingProduct = courses.find(c => c._id === course._id);
 
 		if (existingProduct) {
-			toast({ title: 'Course already exist in cart', position: 'bottom', status: 'warning' });
+			toast({
+				title: 'Course already exist in cart',
+				position: 'bottom',
+				status: 'warning',
+			});
 			return;
 		}
 		addCourseToCart(course);
@@ -58,17 +63,28 @@ const AllCoursesCard = ({ course }: AllCoursesCardProps) => {
 					/>
 					<Stack>
 						<HStack>
-							<Text color={'#e59819'}>5</Text>
-							<ReactStars edit={false} value={5} color2={'#e59819'} />
-							<Text opacity={'.8'}>(5)</Text>
+							<Text color={'#e59819'}>{course.reviewAvg || 0}</Text>
+							<ReactStars
+								edit={false}
+								value={course.reviewAvg || 5}
+								color2={'#e59819'}
+							/>
+							<Text opacity={'.8'}>({course.reviewCount})</Text>
 						</HStack>
 						<Heading fontSize={'xl'}>{course.title}</Heading>
 						<Text>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium nostrum
-							laboriosam est ut.
+							Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Praesentium nostrum laboriosam est ut.
 						</Text>
-						<Flex gap={2} fontSize={'14px'} direction={{ base: 'column', sm: 'row' }}>
-							<Avatar src={course.author.avatar} name={course.author.fullName} />
+						<Flex
+							gap={2}
+							fontSize={'14px'}
+							direction={{ base: 'column', sm: 'row' }}
+						>
+							<Avatar
+								src={course.author.avatar}
+								name={course.author.fullName}
+							/>
 							<HStack>
 								<Flex align={'center'} gap={1}>
 									<Icon as={CiViewList} />
@@ -91,18 +107,29 @@ const AllCoursesCard = ({ course }: AllCoursesCardProps) => {
 							direction={{ base: 'column', md: 'row' }}
 						>
 							<Text fontSize={'xl'} fontWeight={'bold'}>
-								{course.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+								{course.price.toLocaleString('en-US', {
+									style: 'currency',
+									currency: 'USD',
+								})}
 							</Text>
 							<Flex gap={4} mt={{ base: 5, md: 0 }}>
 								<Button
 									rightIcon={<BsMinecartLoaded />}
 									colorScheme={'facebook'}
 									onClick={addCourseToCardHandler}
-									isDisabled={courses.map(c => c._id).includes(course._id) ? true : false}
+									isDisabled={
+										courses.map(c => c._id).includes(course._id)
+											? true
+											: false
+									}
 								>
 									Add to cart
 								</Button>
-								<Button onClick={onDetailedCourse} colorScheme={'facebook'} variant={'outline'}>
+								<Button
+									onClick={onDetailedCourse}
+									colorScheme={'facebook'}
+									variant={'outline'}
+								>
 									Detail
 								</Button>
 							</Flex>
