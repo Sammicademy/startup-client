@@ -17,10 +17,13 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import { AiOutlineLogin, AiOutlineShoppingCart } from 'react-icons/ai';
+import {
+	AiOutlineDashboard,
+	AiOutlineLogin,
+	AiOutlineShoppingCart,
+} from 'react-icons/ai';
 import { BiMenuAltLeft, BiUserCircle } from 'react-icons/bi';
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
-import { FiSettings } from 'react-icons/fi';
 import { IoIosLogOut } from 'react-icons/io';
 import { RiAdminFill } from 'react-icons/ri';
 import { TbWorld } from 'react-icons/tb';
@@ -66,8 +69,16 @@ const Header = ({ onToggle }: HeaderProps) => {
 		>
 			<Flex h={'full'} justify={'space-between'} align={'center'}>
 				<HStack>
-					<Icon as={BiMenuAltLeft} onClick={onToggle} w={6} h={6} cursor={'pointer'} />
-					<Link href={'/'}>{colorMode === 'light' ? <DarkLogo /> : <LightLogo />}</Link>
+					<Icon
+						as={BiMenuAltLeft}
+						onClick={onToggle}
+						w={6}
+						h={6}
+						cursor={'pointer'}
+					/>
+					<Link href={'/'}>
+						{colorMode === 'light' ? <DarkLogo /> : <LightLogo />}
+					</Link>
 				</HStack>
 				<HStack>
 					<Box pos={'relative'}>
@@ -109,7 +120,11 @@ const Header = ({ onToggle }: HeaderProps) => {
 									key={item.lng}
 									onClick={() => onLanguage(item.lng)}
 									icon={<item.icon />}
-									backgroundColor={i18n.resolvedLanguage === item.lng ? 'facebook.500' : ''}
+									backgroundColor={
+										i18n.resolvedLanguage === item.lng
+											? 'facebook.500'
+											: ''
+									}
 								>
 									{item.nativeLng}
 								</MenuItem>
@@ -119,14 +134,29 @@ const Header = ({ onToggle }: HeaderProps) => {
 					<IconButton
 						aria-label='color-mode'
 						onClick={toggleColorMode}
-						icon={colorMode == 'light' ? <BsFillMoonFill /> : <BsFillSunFill />}
+						icon={
+							colorMode == 'light' ? (
+								<BsFillMoonFill />
+							) : (
+								<BsFillSunFill />
+							)
+						}
 						colorScheme={'facebook'}
 						variant={'outline'}
 					/>
 					{user ? (
 						<Menu>
-							<MenuButton as={Button} rounded={'full'} variant={'link'} cursor={'pointer'} minW={0}>
-								<Avatar backgroundColor={'facebook.500'} src={user.avatar} />
+							<MenuButton
+								as={Button}
+								rounded={'full'}
+								variant={'link'}
+								cursor={'pointer'}
+								minW={0}
+							>
+								<Avatar
+									backgroundColor={'facebook.500'}
+									src={user.avatar}
+								/>
 							</MenuButton>
 							<MenuList p={0} m={0}>
 								{user.role === 'INSTRUCTOR' && (
@@ -141,11 +171,11 @@ const Header = ({ onToggle }: HeaderProps) => {
 								)}
 								<MenuItem
 									h={14}
-									// onClick={() => router.push('/setting')}
+									onClick={() => router.push('/dashboard')}
 									fontWeight={'bold'}
-									icon={<FiSettings fontSize={17} />}
+									icon={<AiOutlineDashboard fontSize={17} />}
 								>
-									{t('settings', { ns: 'global' })}
+									Dashboard
 								</MenuItem>
 
 								<MenuItem

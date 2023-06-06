@@ -12,6 +12,7 @@ export { default as ContactPageComponent } from './contact-page-component/contac
 export { default as CoursesPageComponent } from './courses-page-component/courses-page-component';
 export { default as DashboardPageComponent } from './courses-page-component/dashboard-page-component';
 export { default as DetailedCourseComponent } from './courses-page-component/detailed-course-component';
+export { default as UserDashboardPageComponent } from './dashboard-page-component/dashboard-page-component';
 export { default as FaqPageComponent } from './faq-page-component/faq-page-component';
 export { default as HomePageComponent } from './home-page-component/home-page-component';
 export { default as InstructorCoursesPageComponent } from './instructor-page-component/courses-page-component';
