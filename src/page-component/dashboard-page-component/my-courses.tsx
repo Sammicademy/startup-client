@@ -1,11 +1,14 @@
+import { FC } from 'react';
 import { AllCoursesCard } from 'src/components';
-import { courses } from 'src/config/constants';
+import { MyCoursesProps } from './dashboard.props';
 
-const MyCourses = () => {
+const MyCourses: FC<MyCoursesProps> = ({
+	myCourses,
+}): JSX.Element => {
 	return (
 		<>
-			{courses.map(course => (
-				<AllCoursesCard course={course} />
+			{myCourses.map(course => (
+				<AllCoursesCard course={course} isMyCourse={true} />
 			))}
 		</>
 	);

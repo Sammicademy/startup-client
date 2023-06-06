@@ -1,17 +1,25 @@
 import { Box, Grid, Text } from '@chakra-ui/react';
+import { FC } from 'react';
+import { SavedCardsProps } from './dashboard.props';
 
-const SavedCards = () => {
+const SavedCards: FC<SavedCardsProps> = ({
+	savedCards,
+}): JSX.Element => {
 	return (
 		<Grid gridTemplateColumns={'1fr 1fr'} gap={5}>
-			<Box border={'1px'} p={5} borderRadius={'lg'}>
-				<Text>
-					Samar B |{' '}
-					<Box as={'span'} fontWeight={'bold'}>
-						Visa 4242
-					</Box>
-				</Text>
-				<Text>EXP: 02/2024</Text>
-			</Box>
+			{savedCards.map(card => (
+				<Box border={'1px'} p={5} borderRadius={'lg'} key={card.id}>
+					<Text>
+						{card.billing_details.name} |{' '}
+						<Box as={'span'} fontWeight={'bold'}>
+							{card.card.brand} {card.card.last4}
+						</Box>
+					</Text>
+					<Text>
+						EXP: {card.card.exp_month}/{card.card.exp_year}
+					</Text>
+				</Box>
+			))}
 		</Grid>
 	);
 };

@@ -13,3 +13,17 @@ export interface UserType {
 	bio: string;
 	courses: string[];
 }
+
+export interface TransactionsType {
+	amount: number;
+	created: number;
+	id: string;
+	payment_method_details: {
+		card: {
+			brand: string;
+			exp_month: number;
+			exp_year: number;
+			last4: number;
+		};
+	};
+}
