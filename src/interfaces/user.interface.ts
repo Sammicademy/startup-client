@@ -9,5 +9,7 @@ export interface UserType {
 	password?: string;
 	avatar?: string;
 	job?: string;
+	birthday: string;
+	bio: string;
 	courses: string[];
 }

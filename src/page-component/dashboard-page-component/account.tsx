@@ -11,9 +11,12 @@ import {
 import { format } from 'date-fns';
 import { MdAlternateEmail, MdUpdate } from 'react-icons/md';
 import { SiAwesomelists } from 'react-icons/si';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import { StatsCardProps } from './dashboard.props';
 
 const Account = () => {
+	const { user } = useTypedSelector(state => state.user);
+
 	return (
 		<>
 			<Box maxW='7xl' mx={'auto'} px={{ base: 2, sm: 12, md: 17 }}>
@@ -31,17 +34,20 @@ const Account = () => {
 				>
 					<StatsCard
 						title={"Ro'yhatdan o'tgan sana"}
-						stat={`${format(new Date(), 'dd MMMM, yyyy')}`}
+						stat={`${format(
+							new Date(user?.createdAt as Date),
+							'dd MMMM, yyyy'
+						)}`}
 						icon={<MdUpdate size={'3em'} />}
 					/>
 					<StatsCard
-						title={'info@sammi.ac'}
+						title={user?.email as string}
 						stat={'Email manzilingiz'}
 						icon={<MdAlternateEmail size={'3em'} />}
 					/>
 					<StatsCard
 						title={'Kurslar'}
-						stat={'7 ta'}
+						stat={`${user?.courses.length} ta`}
 						icon={<SiAwesomelists size={'3em'} />}
 					/>
 				</SimpleGrid>

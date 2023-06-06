@@ -7,6 +7,7 @@ import {
 	Tabs,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import Account from './account';
 import DangerZone from './danger-zone';
 import MyCourses from './my-courses';
@@ -16,6 +17,7 @@ import Transactions from './transactions';
 
 const DashboardPageComponent = () => {
 	const [tabIndex, setTabIndex] = useState(0);
+	const { user } = useTypedSelector(state => state.user);
 
 	const tabHandler = async (idx: number) => {
 		setTabIndex(idx);
@@ -42,7 +44,7 @@ const DashboardPageComponent = () => {
 							<Tab>Danger Zone</Tab>
 						</TabList>
 						<TabPanels px={5}>
-							{tabIndex === 0 && <Account />}
+							{tabIndex === 0 && user && <Account />}
 							{tabIndex === 1 && <Settings />}
 							{tabIndex === 2 && <Transactions />}
 							{tabIndex === 3 && <MyCourses />}
