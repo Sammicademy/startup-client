@@ -1,35 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Startup Frontend
 
-## Getting Started
+#Demo
 
-First, run the development server:
+https://.....
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+#Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project is a real startup. You can see admin, instructor and user professional dashboards in the project. In order for the project to be at the international level, we have made it in 4 languages English, Uzbek, Turkish and Russian. To add payment methods, we used Stripe, one of the international companies. Students will be able to buy courses and also buy monthly VIP rates. Of course, instructors automatically send themselves to their cards within 24 hours of receiving their income. Of the profits, 70% for the instructor and 30% for the platform. Admin users, on the other hand, will be able to manage instructors.  On the platform admin users can place paid books and users have to buy them PDF files to email addresses.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+#Stack
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# startup
+- NextJS
+- TypeScript
+- I18next
+- Stripe
+- Redux toolkit
+- Redux thunk
+- Formik
+- Next auth
+- ChartJS
+- Admin, Instructor and User dashboards
+- Graphql
+- Hygraph
+  
