@@ -17,9 +17,13 @@ This project is a real startup. You can see admin, instructor and user professio
 - Redux toolkit
 - Redux thunk
 - Formik
+- Yup
 - Next auth
 - ChartJS
 - Admin, Instructor and User dashboards
 - Graphql
 - Hygraph
-  
+- SSR
+- SEO friendly
+- High Order Components
+- Layouts
